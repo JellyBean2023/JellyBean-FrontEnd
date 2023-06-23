@@ -1,0 +1,261 @@
+@import '../../../app/globals.css';
+
+
+
+/*===== 모바일환경 =====*/
+@media screen and (max-width: 768px) {
+    .nav {
+        position: fixed;
+        top: 0;
+        left: -100%;
+        background-color: var(--first-color);
+        width: 70%;
+        height: 100vh;
+        padding: 2rem 0;
+        z-index: var(--z-fixed);
+        transition: .3s;
+        overflow: scroll;
+
+        &_menu {
+            padding: 1rem 0;
+        }
+
+        &_name {
+            .logo {
+                width: 70px;
+
+                &_sub {
+                    display: none;
+                }
+            }
+        }
+
+        &_list {
+            .alert {
+                display: none;
+            }
+        }
+
+        &_item {
+            padding: 0.5rem 0;
+        }
+
+        .main_header {
+            position: relative;
+            top: -205px;
+        }
+
+        .sub_header {
+            position: relative;
+            top: 400px;
+        }
+
+        &_link {
+            &.dropdown_link {
+                color: var(--dark-color);
+                font-size: 20px;
+            }
+        }
+
+        & .dropdown {
+            &_menu {
+                &#show-menu {
+                    display: block;
+                }
+
+                &#hide-menu {
+                    display: none;
+                }
+            }
+        }
+    }
+
+    .header {
+        &_logo {
+            width: 250px;
+        }
+    }
+}
+
+.nav {
+    
+    &_content {
+        display: flex;
+        flex-direction: column;
+    }
+
+    &_perfil {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        margin-bottom: 3rem;
+    }
+
+    &_img {
+        display: flex;
+        justify-content: center;
+        width: 60px;
+        height: 60px;
+        overflow: hidden;
+        margin-bottom: 1rem;
+
+        & img {
+            width: 70px;
+        }
+    }
+
+    &_name {
+        display: block;
+    }
+
+
+    &_link {
+        color: var(--first-color-light);
+
+        &:hover {
+            color: var(--white-color);
+        }
+    }
+
+    .alert {
+        cursor: pointer;
+    }
+
+    /* 하단 메인 헤더 */
+    .main_header,
+    &_content {
+        margin-top:-5px;
+
+        & .logo {
+            background-color: rgba(255, 255, 255, .2);
+            width: 320px;
+            height: 50px;
+        }
+
+
+    }
+}
+
+/*Show Menu*/
+.show {
+    left: 0;
+    border-radius: 0 15px 15px 0;
+}
+
+/*메뉴 마우스 이벤트 */
+.active {
+    color: var(--white-color);
+}
+
+/* Dropdown 메뉴 */
+.dropdown {
+
+    &_link {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    &_item {
+        margin: 1rem 0;
+    }
+
+    &_menu {
+        margin: 1rem 0 0 1rem;
+        display: none;
+    }
+
+    @media screen and (min-width: 768px) {
+        &:hover>&_menu {
+            display: block;
+        }
+        &_menu {
+            background-color: var(--white-color);
+        }
+    }
+}
+
+/* Media Query */
+@media screen and (min-width: 768px) {
+    body {
+        margin: 0;
+    }
+
+    .header {
+        &_logo,
+        & .header_toggle {
+            display: none;
+        }
+    }
+
+    .nav {
+        width: 100%;
+
+        &_content {
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            height: 45px;
+        }
+
+        &_perfil {
+            flex-direction: row;
+            text-align: initial;
+            margin-bottom: 0;
+        }
+
+        &_name {
+            color: var(--dark-color);
+            vertical-align: middle;
+            padding: 3px;
+        }
+
+        &_list {
+            display: flex;
+            align-items: center;
+        }
+
+        &_item {
+            margin: 0 1rem;
+            padding: 1.4rem 0;
+        }
+
+        &_link {
+            font-size: 0.75em;
+            font-weight: bold;
+            color: var(--dark-color);
+
+            &:hover {
+                color: var(--first-color);
+            }
+        }
+    }
+
+    .active {
+        color: var(--first-color);
+    }
+
+    .dropdown {
+        position: relative;
+
+        &_menu {
+            position: fixed;
+            margin: 0;
+            padding: .5rem 1.5rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, .1);
+            border-radius: .5rem;
+        }
+
+        &_item {
+            margin: .5rem 0;
+        }
+    }
+}
+
+@media screen and (min-width: 1600px) {
+    .bd-grid {
+        margin-left: auto;
+        margin-right: auto;
+    }
+}

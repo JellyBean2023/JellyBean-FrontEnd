@@ -1,0 +1,21 @@
+.swiper {
+    --swiper-theme-color:#fff;
+
+    & img {
+        max-height: 30em;
+        width: 100%;
+    }
+}
+
+.swiper-horizontal {
+    margin: 50px;
+}
+
+.swiper-slide {
+    background-position: center;
+    height: 50px;
+}
+
+.bannerScreen {
+    margin: 50px 0;
+}

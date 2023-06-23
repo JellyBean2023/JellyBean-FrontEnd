@@ -1,0 +1,81 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* :root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
+} */
+
+:root {
+  /* 색상 */
+  --first-color: #5B65F5;
+  --first-color-light: #C4C7F5;
+  --dark-color: #0E1026;
+  --white-color: #FBFBFB;
+
+  /* 폰트 및 형식*/
+  --nav-name-font-size: 1.5rem;
+  --normal-font-size: .938rem;
+
+  @media screen and (min-width: 768px) {
+      --nav-name-font-size: 1rem;
+      --normal-font-size: 1rem;
+  }
+
+  /* 헤더 높이 */
+  --header-height: 100px;
+
+  /* 헤더의 z-index */
+  --z-fixed: 100;
+
+  /*푸터 높이*/
+  --footer-height: 80px;
+}
+
+*,
+::before,
+::after {
+  box-sizing: border-box;
+}
+
+main {
+  margin-top: calc(var(--header-height) + 1rem);
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+.bd-grid {
+  max-width: 1440px;
+  display: grid;
+  grid-template-columns: 100%;
+  margin-left: 1.5rem;
+  margin-right: 1.5rem;
+}
