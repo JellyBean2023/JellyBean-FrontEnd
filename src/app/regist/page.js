@@ -1,9 +1,9 @@
 "use client";
-import Login from "@/components/Login/Login"
+import Regist from "@/components/Login/Regist";
 
 const page = () => {
     return(
-        <Login/>
+        <Regist/>
     );
 }
 

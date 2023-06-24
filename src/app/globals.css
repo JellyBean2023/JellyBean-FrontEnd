@@ -42,7 +42,7 @@
 }
 
 body {
-  color: rgb(var(--background-rgb));
+  color: var(--text-color);
   background: linear-gradient(
       to bottom,
       transparent,
