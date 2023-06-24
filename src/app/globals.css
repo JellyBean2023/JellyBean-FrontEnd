@@ -2,35 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
-/* :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
-}
-
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
-} */
-
 :root {
-  /* 색상 */
-  --first-color: #5B65F5;
-  --first-color-light: #C4C7F5;
-  --dark-color: #0E1026;
+  /* Color */
+  --background-rgb: 255, 255, 255;
+  --background-start-rgb: 255, 255, 255;
+  --background-end-rgb: 255, 255, 255;
+  
+  --theme-color: #5B65F5;
+  --text-color: #000;
+  --black-color: #000;
   --white-color: #FBFBFB;
 
   /* 폰트 및 형식*/
@@ -40,7 +20,7 @@ body {
   @media screen and (min-width: 768px) {
       --nav-name-font-size: 1rem;
       --normal-font-size: 1rem;
-  }
+  };
 
   /* 헤더 높이 */
   --header-height: 100px;
@@ -50,6 +30,25 @@ body {
 
   /*푸터 높이*/
   --footer-height: 80px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background-rgb: 0, 0, 0;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+    --text-color: #fff;
+  }
+}
+
+body {
+  color: rgb(var(--background-rgb));
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
 }
 
 *,
@@ -73,9 +72,7 @@ a {
 }
 
 .bd-grid {
-  max-width: 1440px;
-  display: grid;
-  grid-template-columns: 100%;
+  max-width: 1600px;
   margin-left: 1.5rem;
   margin-right: 1.5rem;
 }

@@ -1,20 +1,23 @@
 @import '../../../app/globals.css';
 
-
-
 /*===== 모바일환경 =====*/
 @media screen and (max-width: 768px) {
     .nav {
         position: fixed;
         top: 0;
         left: -100%;
-        background-color: var(--first-color);
-        width: 70%;
+        background-color: var(--theme-color);
+        width: 300px;
         height: 100vh;
         padding: 2rem 0;
         z-index: var(--z-fixed);
         transition: .3s;
         overflow: scroll;
+
+        &::-webkit-scrollbar {
+            display: none;
+            /* 크롬, 사파리, 오페라, 엣지 */
+        }
 
         &_menu {
             padding: 1rem 0;
@@ -23,7 +26,6 @@
         &_name {
             .logo {
                 width: 70px;
-
                 &_sub {
                     display: none;
                 }
@@ -52,7 +54,7 @@
 
         &_link {
             &.dropdown_link {
-                color: var(--dark-color);
+                color: var(--text-color);
                 font-size: 20px;
             }
         }
@@ -78,7 +80,6 @@
 }
 
 .nav {
-    
     &_content {
         display: flex;
         flex-direction: column;
@@ -109,12 +110,11 @@
         display: block;
     }
 
-
     &_link {
-        color: var(--first-color-light);
+        color: var(--text-color);
 
         &:hover {
-            color: var(--white-color);
+            color: var(--black-color);
         }
     }
 
@@ -125,7 +125,7 @@
     /* 하단 메인 헤더 */
     .main_header,
     &_content {
-        margin-top:-5px;
+        margin-top: -5px;
 
         & .logo {
             background-color: rgba(255, 255, 255, .2);
@@ -141,6 +141,15 @@
 .show {
     left: 0;
     border-radius: 0 15px 15px 0;
+
+    .scroll::-webkit-scrollbar {
+        display: none;
+    }
+
+}
+
+.header_toggle {
+    cursor: pointer;
 }
 
 /*메뉴 마우스 이벤트 */
@@ -150,6 +159,7 @@
 
 /* Dropdown 메뉴 */
 .dropdown {
+    color: var(--text-color);
 
     &_link {
         display: flex;
@@ -169,9 +179,7 @@
     @media screen and (min-width: 768px) {
         &:hover>&_menu {
             display: block;
-        }
-        &_menu {
-            background-color: var(--white-color);
+            background-color: rgb(var(--background-rgb));
         }
     }
 }
@@ -183,6 +191,7 @@
     }
 
     .header {
+
         &_logo,
         & .header_toggle {
             display: none;
@@ -206,7 +215,7 @@
         }
 
         &_name {
-            color: var(--dark-color);
+            color: var(--text-color);
             vertical-align: middle;
             padding: 3px;
         }
@@ -224,22 +233,23 @@
         &_link {
             font-size: 0.75em;
             font-weight: bold;
-            color: var(--dark-color);
+            color: rgb(var(--text-color));
 
             &:hover {
-                color: var(--first-color);
+                color: var(--theme-color);
             }
         }
     }
 
     .active {
-        color: var(--first-color);
+        color: var(--theme-color);
     }
 
     .dropdown {
         position: relative;
 
         &_menu {
+            background-color: rgb(var(--background-rgb));
             position: fixed;
             margin: 0;
             padding: .5rem 1.5rem;
@@ -249,6 +259,7 @@
 
         &_item {
             margin: .5rem 0;
+            color: var(--text-color);
         }
     }
 }

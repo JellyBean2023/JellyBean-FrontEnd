@@ -1,10 +1,11 @@
 "use client";
 import Link from "next/link";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
 import Image from 'next/image';
 
 import { HiOutlineViewList } from 'react-icons/hi';
+import { AiOutlineClose } from 'react-icons/ai';
 import { BsBell } from 'react-icons/bs';
 
 import ChunjaeEdu from '@/assets/img/천재교육.png';
@@ -22,13 +23,14 @@ const HeaderContainer = styled.header`
     width: 100%;
     height: var(--header-height);
     padding: 0 1rem;
-    background-color: #FFF;
+    background-color: rgb(var(--background-rgb));
     z-index: var(--z-fixed);
     display: flex;
     justify-content: space-between;
     align-items: center;
     box-shadow: 0 2px 4px rgba(0, 0, 0, .3);
     border-radius: 0 0 20px 20px;
+    color: var(--text-color);
 
     &_toggle {
         font-size: 1.7rem;
@@ -36,41 +38,55 @@ const HeaderContainer = styled.header`
     }
 `;
 
-
-const showMenu = (toggleId, navId) => {
-    const toggle = document.getElementById(toggleId);
-    const nav = document.getElementById(navId);
-
-    if (toggle && nav) {
-        toggle.addEventListener('click', () => {
-            nav.classList.toggle('show');
-        });
-    }
-};
-
 const Header = () => {
-    
-    // 모바일 환경에서 Navbar안 dropdown메뉴를 열고 닫기
-    const [activeScreen, setActiveScreen] = useState(null);
-    const openScreen = (screen) => {    
-        if (activeScreen === screen) {
-        setActiveScreen(null);
-        } else {
-        setActiveScreen(screen);
-        }
+    const [navIcon, setNavIcon] = useState(true);
+  const [activeScreen, setActiveScreen] = useState(null);
+  const navRef = useRef(null);
+
+  const openScreen = (screen) => {
+    if (activeScreen === screen) {
+      setActiveScreen(null);
+    } else {
+      setActiveScreen(screen);
+    }
+  };
+
+  useEffect(() => {
+    const showMenu = (toggleId, navId) => {
+      const toggle = document.getElementById(toggleId);
+      const nav = document.getElementById(navId);
+
+      if (toggle && nav) {
+        toggle.addEventListener("click", () => {
+          nav.classList.toggle("show");
+          setNavIcon((prevNavIcon) => !prevNavIcon);
+        });
+      }
     };
 
-    useEffect(() => {
-        showMenu('header-toggle', 'nav-menu');  //모바일 환경에서 Navbar 열고 닫기
-    }, []);
+    showMenu("header-toggle", "nav-menu");
+
+    const handleClickOutside = (event) => {
+      if (navRef.current && !navRef.current.contains(event.target)) {
+        setActiveScreen(null);
+      }
+    };
+
+    document.addEventListener("click", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("click", handleClickOutside);
+    };
+  }, []);
 
     return (
         <HeaderContainer className="header">
             <Link href={`/`} className="header_logo">
                 <Image src={GENIA} alt="Picture" />
             </Link>
-
-            <HiOutlineViewList className='bx bx-menu header_toggle' id="header-toggle" />
+            <button className='header_toggle' id="header-toggle" >
+                {navIcon ? <HiOutlineViewList /> : <AiOutlineClose />}
+            </button>
             <nav className="nav" id="nav-menu">
                 <div className="sub_header nav_content bd-grid">
 
@@ -101,15 +117,15 @@ const Header = () => {
                     <div className="nav_menu">
                         <ul className="nav_list">
                             <li className="nav_item dropdown">
-                                <Link href="/" className="nav_link dropdown_link" onClick={()=>openScreen(1)}>천재교육 IT센터</Link>
-                                
+                                <Link href="/" className="nav_link dropdown_link" onClick={() => openScreen(1)}>천재교육 IT센터</Link>
+
                                 <ul className="dropdown_menu" id={activeScreen === 1 ? "show-menu" : ""}>
                                     <li className="dropdown_item"><Link href={`/`} className="nav_link">소개</Link></li>
                                     <li className="dropdown_item"><Link href={`/`} className="nav_link">교육시설</Link></li>
                                 </ul>
                             </li>
                             <li className="nav_item dropdown">
-                                <Link href="/" className="nav_link dropdown_link" onClick={()=>openScreen(2)}>교육과정</Link>
+                                <Link href="/" className="nav_link dropdown_link" onClick={() => openScreen(2)}>교육과정</Link>
                                 <ul className="dropdown_menu" id={activeScreen === 2 ? "show-menu" : ""}>
                                     <li className="dropdown_item"><Link href={`/`} className="nav_link">빅데이터</Link></li>
                                     <li className="dropdown_item"><Link href={`/`} className="nav_link">Java 풀스택</Link></li>
@@ -117,13 +133,13 @@ const Header = () => {
                                 </ul>
                             </li>
                             <li className="nav_item dropdown">
-                                <Link href="/" className="nav_link dropdown_link" onClick={()=>openScreen(3)}>강의실 예약</Link>
+                                <Link href="/" className="nav_link dropdown_link" onClick={() => openScreen(3)}>강의실 예약</Link>
                                 <ul className="dropdown_menu" id={activeScreen === 3 ? "show-menu" : ""}>
                                     <li className="dropdown_item"><Link href={`/`} className="nav_link">강의실 예약</Link></li>
                                 </ul>
                             </li>
                             <li className="nav_item dropdown">
-                                <Link href="/" className="nav_link dropdown_link" onClick={()=>openScreen(4)}>블로그 게시판 </Link>
+                                <Link href="/" className="nav_link dropdown_link" onClick={() => openScreen(4)}>블로그 게시판 </Link>
                                 <ul className="dropdown_menu" id={activeScreen === 4 ? "show-menu" : ""}>
                                     <li className="dropdown_item"><Link href={`/`} className="nav_link">블로그 게시판</Link></li>
                                 </ul>
