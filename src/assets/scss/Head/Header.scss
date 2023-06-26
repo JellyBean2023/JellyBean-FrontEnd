@@ -1,11 +1,11 @@
 @import '../../../app/globals.css';
 
 /*===== 모바일환경 =====*/
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1024px) {
     .nav {
         position: fixed;
         top: 0;
-        left: -100%;
+        left: -300%;
         background-color: var(--theme-color);
         width: 300px;
         height: 100vh;
@@ -55,7 +55,6 @@
         &_link {
             &.dropdown_link {
                 color: var(--text-color);
-                font-size: 20px;
             }
         }
 
@@ -73,9 +72,15 @@
     }
 
     .header {
+        height: calc(var(--header-height) - 30px) !important;
+        
         &_logo {
             width: 250px;
         }
+    }
+
+    main {
+        margin-top: calc(var(--header-height) - 30px) !important;
     }
 }
 
@@ -114,7 +119,7 @@
         color: var(--text-color);
 
         &:hover {
-            color: var(--black-color);
+            color: black;
         }
     }
 
@@ -154,7 +159,7 @@
 
 /*메뉴 마우스 이벤트 */
 .active {
-    color: var(--white-color);
+    color: white;
 }
 
 /* Dropdown 메뉴 */
@@ -176,7 +181,7 @@
         display: none;
     }
 
-    @media screen and (min-width: 768px) {
+    @media screen and (min-width: 1024px) {
         &:hover>&_menu {
             display: block;
             background-color: rgb(var(--background-rgb));
@@ -185,7 +190,7 @@
 }
 
 /* Media Query */
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 1024px) {
     body {
         margin: 0;
     }
@@ -264,7 +269,7 @@
     }
 }
 
-@media screen and (min-width: 1600px) {
+@media screen and (min-width: 1920px) {
     .bd-grid {
         margin-left: auto;
         margin-right: auto;

@@ -127,8 +127,8 @@ const Header = () => {
                             <li className="nav_item dropdown">
                                 <Link href="/" className="nav_link dropdown_link" onClick={() => openScreen(2)}>교육과정</Link>
                                 <ul className="dropdown_menu" id={activeScreen === 2 ? "show-menu" : ""}>
+                                    <li className="dropdown_item"><Link href={`/curriculum/java`} className="nav_link">Java 풀스택</Link></li>
                                     <li className="dropdown_item"><Link href={`/`} className="nav_link">빅데이터</Link></li>
-                                    <li className="dropdown_item"><Link href={`/`} className="nav_link">Java 풀스택</Link></li>
                                     <li className="dropdown_item"><Link href={`/`} className="nav_link">프로덕트 매니저</Link></li>
                                 </ul>
                             </li>

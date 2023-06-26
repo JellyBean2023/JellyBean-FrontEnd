@@ -5,7 +5,7 @@ const Form = styled.div`
   width: 50%;
   transition: margin-left 0.2s ease;
 
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 1024px) {
       padding: 0 50px;
   }
 `;

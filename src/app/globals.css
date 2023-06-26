@@ -10,14 +10,12 @@
   
   --theme-color: #5B65F5;
   --text-color: #000;
-  --black-color: #000;
-  --white-color: #FBFBFB;
 
   /* 폰트 및 형식*/
   --nav-name-font-size: 1.5rem;
   --normal-font-size: .938rem;
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: 1024px) {
       --nav-name-font-size: 1rem;
       --normal-font-size: 1rem;
   };
@@ -58,7 +56,7 @@ body {
 }
 
 main {
-  margin-top: calc(var(--header-height) + 1rem);
+  margin-top: calc(var(--header-height));
 }
 
 ul {
@@ -72,7 +70,7 @@ a {
 }
 
 .bd-grid {
-  max-width: 1600px;
+  max-width: 1920px;
   margin-left: 1.5rem;
   margin-right: 1.5rem;
 }
