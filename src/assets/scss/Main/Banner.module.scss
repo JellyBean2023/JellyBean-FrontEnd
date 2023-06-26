@@ -1,5 +1,7 @@
 .swiper {
     --swiper-theme-color:#fff;
+    min-height: 10rem;
+
     & img {
         width: 100%;
         max-height: 30em;
