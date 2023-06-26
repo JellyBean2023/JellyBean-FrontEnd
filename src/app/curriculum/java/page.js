@@ -4,7 +4,7 @@ const page = () => {
     return(
         <main>
             <Section1Java/>
-            <section>1</section>
+            {/* <section>section 1</section> */}
         </main>
     );
 }

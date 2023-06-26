@@ -1,10 +1,11 @@
 .swiper {
     --swiper-theme-color:#fff;
-
     & img {
-        max-height: 30em;
         width: 100%;
+        max-height: 30em;
+        
     }
+    text-align: center;
 }
 
 .swiper-horizontal {
@@ -18,4 +19,5 @@
 
 .bannerScreen {
     margin: 50px 0;
+    width: 100vw;
 }
