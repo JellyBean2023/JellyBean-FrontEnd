@@ -39,55 +39,41 @@ const HeaderContainer = styled.header`
 `;
 
 const Header = () => {
-    const [navIcon, setNavIcon] = useState(true);
-  const [activeScreen, setActiveScreen] = useState(null);
-  const navRef = useRef(null);
+    const [navIcon, setNavIcon] = useState(false);
+    const [activeScreen, setActiveScreen] = useState(false);
+    const navRef = useRef(null);
 
-  const openScreen = (screen) => {
-    if (activeScreen === screen) {
-      setActiveScreen(null);
-    } else {
-      setActiveScreen(screen);
-    }
-  };
+    useEffect(() => {
+        const handleOutsideClick = (event) => {
+            if (
+                navRef.current &&
+                !navRef.current.contains(event.target)
+            ) {
+                setActiveScreen(false);
+            }
+        };
+        document.addEventListener("click", handleOutsideClick);
 
-  useEffect(() => {
-    const showMenu = (toggleId, navId) => {
-      const toggle = document.getElementById(toggleId);
-      const nav = document.getElementById(navId);
+        return () => {
+            document.removeEventListener("click", handleOutsideClick);
+        };
+    }, []);
 
-      if (toggle && nav) {
-        toggle.addEventListener("click", () => {
-          nav.classList.toggle("show");
-          setNavIcon((prevNavIcon) => !prevNavIcon);
-        });
-      }
-    };
-
-    showMenu("header-toggle", "nav-menu");
-
-    const handleClickOutside = (event) => {
-      if (navRef.current && !navRef.current.contains(event.target)) {
-        setActiveScreen(null);
-      }
-    };
-
-    document.addEventListener("click", handleClickOutside);
-
-    return () => {
-      document.removeEventListener("click", handleClickOutside);
-    };
-  }, []);
+    useEffect(() => {
+        setNavIcon(prev => !prev);
+    }, [activeScreen]);
 
     return (
         <HeaderContainer className="header">
             <Link href={`/`} className="header_logo">
                 <Image src={GENIA} alt="Picture" />
             </Link>
-            <button className='header_toggle' id="header-toggle" >
+            <button onClick={() => {
+                setActiveScreen(prev => !prev);
+            }} ref={navRef} className='header_toggle'>
                 {navIcon ? <HiOutlineViewList /> : <AiOutlineClose />}
             </button>
-            <nav className="nav" id="nav-menu">
+            {<nav className={`nav ${activeScreen ? 'show' : null}`} id="nav-menu">
                 <div className="sub_header nav_content bd-grid">
 
                     <div className="nav_perfil">
@@ -147,8 +133,7 @@ const Header = () => {
                         </ul>
                     </div>
                 </div>
-
-            </nav>
+            </nav>}
         </HeaderContainer>
     );
 }
