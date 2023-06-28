@@ -1,3 +1,4 @@
+import { styled } from "styled-components";
 import CurriculumBox from "./CurriculumBox";
 
 const list = [
@@ -6,9 +7,13 @@ const list = [
     { title: "빅데이터 4기", state: false, content: "뼈 끝에 스며들어 가는 멸락의 소리다이것은 피어나기 전인 유소년" },
 ]
 
+const CurriculumContainer = styled.section`
+    background-color: peachpuff;
+`;
+
 const Curriculum = () => {
     return (
-        <section className="text-gray-600 body-font">
+        <CurriculumContainer className="text-gray-600 body-font">
             <div className="container px-5 py-24 mx-auto">
                 <div className="flex flex-wrap -m-4">
                     {list.map((v,i) => (
@@ -16,7 +21,7 @@ const Curriculum = () => {
                     ))}
                 </div>
             </div>
-        </section>
+        </CurriculumContainer>
     );
 }
 

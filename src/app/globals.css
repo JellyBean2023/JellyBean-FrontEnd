@@ -10,6 +10,7 @@
   
   --theme-color: #5B65F5;
   --text-color: #000;
+  --anti-text-color:#fff;
 
   /* 폰트 및 형식*/
   --nav-name-font-size: 1.5rem;
@@ -36,6 +37,7 @@
     --background-start-rgb: 0, 0, 0;
     --background-end-rgb: 0, 0, 0;
     --text-color: #fff;
+    --anti-text-color: #000;
   }
 }
 

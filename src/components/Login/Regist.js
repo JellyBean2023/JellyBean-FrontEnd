@@ -30,6 +30,10 @@ const Forms = styled.form`
   align-items: center;
   transition: height 0.3s ease;
   width: 200%;
+
+  @media (max-width: 1024px) {
+    align-items: normal;
+  }
 `;
 
 const Regist = () => {

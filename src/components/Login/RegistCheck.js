@@ -117,6 +117,7 @@ const RegistCheck = (active) => {
           <hr />
       </CheckSection>
       ))}
+      
       <Button className="signup-link" id={selectAllChecked ? "" : "check"}><input type="button" value="회원 정보 입력" /></Button>
     </Form>
   );

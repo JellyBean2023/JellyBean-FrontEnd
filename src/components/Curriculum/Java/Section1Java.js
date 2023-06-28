@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 import { styled } from "styled-components";
 
 const Section1Container = styled.section`
@@ -107,7 +108,9 @@ const CurriculumJava = () => {
             <p><strong>도전적이고 열정적인 에듀테크 풀스택(Full- stack) 개발자 2기</strong>를 모집합니다.</p>
           </SubTitle>
         </Title>
-        <ApplyButton>신청하기 {`>`} </ApplyButton>
+        <Link href={'/apply/java'}>
+          <ApplyButton>신청하기 {`>`}</ApplyButton>
+        </Link>
         <BoxContainer>
           <Box>
             <span>모집기간 ....</span>

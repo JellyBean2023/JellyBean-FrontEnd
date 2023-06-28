@@ -41,13 +41,21 @@ const HeaderContainer = styled.header`
 const Header = () => {
     const [navIcon, setNavIcon] = useState(false);
     const [activeScreen, setActiveScreen] = useState(false);
+    const [activeDropdown, setActiveDropdown] = useState(null);
     const navRef = useRef(null);
+    const buttonRef = useRef(null);
+
+    const openDropdown = (Dropdown) => {
+        setActiveDropdown(Dropdown);
+    };
 
     useEffect(() => {
         const handleOutsideClick = (event) => {
             if (
                 navRef.current &&
-                !navRef.current.contains(event.target)
+                !navRef.current.contains(event.target) &&
+                buttonRef.current &&
+                !buttonRef.current.contains(event.target)
             ) {
                 setActiveScreen(false);
             }
@@ -70,10 +78,10 @@ const Header = () => {
             </Link>
             <button onClick={() => {
                 setActiveScreen(prev => !prev);
-            }} ref={navRef} className='header_toggle'>
+            }} ref={buttonRef} className='header_toggle'>
                 {navIcon ? <HiOutlineViewList /> : <AiOutlineClose />}
             </button>
-            {<nav className={`nav ${activeScreen ? 'show' : null}`} id="nav-menu">
+            <nav ref={navRef} className={`nav ${activeScreen ? 'show' : null}`} id="nav-menu">
                 <div className="sub_header nav_content bd-grid">
 
                     <div className="nav_perfil">
@@ -103,37 +111,37 @@ const Header = () => {
                     <div className="nav_menu">
                         <ul className="nav_list">
                             <li className="nav_item dropdown">
-                                <Link href="/" className="nav_link dropdown_link" onClick={() => openScreen(1)}>천재교육 IT센터</Link>
+                                <Link href="/" className="nav_link dropdown_link" onClick={() => openDropdown(1)}>천재교육 IT센터</Link>
 
-                                <ul className="dropdown_menu" id={activeScreen === 1 ? "show-menu" : ""}>
+                                <ul className="dropdown_menu" id={activeDropdown === 1 ? "show-menu" : ""}>
                                     <li className="dropdown_item"><Link href={`/`} className="nav_link">소개</Link></li>
                                     <li className="dropdown_item"><Link href={`/`} className="nav_link">교육시설</Link></li>
                                 </ul>
                             </li>
                             <li className="nav_item dropdown">
-                                <Link href="/" className="nav_link dropdown_link" onClick={() => openScreen(2)}>교육과정</Link>
-                                <ul className="dropdown_menu" id={activeScreen === 2 ? "show-menu" : ""}>
+                                <Link href="/" className="nav_link dropdown_link" onClick={() => openDropdown(2)}>교육과정</Link>
+                                <ul className="dropdown_menu" id={activeDropdown === 2 ? "show-menu" : ""}>
                                     <li className="dropdown_item"><Link href={`/curriculum/java`} className="nav_link">Java 풀스택</Link></li>
                                     <li className="dropdown_item"><Link href={`/`} className="nav_link">빅데이터</Link></li>
                                     <li className="dropdown_item"><Link href={`/`} className="nav_link">프로덕트 매니저</Link></li>
                                 </ul>
                             </li>
                             <li className="nav_item dropdown">
-                                <Link href="/" className="nav_link dropdown_link" onClick={() => openScreen(3)}>강의실 예약</Link>
-                                <ul className="dropdown_menu" id={activeScreen === 3 ? "show-menu" : ""}>
+                                <Link href="/" className="nav_link dropdown_link" onClick={() => openDropdown(3)}>강의실 예약</Link>
+                                <ul className="dropdown_menu" id={activeDropdown === 3 ? "show-menu" : ""}>
                                     <li className="dropdown_item"><Link href={`/`} className="nav_link">강의실 예약</Link></li>
                                 </ul>
                             </li>
                             <li className="nav_item dropdown">
-                                <Link href="/" className="nav_link dropdown_link" onClick={() => openScreen(4)}>블로그 게시판 </Link>
-                                <ul className="dropdown_menu" id={activeScreen === 4 ? "show-menu" : ""}>
+                                <Link href="/" className="nav_link dropdown_link" onClick={() => openDropdown(4)}>블로그 게시판 </Link>
+                                <ul className="dropdown_menu" id={activeDropdown === 4 ? "show-menu" : ""}>
                                     <li className="dropdown_item"><Link href={`/`} className="nav_link">블로그 게시판</Link></li>
                                 </ul>
                             </li>
                         </ul>
                     </div>
                 </div>
-            </nav>}
+            </nav>
         </HeaderContainer>
     );
 }
