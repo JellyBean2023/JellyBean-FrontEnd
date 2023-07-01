@@ -11,10 +11,11 @@ const CurriculumContainer = styled.section`
     background-color: peachpuff;
 `;
 
+
 const Curriculum = () => {
     return (
         <CurriculumContainer className="text-gray-600 body-font">
-            <div className="container px-5 py-24 mx-auto">
+            <div className="container px-5 py-24 mx-auto flex items-center h-full">
                 <div className="flex flex-wrap -m-4">
                     {list.map((v,i) => (
                         <CurriculumBox key={i} variable={v}/>

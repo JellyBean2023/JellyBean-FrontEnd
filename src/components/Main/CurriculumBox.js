@@ -1,10 +1,21 @@
 import Link from "next/link";
+import React, { useEffect } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const CurriculumBox = (props) => {
     const { variable } = props;
 
+    useEffect(() => {
+        AOS.init({
+            duration: 1000, // 애니메이션 지속 시간 (밀리초)
+            easing: "ease-in-out", // 애니메이션 이징
+            anchorPlacement: "center-center", // 데이터 앵커 위치
+        });
+    });
+
     return (
-        <div className="p-4 lg:w-1/3">
+        <div data-aos="fade-up" className="p-4 lg:w-1/3">
             <div className="h-full bg-gray-100 bg-opacity-75 px-8 pt-16 pb-24 rounded-lg overflow-hidden text-center relative">
                 <h2 className="tracking-widest text-base title-font font-medium text-black-400 mb-1">
                     {variable.state ? "모집중" : "모집마감"}

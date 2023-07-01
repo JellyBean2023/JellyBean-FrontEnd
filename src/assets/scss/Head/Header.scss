@@ -72,7 +72,7 @@
     }
 
     .header {
-        height: calc(var(--header-height) - 30px) !important;
+        height: calc(var(--header-height)) !important;
         
         &_logo {
             width: 250px;
@@ -80,7 +80,7 @@
     }
 
     main {
-        margin-top: calc(var(--header-height) + 30px) !important;
+        margin-top: calc(var(--header-height)) !important;
     }
 }
 
@@ -239,10 +239,6 @@
                 color: var(--theme-color);
             }
         }
-    }
-
-    .active {
-        color: var(--theme-color);
     }
 
     .dropdown {

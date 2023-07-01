@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
@@ -118,7 +119,9 @@ const RegistCheck = (active) => {
       </CheckSection>
       ))}
       
-      <Button className="signup-link" id={selectAllChecked ? "" : "check"}><input type="button" value="회원 정보 입력" /></Button>
+      <Link href={'#'}>
+        <Button className="signup-link" id={selectAllChecked ? "" : "check"}><input type="button" value="회원 정보 입력" /></Button>
+      </Link>
     </Form>
   );
 }
