@@ -7,10 +7,18 @@
   --background-rgb: 255, 255, 255;
   --background-start-rgb: 255, 255, 255;
   --background-end-rgb: 255, 255, 255;
-  
+
   --theme-color: #5B65F5;
   --text-color: #000;
   --anti-text-color:#fff;
+
+
+  --java-color: #ffedd9;
+  --java-sub-color: #eaa047;
+  --bigdata-color: #7ea5f8;
+  --bigdata-sub-color: #553bf3;
+  --pm-color: #fffce3;
+  --pm-sub-color: #ffc600;
 
   /* 폰트 및 형식*/
   --nav-name-font-size: 1.5rem;
