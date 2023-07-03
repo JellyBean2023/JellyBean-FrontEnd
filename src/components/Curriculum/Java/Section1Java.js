@@ -1,6 +1,9 @@
 "use client";
 import Link from "next/link";
 import { styled } from "styled-components";
+import React, { useEffect } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const Section1Container = styled.section`
   width: 100%;
@@ -96,9 +99,16 @@ const Box = styled.div`
 `;
 
 const CurriculumJava = () => {
+  
+  useEffect(() => {
+    AOS.init({
+      duration: 1500,
+    });
+  });
+
   return (
     <Section1Container>
-      <Main>
+      <Main data-aos="fade-up">
         <Title>
           <p>평범함을 넘어</p>
           <p>대체불가능한</p>
