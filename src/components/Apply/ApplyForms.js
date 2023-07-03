@@ -1,8 +1,7 @@
+import { useState } from "react";
 import { styled } from "styled-components";
 
 const ApplyForm = styled.main`
-  margin-left: 10rem;
-  margin-right: 10rem;
   padding: 3rem;
   background-color: ${props => `var(--${props.id}-color)`};
   color: black;
@@ -37,7 +36,7 @@ const InsertContainer = styled.div`
   justify-content: space-between;
   margin: 25px 0;
 
-  background-color: rgba(255,255,255,0.5);
+  /* background-color: rgba(255,255,255,0.5); */
   border-radius: 10px;
   padding: 1rem;
 
@@ -118,6 +117,12 @@ const ApplyForms = (props) => {
     pm: '에듀테크 PM 2기 (프로덕트 매니저)',
   }
 
+  const information = {
+    name: '홍길동',
+    date: '2023-12-12',
+    email: 'email@chunjae.com'
+  }
+
   return (
     <ApplyForm id={id}>
       <Intro>
@@ -133,36 +138,36 @@ const ApplyForms = (props) => {
 
       <InsertContainer>
         <h2 id={`import`}>*기본 입력정보</h2>
-        <InputField id={id}><input type="text"  value={`홍길동`} required/><label>Name</label></InputField> 
-        <InputField id={id}><input type="date"  value={`2023-12-12`}required/><label>생년월일</label></InputField>
-        <InputField id={id}><input type="email" value={`email@chunjae.com`}required/><label>이메일</label></InputField>
+        <InputField id={id}><input type="text"  defaultValue={information.name}  required/><label>Name</label></InputField> 
+        <InputField id={id}><input type="date"  defaultValue={information.date}  required/><label>생년월일</label></InputField>
+        <InputField id={id}><input type="email" defaultValue={information.email} required/><label>이메일</label></InputField>
       </InsertContainer>
 
       <InsertContainer>
         <h2>연락처</h2>
-        <InputField id={id}><input type="text" placeholder="ex) 010-0000-0000" required /><label>연락받을 연락처</label></InputField>
+        <InputField id={id}><input type="text" placeholder="ex) 010-0000-0000" required/><label>연락받을 연락처</label></InputField>
       </InsertContainer>
 
       <InsertContainer>
         <h2>추천 전형 여부를 체크해주세요</h2>
-        <select>
-          <option value='' selected disabled hidden>Choose</option>
-          <option value={``}>비해당</option>
-          <option value={``}>취업지원센터</option>
-          <option value={``}>학과장 및 사범대</option>
+        <select defaultValue='' selected disabled hidden>
+          <option defaultValue='' >Choose</option>
+          <option defaultValue={1}>비해당</option>
+          <option defaultValue={2}>취업지원센터</option>
+          <option defaultValue={3}>학과장 및 사범대</option>
         </select>
       </InsertContainer>
 
       <InsertContainer>
         <h2>최종학력을 체크해주세요</h2>
-        <select>
-          <option value='' selected disabled hidden>Choose</option>
-          <option value={``}>고등학교 졸업</option>
-          <option value={``}>대학교 졸업 예정</option>
-          <option value={``}>대학교 졸업</option>
-          <option value={``}>대학교 졸업예정</option>
-          <option value={``}>대학원 졸업</option>
-          <option value={``}>기타</option>
+        <select defaultValue='' selected disabled hidden>
+          <option defaultValue='' >Choose</option>
+          <option defaultValue={1}>고등학교 졸업</option>
+          <option defaultValue={2}>대학교 졸업 예정</option>
+          <option defaultValue={3}>대학교 졸업</option>
+          <option defaultValue={4}>대학교 졸업예정</option>
+          <option defaultValue={5}>대학원 졸업</option>
+          <option defaultValue={6}>기타</option>
         </select>
       </InsertContainer>
 

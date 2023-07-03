@@ -74,7 +74,7 @@ const Header = () => {
     return (
         <HeaderContainer className="header">
             <Link href={`/`} className="header_logo">
-                <Image src={GENIA} alt="Picture" />
+                <Image src={GENIA} alt="Picture" priority />
             </Link>
             <button onClick={() => {
                 setActiveScreen(prev => !prev);
@@ -107,7 +107,7 @@ const Header = () => {
                 </div>
 
                 <div className="main_header nav_content bd-grid">
-                    <Link href={`/`}><Image className="logo" src={GENIA} alt="Picture" /></Link>
+                    <Link href={`/`}><Image className="logo" src={GENIA} alt="Picture" priority/></Link>
                     <div className="nav_menu">
                         <ul className="nav_list">
                             <li className="nav_item dropdown">
