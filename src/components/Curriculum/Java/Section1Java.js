@@ -4,6 +4,8 @@ import { styled } from "styled-components";
 import React, { useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import obj from '../../../assets/img/오브젝트1.webp';
+import Image from "next/image";
 
 const Section1Container = styled.section`
   width: 100%;
@@ -18,7 +20,19 @@ const Main = styled.div`
   color: white;
   white-space: nowrap;
   text-align: center;
-  
+
+  img {
+    position: absolute;
+
+    &#R {
+      right: 0;
+      transform: rotate(90deg);
+    }
+  }
+
+  & #detail {
+    margin: 20px 0 40px 0;
+  }
 `;
 
 const Title = styled.div`
@@ -54,7 +68,7 @@ const ApplyButton = styled.button`
   border-radius: 60px;
   box-shadow: 0.31px 2.98px 8px -3px #595959;
   transition: all 0.2s ease, visibility 0s;
-  margin: 40px 0;
+  margin: 40px 0 0 0;
 
   &:hover {
     border: 0px solid rgb(29, 103, 205);
@@ -109,6 +123,8 @@ const CurriculumJava = () => {
   return (
     <Section1Container>
       <Main data-aos="fade-up">
+        <Image id="L" src={obj}/>
+        <Image id="R" src={obj}/>
         <Title>
           <p>평범함을 넘어</p>
           <p>대체불가능한</p>
@@ -121,6 +137,7 @@ const CurriculumJava = () => {
         <Link href={'/apply/java'}>
           <ApplyButton>신청하기 {`>`}</ApplyButton>
         </Link>
+        <p id="detail">※모집 정원에 따라 예정된 기한보다 조기 마감될 수 있습니다. </p>
         <BoxContainer>
           <Box>
             <span>모집기간 ....</span>
