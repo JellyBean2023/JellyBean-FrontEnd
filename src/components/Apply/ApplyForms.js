@@ -36,7 +36,7 @@ const InsertContainer = styled.div`
   justify-content: space-between;
   margin: 25px 0;
 
-  /* background-color: rgba(255,255,255,0.5); */
+  background-color: rgba(255,255,255);
   border-radius: 10px;
   padding: 1rem;
 
@@ -150,8 +150,8 @@ const ApplyForms = (props) => {
 
       <InsertContainer>
         <h2>추천 전형 여부를 체크해주세요</h2>
-        <select defaultValue='' selected disabled hidden>
-          <option defaultValue='' >Choose</option>
+        <select defaultValue=''>
+          <option defaultValue='' selected disabled hidden>Choose</option>
           <option defaultValue={1}>비해당</option>
           <option defaultValue={2}>취업지원센터</option>
           <option defaultValue={3}>학과장 및 사범대</option>
@@ -160,8 +160,8 @@ const ApplyForms = (props) => {
 
       <InsertContainer>
         <h2>최종학력을 체크해주세요</h2>
-        <select defaultValue='' selected disabled hidden>
-          <option defaultValue='' >Choose</option>
+        <select defaultValue=''>
+          <option defaultValue='' selected disabled hidden>Choose</option>
           <option defaultValue={1}>고등학교 졸업</option>
           <option defaultValue={2}>대학교 졸업 예정</option>
           <option defaultValue={3}>대학교 졸업</option>
@@ -170,6 +170,13 @@ const ApplyForms = (props) => {
           <option defaultValue={6}>기타</option>
         </select>
       </InsertContainer>
+
+      <InsertContainer>
+        <h2>최종 졸업 (혹은 졸업예정 학교)학교(전공명)를 입력해 주세요.</h2>
+      </InsertContainer>
+
+
+
 
 
 
