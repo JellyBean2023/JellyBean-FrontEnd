@@ -130,13 +130,17 @@ const RegistInfoInsert = (active) => {
     return(
         <Form className={`signup ${active ? 'active' : ''}`}>
           <Title className="title">회원 가입</Title>
-          <InputField><input type="text" placeholder="한글 또는 영문으로 입력 가능" required/> <label>Name</label> <span/></InputField>
-          <InputField><input type="password" placeholder="Enter your password" required/> <label>비밀번호</label> <span/></InputField>
+          <InputField>
+            <input type="text" placeholder="한글 또는 영문으로 입력 가능" required/> 
+            <label>이름</label> 
+            <span/>
+          </InputField>
+          <InputField><input type="email" placeholder="ex)chunjae@chunjae.com" required/> <label>이메일</label> <span/></InputField>
+          <InputField><input type="emailCode" placeholder="인증코드를 입력해주세요" required/> <label>이메일 인증코드 입력</label> <span/></InputField>
+          <InputField><input type="password" placeholder="영문,숫자,특수문자 포함 8~20자내" required/> <label>비밀번호</label> <span/></InputField>
           <InputField><input type="password" placeholder="비밀번호를 확인해주세요" required/> <label>비밀번호 확인</label> <span/></InputField>
           <InputField><input type="text" placeholder="생년월일" required/> <label>생년월일</label> <span/></InputField>
-          <InputField><input type="email" placeholder="Enter your email" required/> <label>Email</label> <span/></InputField>
           <InputField><input type="text" placeholder="휴대전화 번호" required/> <label>휴대전화 번호</label> <span/></InputField>
-          <InputField><input type="text" placeholder="집주소" required/> <label>집주소</label> <span/></InputField>
           
           <Button><input type="submit" value="회원 등록하기" /></Button>
           <Text> <Link href="" className="login-link">약관동의 다시 돌아가기</Link> </Text>
