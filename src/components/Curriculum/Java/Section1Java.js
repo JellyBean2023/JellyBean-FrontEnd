@@ -23,7 +23,8 @@ const Main = styled.div`
 
   img {
     position: absolute;
-
+    z-index: -1;
+    
     &#R {
       right: 0;
       transform: rotate(90deg);
