@@ -136,7 +136,7 @@ const RegistInfoInsert = (active) => {
             <span/>
           </InputField>
           <InputField><input type="email" placeholder="ex)chunjae@chunjae.com" required/> <label>이메일</label> <span/></InputField>
-          <InputField><input type="emailCode" placeholder="인증코드를 입력해주세요" required/> <label>이메일 인증코드 입력</label> <span/></InputField>
+          <InputField><input type="emailCode" placeholder="인증코드 입력" required/> <label>이메일 인증코드 입력</label> <span/></InputField>
           <InputField><input type="password" placeholder="영문,숫자,특수문자 포함 8~20자내" required/> <label>비밀번호</label> <span/></InputField>
           <InputField><input type="password" placeholder="비밀번호를 확인해주세요" required/> <label>비밀번호 확인</label> <span/></InputField>
           <InputField><input type="text" placeholder="생년월일" required/> <label>생년월일</label> <span/></InputField>
