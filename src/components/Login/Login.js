@@ -1,13 +1,14 @@
+import Image from 'next/image';
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import Logo from '../../assets/img/CI/img_ci_var02.jpg';
 
 const Container = styled.main`
   max-width: 600px;
   width: 100%;
-  height: 30rem;
+  height: 40rem;
   overflow: hidden;
-  margin: 15rem auto -5rem auto;
+  margin: 10rem auto 5rem auto;
 
   &.active {
     .login{
@@ -39,9 +40,11 @@ const Form = styled.form`
   }
 `;
 
-const Title = styled.span`
-  position: relative;
-  font-size: 27px;
+const Title = styled.label`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 50px;
   font-weight: 600;
 
   &::before {
@@ -52,8 +55,10 @@ const Title = styled.span`
     height: 3px;
     width: 30px;
     background-color: var(--theme-color);
+    justify-content: center;
   }
 `;
+
 
 const InputField = styled.div`
   position: relative;
@@ -101,9 +106,10 @@ const CheckboxContent = styled.div`
 const Text = styled.span`
   color: var(--text-color);
   font-size: 14px;
+  text-align: center;
 
-  a.text {
-    color: var(--theme-color);
+  a {
+    color: var(--accent-link-color);
     text-decoration: none;
   }
 
@@ -116,6 +122,7 @@ const Button = styled.div`
   margin: 30px 0 10px 0;
 
   input {
+    width: 100%;
     padding: 5px 10px;
     border: none;
     color: #fff;
@@ -123,12 +130,20 @@ const Button = styled.div`
     font-weight: 500;
     letter-spacing: 1px;
     background-color: var(--theme-color);
-    cursor: pointer;
     transition: all 0.3s ease;
+    border-radius: 15px;
+    cursor: pointer;
 
     &:hover {
-      background-color: #265df2;
+      background-color: var(--anti-theme-color);
     }
+  }
+`;
+
+const FindContainer = styled.div`
+  float: right;
+  a {
+    color: var(--accent-link-color);
   }
 `;
 
@@ -138,17 +153,19 @@ const Login = () => {
         <Container>
             <Forms>
                 <Form action="#">
-                    <Title>로그인</Title>
+                    <Title>천재교육 IT센터</Title>
+                    <Image src={Logo} alt='Image'/>
+                    <Text>아직 회원이 아니세요? <Link href="/regist">회원가입 하러가기</Link></Text>
                     <InputField><input type="text" placeholder="Enter your ID" required /></InputField>
                     <InputField><input type="password" className="password" placeholder="Enter your password" required /></InputField>
                     <CheckboxText>
                         <CheckboxContent><input type="checkbox" /> <label htmlFor="logCheck">아이디 기억하기</label></CheckboxContent>
-                        <Link href="#">아이디/비밀번호 찾기</Link>
                     </CheckboxText>
                     <Button><input type="button" value="로그인" /></Button>
-                    <Text>아이디가 없으신가요? <Link href="/regist">회원가입 하러가기</Link></Text>
+                    <FindContainer>
+                      비밀번호를 잊어버렸어요 <Link href="#">Reset Password</Link>
+                    </FindContainer>
                 </Form>
-
             </Forms>
         </Container>
     );

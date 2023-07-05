@@ -8,9 +8,11 @@
   --background-start-rgb: 255, 255, 255;
   --background-end-rgb: 255, 255, 255;
 
-  --theme-color: #5B65F5;
+  --theme-color: #FFB400;
+  --anti-theme-color: #553BF3;
   --text-color: #000;
   --anti-text-color:#fff;
+  --accent-link-color: #006876;
 
 
   --java-color: #ffedd9;
