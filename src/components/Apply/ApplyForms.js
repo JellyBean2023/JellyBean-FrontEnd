@@ -1,7 +1,9 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { styled } from "styled-components";
 
 const ApplyForm = styled.main`
+  margin-left: 3rem;
+  margin-right: 3rem;
   padding: 3rem;
   background-color: ${props => `var(--${props.id}-color)`};
   color: black;
@@ -13,7 +15,9 @@ const ApplyForm = styled.main`
   }
   
   p:nth-last-child(1) {
-    color: ${props => `var(--${props.id}-sub-color)`};
+    &#import {
+      color: ${props => `var(--${props.id}-sub-color)`};
+    }
   }
 `;
 
@@ -30,12 +34,11 @@ const Intro = styled.div`
 `;
 
 const InsertContainer = styled.div`
-  display: flex;
   flex-wrap: wrap;
   align-items: flex-start;
   justify-content: space-between;
   margin: 25px 0;
-
+  
   background-color: rgba(255,255,255);
   border-radius: 10px;
   padding: 1rem;
@@ -48,6 +51,10 @@ const InsertContainer = styled.div`
     &#import {
       color: red;
     }
+
+    #sm {
+      font-size: 12px;
+    }
   }
 
   @media screen and (max-width: 1024px) {
@@ -55,10 +62,33 @@ const InsertContainer = styled.div`
   }
 
   select {
+    width: 10rem;
+    margin-top: 10px;
     padding: 10px;
     border-radius: 5px;
     border: 1px solid gray;
   }
+
+   &#flex{
+    display: flex;
+    
+  } //추가
+
+  
+
+  &#input_margin{
+    
+    label{
+    display: block;
+    margin: 10px;
+  } //코딩경험 라벨
+
+    input{
+      margin: 10px;
+    }
+  }
+
+
 `;
 
 const InputField = styled.div`
@@ -87,8 +117,13 @@ const InputField = styled.div`
       outline: none;
       color: gray;
     }
-  }
+    
+    &#universe {
+      width: 80%;
+    }
 
+  }
+  
   label {
     position: absolute;
     color: gray;
@@ -106,9 +141,24 @@ const InputField = styled.div`
       color: ${props => `var(--${props.id}-sub-color)`};
     }
   }
+
+  textarea {
+    &#text_ap{
+      font-size: 16px;
+      width: 100%;
+      min-height: 10rem;
+      border: 1px solid ${props => `var(--${props.id}-sub-color)`};
+    };
+  }
 `;
 
+
 const ApplyForms = (props) => {
+  const [isOtherChecked, setIsOtherChecked] = useState(false);
+
+  // const setIsOtherChecked = () => 
+
+
   const { id } = props;
 
   const components = {
@@ -123,6 +173,17 @@ const ApplyForms = (props) => {
     email: 'email@chunjae.com'
   }
 
+  const [result, setResult] = useState('');
+
+  const handleGenderChange = (event) => {
+    const value = event.target.value;
+    setResult(value);
+  }; //선택 사항 추가 (radio)
+
+  const handleExperienceChange = (event) => {
+      setIsOtherChecked(event.target.value === 4);
+  };
+
   return (
     <ApplyForm id={id}>
       <Intro>
@@ -133,25 +194,25 @@ const ApplyForms = (props) => {
         <p>- 학력, 경력 등의 정보는 정보 수집용일 뿐 합격 여부와는 무관합니다.</p>
         <p>※ 신청서 기재 내용이 허위로 판명될 경우 합격이 취소될 수 있습니다. 추후 인턴 또는 채용 전환 시 합격 취소가 되실 수 있습니다.</p>
         <p>- 지원서를 통해 취득한 개인정보는 지원과 선발 절차, 교육 과정 입과 단계에서만 이용될 것을 명시합니다.</p>
-        <p>앞으로의 비전과 반드시 함께하겠다는 의지, 그리고 하루하루의 실천을 해 나갈 수 있는 많은 분들을 응원합니다.</p>
+        <p id="import">앞으로의 비전과 반드시 함께하겠다는 의지, 그리고 하루하루의 실천을 해 나갈 수 있는 많은 분들을 응원합니다.</p>
       </Intro>
 
-      <InsertContainer>
+      <InsertContainer id={`flex`}>
         <h2 id={`import`}>*기본 입력정보</h2>
-        <InputField id={id}><input type="text"  defaultValue={information.name}  required/><label>Name</label></InputField> 
-        <InputField id={id}><input type="date"  defaultValue={information.date}  required/><label>생년월일</label></InputField>
-        <InputField id={id}><input type="email" defaultValue={information.email} required/><label>이메일</label></InputField>
+        <InputField id={id}><input type="text" defaultValue={information.name} required /><label>Name</label></InputField>
+        <InputField id={id}><input type="date" defaultValue={information.date} required /><label>생년월일</label></InputField>
+        <InputField id={id}><input type="email" defaultValue={information.email} required /><label>이메일</label></InputField>
       </InsertContainer>
 
-      <InsertContainer>
+      <InsertContainer id={`flex`}>
         <h2>연락처</h2>
-        <InputField id={id}><input type="text" placeholder="ex) 010-0000-0000" required/><label>연락받을 연락처</label></InputField>
+        <InputField id={id}><input type="text" placeholder="ex) 010-0000-0000" required /><label>연락받을 연락처</label></InputField>
       </InsertContainer>
 
       <InsertContainer>
         <h2>추천 전형 여부를 체크해주세요</h2>
-        <select defaultValue=''>
-          <option defaultValue='' selected disabled hidden>Choose</option>
+        <select value={0}>
+          <option defaultValue={0} disabled hidden>Choose</option>
           <option defaultValue={1}>비해당</option>
           <option defaultValue={2}>취업지원센터</option>
           <option defaultValue={3}>학과장 및 사범대</option>
@@ -160,8 +221,8 @@ const ApplyForms = (props) => {
 
       <InsertContainer>
         <h2>최종학력을 체크해주세요</h2>
-        <select defaultValue=''>
-          <option defaultValue='' selected disabled hidden>Choose</option>
+        <select value={0} > 
+          <option defaultValue={0} disabled hidden>Choose</option>
           <option defaultValue={1}>고등학교 졸업</option>
           <option defaultValue={2}>대학교 졸업 예정</option>
           <option defaultValue={3}>대학교 졸업</option>
@@ -171,17 +232,63 @@ const ApplyForms = (props) => {
         </select>
       </InsertContainer>
 
-      <InsertContainer>
-        <h2>최종 졸업 (혹은 졸업예정 학교)학교(전공명)를 입력해 주세요.</h2>
+      <InsertContainer id={`flex`}>
+        <h2>최종 졸업 (혹은 졸업예정 학교)학교(전공명)를 입력해 주세요. <label id="sm">** 자료 수집용일 뿐 선발절차에 반영되지 않습니다.</label> </h2> 
+        <InputField id={id}><input id="universe" type="text" placeholder="ex) 천재대학교(전공명)" required /><label>최종 졸업(전공명)</label></InputField>
       </InsertContainer>
 
+      <InsertContainer>
+        <h2>국민내일배움카드를 소지하고 계신가요?</h2>
+        <p id="sm">내일배움카드 없이도 접수는 가능하지만 최소 교육시작일 전까지 국민내일배움카드 발급이 완료되어 있어야 합니다.</p>
+        <select >
+          <option defaultValue='' selected disabled hidden>Choose</option>
+          <option defaultValue={1}>예</option>
+          <option defaultValue={2}>아니요</option>
+        </select>
+      </InsertContainer>
 
+      <InsertContainer>
+        <h2>기존 k-Digital Training 과정을 수강하신 적이 있으신가요.</h2>
+        <p id="sm">K-digital Training 과정은 5년간 1번 지원받을 수 있으므로, 교육비 전액의 자부담이 발생할 수 있습니다.</p>
+        <select>
+          <option defaultValue='' selected disabled hidden>Choose</option>
+          <option defaultValue={1}>예</option>
+          <option defaultValue={2}>아니요</option>
+        </select>
+      </InsertContainer>
 
+      <InsertContainer id="input_margin">
+        <h2>코딩 경험 여부를 알려주세요.</h2>
+        <p>(코딩 공부 경험시간을 포함한 경험을 입력해주세요.)</p>
+      <label>
+        <input type="radio" name="experience" defaultValue={1} onChange={handleExperienceChange} />
+        없음
+      </label> 
+      <label>
+        <input type="radio" name="experience" defaultValue={2} onChange={handleExperienceChange} />
+        1년 미만
+      </label>   
+      <label>
+        <input type="radio" name="experience" defaultValue={3} onChange={handleExperienceChange} />
+        1~3년 이하
+      </label>   
+      <label>
+        <input type="radio" name="experience" defaultValue={3} onChange={handleExperienceChange} />
+        3년 이상
+      </label>
+      <label>
+        <input type="radio" name="experience" defaultValue={4} onChange={handleExperienceChange} />
+        Other: {isOtherChecked ? <input type="text" onChange={handleGenderChange}/> : null}
+      </label>  
+      </InsertContainer>
 
-
+      <InsertContainer>
+        <h2>해당 분야로 지원하는 이유를 작성해주세요.</h2> 
+        <InputField id={id}><textarea id="text_ap"/></InputField>
+      </InsertContainer>
 
     </ApplyForm>
   );
 }
-
+ 
 export default ApplyForms;
