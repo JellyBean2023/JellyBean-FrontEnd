@@ -9,6 +9,7 @@ const Section1Container = styled.main`
   height: 1014.75px;
   background-color: rgb(85, 59, 243);
   padding: 1rem;
+  color: white;
 
   @media screen and (min-width: 1024px) {
     padding: 5rem;
