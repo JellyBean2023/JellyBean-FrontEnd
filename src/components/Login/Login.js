@@ -6,7 +6,7 @@ import Logo from '../../assets/img/CI/img_ci_var02.jpg';
 const Container = styled.main`
   max-width: 600px;
   width: 100%;
-  height: 40rem;
+  height: 41rem;
   overflow: hidden;
   margin: 10rem auto 5rem auto;
 
@@ -46,17 +46,6 @@ const Title = styled.label`
   justify-content: center;
   font-size: 50px;
   font-weight: 600;
-
-  &::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    height: 3px;
-    width: 30px;
-    background-color: var(--theme-color);
-    justify-content: center;
-  }
 `;
 
 
@@ -74,14 +63,14 @@ const InputField = styled.div`
     border: none;
     outline: none;
     font-size: 16px;
-    border-bottom: 2px solid #ccc;
-    border-top: 2px solid transparent;
+    border: 2px solid #ccc;
     transition: all 0.2s ease;
     background-color: var(--background-rgb);
+    border-radius: 12px;
     
     &:focus,
     &:valid {
-      border-bottom-color: var(--theme-color);
+      border-color: var(--theme-color);
     }
   }
 `;
@@ -106,15 +95,19 @@ const CheckboxContent = styled.div`
 const Text = styled.span`
   color: var(--text-color);
   font-size: 14px;
-  text-align: center;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  margin: 5px 0;
 
   a {
     color: var(--accent-link-color);
     text-decoration: none;
+    margin-left: 7px;
   }
 
-  a:hover {
-    text-decoration: underline;
+  &#pw {
+    float: right;
   }
 `;
 
@@ -140,13 +133,6 @@ const Button = styled.div`
   }
 `;
 
-const FindContainer = styled.div`
-  float: right;
-  a {
-    color: var(--accent-link-color);
-  }
-`;
-
 const Login = () => {
 
     return (
@@ -161,10 +147,10 @@ const Login = () => {
                     <CheckboxText>
                         <CheckboxContent><input type="checkbox" /> <label htmlFor="logCheck">아이디 기억하기</label></CheckboxContent>
                     </CheckboxText>
-                    <Button><input type="button" value="로그인" /></Button>
-                    <FindContainer>
+                    <Button><input type="submit" value="로그인" /></Button>
+                    <Text id='pw'>
                       비밀번호를 잊어버렸어요 <Link href="#">Reset Password</Link>
-                    </FindContainer>
+                    </Text>
                 </Form>
             </Forms>
         </Container>
