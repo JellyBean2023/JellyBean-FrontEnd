@@ -26,7 +26,7 @@ const CurriculumBox = (props) => {
                 <p className="leading-relaxed mb-3">
                     {variable.content}
                 </p>
-                <Link href={``} className="text-indigo-500 inline-flex items-center">
+                <Link href={`/curriculum/${variable.id}`} className="text-indigo-500 inline-flex items-center">
                     더 알아보기
                     <svg className="w-4 h-4 ml-2" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round">
                         <path d="M5 12h14"></path>

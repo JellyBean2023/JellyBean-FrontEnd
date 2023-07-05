@@ -20,24 +20,24 @@ const LayerContainer = styled.section`
   display : flex;
   justify-content : center;
   align-items : center;
-  font-size: 25px;
+  font-size: 40px;
   color: var(--text-color);
   height: 50rem;
 `;
 
 const Main = () => {
   useEffect(() => {
-    AOS.init();
+    AOS.init({
+      duration: 500,
+    });
   });
 
   return (
     <MainContainer>
       <Banner />
-      <LayerContainer>
-        <span data-aos="zoom-in-up">내게 맞는 코스를 찾아주세요</span>
-      </LayerContainer>
+      <LayerContainer><span data-aos="zoom-in-up">내게 맞는 코스를 찾아주세요</span></LayerContainer>
       <Curriculum/>
-      <LayerContainer>천재교육 디지털 러닝팀에서 만나요</LayerContainer>
+      <LayerContainer><span data-aos="zoom-in-up">천재교육 디지털 러닝팀에서 만나요</span></LayerContainer>
       <section>
         dddd
       </section>
