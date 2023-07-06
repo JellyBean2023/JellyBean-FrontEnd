@@ -181,7 +181,9 @@ const ApplyForms = (props) => {
   }; //선택 사항 추가 (radio)
 
   const handleExperienceChange = (event) => {
-      setIsOtherChecked(event.target.value === 4);
+    console.log(event.target.value);
+    setIsOtherChecked(event.target.value === "4");
+
   };
 
   return (
@@ -221,7 +223,7 @@ const ApplyForms = (props) => {
 
       <InsertContainer>
         <h2>최종학력을 체크해주세요</h2>
-        <select> 
+        <select>
           <option defaultValue='' selected disabled hidden>Choose</option>
           <option defaultValue={1}>고등학교 졸업</option>
           <option defaultValue={2}>대학교 졸업 예정</option>
@@ -233,7 +235,7 @@ const ApplyForms = (props) => {
       </InsertContainer>
 
       <InsertContainer id={`flex`}>
-        <h2>최종 졸업 (혹은 졸업예정 학교)학교(전공명)를 입력해 주세요. <label id="sm">** 자료 수집용일 뿐 선발절차에 반영되지 않습니다.</label> </h2> 
+        <h2>최종 졸업 (혹은 졸업예정 학교)학교(전공명)를 입력해 주세요. <label id="sm">** 자료 수집용일 뿐 선발절차에 반영되지 않습니다.</label> </h2>
         <InputField id={id}><input id="universe" type="text" placeholder="ex) 천재대학교(전공명)" required /><label>최종 졸업(전공명)</label></InputField>
       </InsertContainer>
 
@@ -260,35 +262,36 @@ const ApplyForms = (props) => {
       <InsertContainer id="input_margin">
         <h2>코딩 경험 여부를 알려주세요.</h2>
         <p>(코딩 공부 경험시간을 포함한 경험을 입력해주세요.)</p>
-      <label>
-        <input type="radio" name="experience" defaultValue={1} onChange={handleExperienceChange} />
-        없음
-      </label> 
-      <label>
-        <input type="radio" name="experience" defaultValue={2} onChange={handleExperienceChange} />
-        1년 미만
-      </label>   
-      <label>
-        <input type="radio" name="experience" defaultValue={3} onChange={handleExperienceChange} />
-        1~3년 이하
-      </label>   
-      <label>
-        <input type="radio" name="experience" defaultValue={3} onChange={handleExperienceChange} />
-        3년 이상
-      </label>
-      <label>
-        <input type="radio" name="experience" defaultValue={4} onChange={handleExperienceChange} />
-        Other: <InputField id={id}><input type="text" required /></InputField>
-      </label>
-      </InsertContainer> 
- 
+        <label>
+          <input type="radio" name="experience" defaultValue={1} onChange={handleExperienceChange} />
+          없음
+        </label>
+        <label>
+          <input type="radio" name="experience" defaultValue={2} onChange={handleExperienceChange} />
+          1년 미만
+        </label>
+        <label>
+          <input type="radio" name="experience" defaultValue={3} onChange={handleExperienceChange} />
+          1~3년 이하
+        </label>
+        <label>
+          <input type="radio" name="experience" defaultValue={3} onChange={handleExperienceChange} />
+          3년 이상
+        </label>
+        <label>
+          <input type="radio" name="experience" defaultValue={4} onChange={handleExperienceChange} />
+          Other
+          {isOtherChecked ? <InputField id={id}><input type="text" required /></InputField> : null}
+        </label>
+      </InsertContainer>
+
       <InsertContainer>
-        <h2>해당 분야로 지원하는 이유를 작성해주세요.</h2> 
-        <InputField id={id}><textarea id="text_ap"/></InputField>
+        <h2>해당 분야로 지원하는 이유를 작성해주세요.</h2>
+        <InputField id={id}><textarea id="text_ap" /></InputField>
       </InsertContainer>
 
     </ApplyForm>
   );
 }
- 
+
 export default ApplyForms;
