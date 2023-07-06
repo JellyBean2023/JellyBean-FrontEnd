@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { styled } from "styled-components";
 
 const ApplyForm = styled.main`
@@ -72,17 +72,18 @@ const InsertContainer = styled.div`
    &#flex{
     display: flex;
     
-  } //추가
+  }
 
-  &#input_margin{
+  &.input_margin{
     
     label{
-    display: block;
-    margin: 10px;
-  } //코딩경험 라벨
+      display: block;
+      margin: 10px;
+    } //코딩경험 라벨
 
     input{
       margin: 3px;
+      accent-color: ${props => `var(--${props.id}-color)`};
     }
     h2{
       margin-left: 10px;
@@ -128,6 +129,13 @@ const InputField = styled.div`
       width: 80%;
     }
 
+    &:focus ~ label, &:valid ~ label {
+      font-size: 16px;
+      bottom: 40px;
+      font-weight: bold;
+      color: ${props => `var(--${props.id}-sub-color)`};
+    }
+
   }
   
   label {
@@ -137,15 +145,6 @@ const InputField = styled.div`
     font-size: 20px;
     bottom: 8px;
     transition: all .2s;
-  }
-
-  input {
-    &:focus ~ label, &:valid ~ label {
-      font-size: 16px;
-      bottom: 40px;
-      font-weight: bold;
-      color: ${props => `var(--${props.id}-sub-color)`};
-    }
   }
 
   textarea {
@@ -159,55 +158,109 @@ const InputField = styled.div`
   }
 `;
 
+const ButtonContainer = styled.button`
+  background-color: ${props => `var(--${props.id}-sub-color)`};
+  color: #fff;
+  font-size: 17px;
+  font-weight: 500;
+  border-radius: 15px;
+  background-color: var(--theme-color);
+  width: 50%;
+  padding: 5px 10px;
+  cursor: pointer;
+`;
 
 const ApplyForms = (props) => {
-  const [isOtherChecked, setIsOtherChecked] = useState(false);
-  const [isChecked, setIsChecked] = useState(false);
-
   const { id } = props;
-
   const components = {
     bigdata: '빅데이터',
     java: '풀스택',
     pm: '에듀테크 PM 2기 (프로덕트 매니저)',
   }
 
-  const information = {
+  /* BackEnd DATA START */
+  const information = { //기본입력정보
     name: '홍길동',
     date: '2023-12-12',
     email: 'email@chunjae.com'
   }
 
-  const [result, setResult] = useState('');
+  const recommendList = [
+    { value: 1, text: '비해당' },
+    { value: 2, text: '취업지원센터' },
+    { value: 3, text: '학과장 및 사범대' },
+  ];
 
-  const handleGenderChange = (event) => {
-    const value = event.target.value;
-    setResult(value);
-  }; //선택 사항 추가 (radio)
+  const gradeList = [
+    { value: 1, text: '고등학교' },
+    { value: 2, text: '대학교 졸업 예정' },
+    { value: 3, text: '대학교 졸업' },
+    { value: 4, text: '대학원 졸업 예정' },
+    { value: 5, text: '대학원 졸업' },
+    { value: 6, text: '기타' },
+  ];
+
+  const getCardList = [
+    { value: 1, text: '예' },
+    { value: 2, text: '아니오' },
+  ];
+
+  const getEXList = [
+    { value: 1, text: '예' },
+    { value: 2, text: '아니오' },
+  ];
+
+  const pathList = [
+    { value: 1, text: '검색(구글/네이버)' },
+    { value: 2, text: '광고(페이스북/인스타그램)' },
+    { value: 3, text: '학교 사이트' },
+    { value: 4, text: '오픈 카톡' },
+    { value: 5, text: '요즘것들' },
+    { value: 6, text: 'hrd-net' },
+    { value: 7, text: '부트텐트' },
+    { value: 8, text: '슈퍼루키' },
+    { value: 9, text: '링커리어' },
+    { value: 10, text: '네이버카페 취업대학교' },
+    { value: 11, text: '커리어리/올마이스/씽굿/이벤터스/캠퍼즈/생각나눔소/스팩토리' },
+    { value: 12, text: '서울시청년일자리센터' },
+    { value: 13, text: 'Other' },
+  ];
+
+  const initialTextareaValue1 = "1번 약관 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur pretium mi sed tristique commodo. Nullam in massa neque. Etiam scelerisque diam sit amet est scelerisque, vitae ultricies quam efficitur. Nulla facilisi. Aliquam at elit eu mi sollicitudin tincidunt in non felis. Vivamus vitae lectus sed massa venenatis tincidunt. Donec euismod luctus tristique. Aliquam non feugiat tortor. Sed vel velit at risus venenatis sollicitudin eu eu justo. Mauris vel ipsum vel purus facilisis condimentum in ac dui. Nulla id erat at odio congue suscipit vel vitae purus. Sed eu nunc sed urna finibus";
+  const initialTextareaValue2 = "2번 약관 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur pretium mi sed tristique commodo. Nullam in massa neque. Etiam scelerisque diam sit amet est scelerisque, vitae ultricies quam efficitur. Nulla facilisi. Aliquam at elit eu mi sollicitudin tincidunt in non felis. Vivamus vitae lectus sed massa venenatis tincidunt. Donec euismod luctus tristique. Aliquam non feugiat tortor. Sed vel velit at risus venenatis sollicitudin eu eu justo. Mauris vel ipsum vel purus facilisis condimentum in ac dui. Nulla id erat at odio congue suscipit vel vitae purus. Sed eu nunc sed urna finibus";
+  /* BackEnd DATA END */
+
+  const [isOtherChecked, setIsOtherChecked] = useState(false);
+  const [isChecked, setIsChecked] = useState(false);
 
   const handleExperienceChange = (event) => {
     setIsOtherChecked(event.target.value === "4");
   };
 
-  const handleChange  = (event) => {
+  const handleChange = (event) => {
     setIsChecked(!isChecked);
   };
 
-  const recommendList = [
-    {value: 1,  text: '비해당'},
-    {value: 2,  text: '취업지원센터'},
-    {value: 3,  text: '학과장 및 사범대'},
-  ];
-
   const [recommend, setRecommend] = useState("");
+  const [grade, setGrade] = useState("");
+  const [getCard, setCard] = useState("");
+  const [getEx, setEX] = useState("");
 
-  const handleSelect = (e) => {
+  const handleRecommend = (e) => {
     setRecommend(e.target.value);
   };
 
-  const initialTextareaValue1 = "1번 약관 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur pretium mi sed tristique commodo. Nullam in massa neque. Etiam scelerisque diam sit amet est scelerisque, vitae ultricies quam efficitur. Nulla facilisi. Aliquam at elit eu mi sollicitudin tincidunt in non felis. Vivamus vitae lectus sed massa venenatis tincidunt. Donec euismod luctus tristique. Aliquam non feugiat tortor. Sed vel velit at risus venenatis sollicitudin eu eu justo. Mauris vel ipsum vel purus facilisis condimentum in ac dui. Nulla id erat at odio congue suscipit vel vitae purus. Sed eu nunc sed urna finibus";
-  const initialTextareaValue2 = "2번 약관 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur pretium mi sed tristique commodo. Nullam in massa neque. Etiam scelerisque diam sit amet est scelerisque, vitae ultricies quam efficitur. Nulla facilisi. Aliquam at elit eu mi sollicitudin tincidunt in non felis. Vivamus vitae lectus sed massa venenatis tincidunt. Donec euismod luctus tristique. Aliquam non feugiat tortor. Sed vel velit at risus venenatis sollicitudin eu eu justo. Mauris vel ipsum vel purus facilisis condimentum in ac dui. Nulla id erat at odio congue suscipit vel vitae purus. Sed eu nunc sed urna finibus";
+  const handleGrade = (e) => {
+    setGrade(e.target.value);
+  };
 
+  const handleCard = (e) => {
+    setCard(e.target.value);
+  };
+
+  const handleEX = (e) => {
+    setEX(e.target.value);
+  };
 
   return (
     <ApplyForm id={id}>
@@ -236,7 +289,7 @@ const ApplyForms = (props) => {
 
       <InsertContainer>
         <h2>추천 전형 여부를 체크해주세요</h2>
-        <select onChange={handleSelect} defaultValue={recommend}>
+        <select onChange={handleRecommend} defaultValue={recommend}>
           <option value="" disabled hidden>Choose</option>
           {recommendList.map((list, i) => (
             <option value={list.value} key={i}>
@@ -248,9 +301,9 @@ const ApplyForms = (props) => {
 
       <InsertContainer>
         <h2>최종학력을 체크해주세요</h2>
-        <select onChange={handleSelect} defaultValue={recommend}>
+        <select onChange={handleGrade} defaultValue={grade}>
           <option value="" disabled hidden>Choose</option>
-          {recommendList.map((list, i) => (
+          {gradeList.map((list, i) => (
             <option value={list.value} key={i}>
               {list.text}
             </option>
@@ -266,24 +319,30 @@ const ApplyForms = (props) => {
       <InsertContainer>
         <h2>국민내일배움카드를 소지하고 계신가요?</h2>
         <p id="sm">내일배움카드 없이도 접수는 가능하지만 최소 교육시작일 전까지 국민내일배움카드 발급이 완료되어 있어야 합니다.</p>
-        <select >
-          <option defaultValue='' disabled hidden>Choose</option>
-          <option defaultValue={1}>예</option>
-          <option defaultValue={2}>아니요</option>
+        <select onChange={handleCard} defaultValue={grade}>
+          <option value="" disabled hidden>Choose</option>
+          {getCardList.map((list, i) => (
+            <option value={list.value} key={i}>
+              {list.text}
+            </option>
+          ))}
         </select>
       </InsertContainer>
 
       <InsertContainer>
         <h2>기존 k-Digital Training 과정을 수강하신 적이 있으신가요.</h2>
         <p id="sm">K-digital Training 과정은 5년간 1번 지원받을 수 있으므로, 교육비 전액의 자부담이 발생할 수 있습니다.</p>
-        <select>
-          <option defaultValue='' disabled hidden>Choose</option>
-          <option defaultValue={1}>예</option>
-          <option defaultValue={2}>아니요</option>
+        <select onChange={handleEX} defaultValue={grade}>
+          <option value="" disabled hidden>Choose</option>
+          {getEXList.map((list, i) => (
+            <option value={list.value} key={i}>
+              {list.text}
+            </option>
+          ))}
         </select>
       </InsertContainer>
 
-      <InsertContainer id="input_margin">
+      <InsertContainer className="input_margin">
         <h2>코딩 경험 여부를 알려주세요.</h2>
         <p>(코딩 공부 경험시간을 포함한 경험을 입력해주세요.)</p>
         <label>
@@ -305,7 +364,7 @@ const ApplyForms = (props) => {
         <label>
           <input type="radio" name="experience" defaultValue={4} onChange={handleExperienceChange} />
           Other
-          {isOtherChecked ? <InputField id={id}><input id="universe" type="text"/></InputField> : null}
+          {isOtherChecked ? <InputField id={id}><input id="universe" type="text" /></InputField> : null}
         </label>
       </InsertContainer>
 
@@ -314,34 +373,39 @@ const ApplyForms = (props) => {
         <InputField id={id}><textarea id="text_ap" /></InputField>
       </InsertContainer>
 
-      <InsertContainer id="input_margin">
-        <h2>해당 과정을 알게 된 경로를 선택해주시기 바랍니다. (복수 선택 가능)</h2> 
-        <label><input type="checkbox" value={1}/>검색(구글/네이버)</label>
-        <label><input type="checkbox" value={2}/>광고(페이스북/인스타그램)</label>
-        <label><input type="checkbox" value={3}/>학교 사이트</label>
-        <label><input type="checkbox" value={4}/>오픈 카톡</label>
-        <label><input type="checkbox" value={5}/>요즘것들</label>
-        <label><input type="checkbox" value={6}/>hrd-net</label>
-        <label><input type="checkbox" value={7}/>부트텐트</label>
-        <label><input type="checkbox" value={8}/>슈퍼루키</label>
-        <label><input type="checkbox" value={9}/>링커리어</label>
-        <label><input type="checkbox" value={10}/>네이버카페 취업대학교</label>
-        <label><input type="checkbox" value={11}/>커리어리/올마이스/씽굿/이벤터스/캠퍼즈/생각나눔소/스팩토리</label>
-        <label><input type="checkbox" value={12}/>서울시청년일자리센터</label>
-        <label><input type="checkbox" value={13} onChange={handleChange}/>Other {isChecked ? <InputField id={id}><input type="text" required/></InputField> : null}</label>  
+      <InsertContainer id={id} className="input_margin">
+        <h2>해당 과정을 알게 된 경로를 선택해주시기 바랍니다. (복수 선택 가능)</h2>
+        {pathList.map((list, i) => (
+          <label key={i}>
+            {list.value === 13 ? (
+              <>
+                <input type="checkbox" value={13} onChange={handleChange} />
+                {list.text}
+                {isChecked ? <InputField id={id}><input type="text" required /></InputField> : null}
+              </>
+            ) : (
+              <>
+                <input type="checkbox" value={list.value} />
+                {list.text}
+              </>
+            )}
+          </label>
+        ))}
       </InsertContainer>
 
-      <InsertContainer id="input_margin">
+      <InsertContainer className="input_margin">
         <h2>* 개인정보 수집 및 이용 동의</h2>
-        <InputField id={id}><textarea defaultValue={initialTextareaValue1} readOnly/></InputField>
-        <label><input type="checkbox"/>개인정보 수집 및 이용에 동의합니다.</label>
+        <InputField id={id}><textarea value={initialTextareaValue1} readOnly /></InputField>
+        <label><input type="checkbox" />개인정보 수집 및 이용에 동의합니다.</label>
       </InsertContainer>
 
-      <InsertContainer id="input_margin">
+      <InsertContainer className="input_margin">
         <h2>* 개인정보 제3자 제공 동의</h2>
-        <InputField id={id}><textarea defaultValue={initialTextareaValue2} readOnly/></InputField>
-        <label><input type="checkbox"/>개인정보 제3자 제공에 대해 동의합니다.</label>
+        <InputField id={id}><textarea value={initialTextareaValue2} readOnly /></InputField>
+        <label><input type="checkbox" />개인정보 제3자 제공에 대해 동의합니다.</label>
       </InsertContainer>
+
+      <ButtonContainer id={id}>신청하기</ButtonContainer>
 
     </ApplyForm>
   );
