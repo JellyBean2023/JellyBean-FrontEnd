@@ -34,6 +34,7 @@ const CheckSection = styled.div`
     width: 100%;
     min-height: 70px;
     overflow-y: auto;
+    border: 1px solid black;
     border-radius: 10px;
   }
 
