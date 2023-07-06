@@ -6,7 +6,7 @@ import Logo from '../../assets/img/CI/img_ci_var02.jpg';
 const Container = styled.main`
   max-width: 600px;
   width: 100%;
-  height: 41rem;
+  height: 45rem;
   overflow: hidden;
   margin: 10rem auto 5rem auto;
 
@@ -34,6 +34,10 @@ const Forms = styled.div`
 const Form = styled.form`
   width: 50%;
   transition: margin-left 0.2s ease;
+
+  img {
+    width: 100%;
+  }
 
   @media screen and (max-width: 1024px) {
       padding: 0 50px;
@@ -104,6 +108,10 @@ const Text = styled.span`
     color: var(--accent-link-color);
     text-decoration: none;
     margin-left: 7px;
+    
+    &:hover {
+      text-decoration-line: underline
+    }
   }
 
   &#pw {
