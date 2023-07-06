@@ -31,11 +31,14 @@ const CheckSection = styled.div`
   padding-top: 20px;
 
   textarea {
+    color: var(--text-color);
     width: 100%;
     min-height: 70px;
     overflow-y: auto;
-    border: 1px solid black;
+    border: 1px solid var(--text-color);
     border-radius: 10px;
+    background-color: rgba(0,0,0,0.03);
+    padding: 8px
   }
 
   hr {
@@ -74,6 +77,12 @@ const Button = styled.div`
     letter-spacing: 1px;
     cursor: pointer;
     transition: all 0.3s ease;
+    width: 100%;
+    border-radius: 15px;
+
+    &:hover {
+      background-color: #265df2;
+    }
   }
 `;
 

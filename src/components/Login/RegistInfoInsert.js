@@ -100,15 +100,16 @@ const Button = styled.div`
 
   input {
     background-color: var(--theme-color);
-    border-radius: 5px;
     padding: 5px 10px;
     border: none;
+    border-radius: 15px;
     color: #fff;
     font-size: 17px;
     font-weight: 500;
     letter-spacing: 1px;
     cursor: pointer;
     transition: all 0.3s ease;
+    width: 100%;
 
     &:hover {
       background-color: var(--anti-theme-color);
@@ -117,7 +118,7 @@ const Button = styled.div`
 `;
 
 const Text = styled.span`
-  color: var(--text-color);
+  color: var(--accent-link-color);
   font-size: 14px;
 
   a.text {
