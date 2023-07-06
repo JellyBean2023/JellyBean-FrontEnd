@@ -156,9 +156,7 @@ const InputField = styled.div`
 
 const ApplyForms = (props) => {
   const [isOtherChecked, setIsOtherChecked] = useState(false);
-
-  // const setIsOtherChecked = () => 
-
+  const [isChecked, setIsChecked] = useState(false);
 
   const { id } = props;
 
@@ -182,9 +180,11 @@ const ApplyForms = (props) => {
   }; //선택 사항 추가 (radio)
 
   const handleExperienceChange = (event) => {
-    console.log(event.target.value);
     setIsOtherChecked(event.target.value === "4");
+  };
 
+  const handleChange  = (event) => {
+    setIsChecked(!isChecked);
   };
 
   const recommendList = [
@@ -238,15 +238,6 @@ const ApplyForms = (props) => {
 
       <InsertContainer>
         <h2>최종학력을 체크해주세요</h2>
-        {/* <select>
-          <option defaultValue='' disabled hidden>Choose</option>
-          <option defaultValue={1}>고등학교 졸업</option>
-          <option defaultValue={2}>대학교 졸업 예정</option>
-          <option defaultValue={3}>대학교 졸업</option>
-          <option defaultValue={4}>대학교 졸업예정</option>
-          <option defaultValue={5}>대학원 졸업</option>
-          <option defaultValue={6}>기타</option>
-        </select> */}
         <select onChange={handleSelect} defaultValue={recommend}>
           <option value="" disabled hidden>Choose</option>
           {recommendList.map((list, i) => (
@@ -304,7 +295,7 @@ const ApplyForms = (props) => {
         <label>
           <input type="radio" name="experience" defaultValue={4} onChange={handleExperienceChange} />
           Other
-          <InputField id={id}><input id="universe" type="text"/></InputField>
+          {isOtherChecked ? <InputField id={id}><input id="universe" type="text"/></InputField> : null}
         </label>
       </InsertContainer>
 
@@ -327,7 +318,7 @@ const ApplyForms = (props) => {
         <label><input type="checkbox"/>네이버카페 취업대학교</label>
         <label><input type="checkbox"/>커리어리/올마이스/씽굿/이벤터스/캠퍼즈/생각나눔소/스팩토리</label>
         <label><input type="checkbox"/>서울시청년일자리센터</label>
-        <label><input type="checkbox"/>Other: <InputField id={id}><input type="text" required /><label></label></InputField></label>  
+        <label><input type="checkbox" onChange={handleChange}/>Other {isChecked ? <InputField id={id}><input type="text" required/></InputField> : null}</label>  
       </InsertContainer>
 
       
