@@ -221,8 +221,8 @@ const ApplyForms = (props) => {
 
       <InsertContainer>
         <h2>최종학력을 체크해주세요</h2>
-        <select value={0} > 
-          <option defaultValue={0} disabled hidden>Choose</option>
+        <select> 
+          <option defaultValue='' selected disabled hidden>Choose</option>
           <option defaultValue={1}>고등학교 졸업</option>
           <option defaultValue={2}>대학교 졸업 예정</option>
           <option defaultValue={3}>대학교 졸업</option>
@@ -278,10 +278,10 @@ const ApplyForms = (props) => {
       </label>
       <label>
         <input type="radio" name="experience" defaultValue={4} onChange={handleExperienceChange} />
-        Other: {isOtherChecked ? <input type="text" onChange={handleGenderChange}/> : null}
-      </label>  
-      </InsertContainer>
-
+        Other: <InputField id={id}><input type="text" required /></InputField>
+      </label>
+      </InsertContainer> 
+ 
       <InsertContainer>
         <h2>해당 분야로 지원하는 이유를 작성해주세요.</h2> 
         <InputField id={id}><textarea id="text_ap"/></InputField>
