@@ -186,6 +186,18 @@ const ApplyForms = (props) => {
 
   };
 
+  const recommendList = [
+    {value: 1,  text: '비해당'},
+    {value: 2,  text: '취업지원센터'},
+    {value: 3,  text: '학과장 및 사범대'},
+  ];
+
+  const [recommend, setRecommend] = useState("");
+
+  const handleSelect = (e) => {
+    setRecommend(e.target.value);
+  };
+
   return (
     <ApplyForm id={id}>
       <Intro>
@@ -213,18 +225,20 @@ const ApplyForms = (props) => {
 
       <InsertContainer>
         <h2>추천 전형 여부를 체크해주세요</h2>
-        <select value={0}>
-          <option defaultValue={0} disabled hidden>Choose</option>
-          <option defaultValue={1}>비해당</option>
-          <option defaultValue={2}>취업지원센터</option>
-          <option defaultValue={3}>학과장 및 사범대</option>
+        <select onChange={handleSelect} defaultValue={recommend}>
+          <option value="" disabled hidden>Choose</option>
+          {recommendList.map((list, i) => (
+            <option value={list.value} key={i}>
+              {list.text}
+            </option>
+          ))}
         </select>
       </InsertContainer>
 
       <InsertContainer>
         <h2>최종학력을 체크해주세요</h2>
         <select>
-          <option defaultValue='' selected disabled hidden>Choose</option>
+          <option defaultValue='' disabled hidden>Choose</option>
           <option defaultValue={1}>고등학교 졸업</option>
           <option defaultValue={2}>대학교 졸업 예정</option>
           <option defaultValue={3}>대학교 졸업</option>
@@ -243,7 +257,7 @@ const ApplyForms = (props) => {
         <h2>국민내일배움카드를 소지하고 계신가요?</h2>
         <p id="sm">내일배움카드 없이도 접수는 가능하지만 최소 교육시작일 전까지 국민내일배움카드 발급이 완료되어 있어야 합니다.</p>
         <select >
-          <option defaultValue='' selected disabled hidden>Choose</option>
+          <option defaultValue='' disabled hidden>Choose</option>
           <option defaultValue={1}>예</option>
           <option defaultValue={2}>아니요</option>
         </select>
@@ -253,7 +267,7 @@ const ApplyForms = (props) => {
         <h2>기존 k-Digital Training 과정을 수강하신 적이 있으신가요.</h2>
         <p id="sm">K-digital Training 과정은 5년간 1번 지원받을 수 있으므로, 교육비 전액의 자부담이 발생할 수 있습니다.</p>
         <select>
-          <option defaultValue='' selected disabled hidden>Choose</option>
+          <option defaultValue='' disabled hidden>Choose</option>
           <option defaultValue={1}>예</option>
           <option defaultValue={2}>아니요</option>
         </select>
