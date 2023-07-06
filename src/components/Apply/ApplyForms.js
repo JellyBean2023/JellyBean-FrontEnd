@@ -148,6 +148,7 @@ const InputField = styled.div`
       width: 100%;
       min-height: 10rem;
       border: 1px solid ${props => `var(--${props.id}-sub-color)`};
+      border-radius: 15px;
     };
   }
 `;
@@ -237,7 +238,7 @@ const ApplyForms = (props) => {
 
       <InsertContainer>
         <h2>최종학력을 체크해주세요</h2>
-        <select>
+        {/* <select>
           <option defaultValue='' disabled hidden>Choose</option>
           <option defaultValue={1}>고등학교 졸업</option>
           <option defaultValue={2}>대학교 졸업 예정</option>
@@ -245,6 +246,14 @@ const ApplyForms = (props) => {
           <option defaultValue={4}>대학교 졸업예정</option>
           <option defaultValue={5}>대학원 졸업</option>
           <option defaultValue={6}>기타</option>
+        </select> */}
+        <select onChange={handleSelect} defaultValue={recommend}>
+          <option value="" disabled hidden>Choose</option>
+          {recommendList.map((list, i) => (
+            <option value={list.value} key={i}>
+              {list.text}
+            </option>
+          ))}
         </select>
       </InsertContainer>
 
@@ -295,7 +304,7 @@ const ApplyForms = (props) => {
         <label>
           <input type="radio" name="experience" defaultValue={4} onChange={handleExperienceChange} />
           Other
-          {isOtherChecked ? <InputField id={id}><input type="text" required /></InputField> : null}
+          <InputField id={id}><input id="universe" type="text"/></InputField>
         </label>
       </InsertContainer>
 
@@ -303,6 +312,25 @@ const ApplyForms = (props) => {
         <h2>해당 분야로 지원하는 이유를 작성해주세요.</h2>
         <InputField id={id}><textarea id="text_ap" /></InputField>
       </InsertContainer>
+
+      <InsertContainer id="input_margin">
+        <h2>해당 과정을 알게 된 경로를 선택해주시기 바랍니다. (복수 선택 가능)</h2> 
+        <label><input type="checkbox"/>검색(구글/네이버)</label>
+        <label><input type="checkbox"/>광고(페이스북/인스타그램)</label>
+        <label><input type="checkbox"/>학교 사이트</label>
+        <label><input type="checkbox"/>오픈 카톡</label>
+        <label><input type="checkbox"/>요즘것들</label>
+        <label><input type="checkbox"/>hrd-net</label>
+        <label><input type="checkbox"/>부트텐트</label>
+        <label><input type="checkbox"/>슈퍼루키</label>
+        <label><input type="checkbox"/>링커리어</label>
+        <label><input type="checkbox"/>네이버카페 취업대학교</label>
+        <label><input type="checkbox"/>커리어리/올마이스/씽굿/이벤터스/캠퍼즈/생각나눔소/스팩토리</label>
+        <label><input type="checkbox"/>서울시청년일자리센터</label>
+        <label><input type="checkbox"/>Other: <InputField id={id}><input type="text" required /><label></label></InputField></label>  
+      </InsertContainer>
+
+      
 
     </ApplyForm>
   );
