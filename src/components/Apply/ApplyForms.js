@@ -74,8 +74,6 @@ const InsertContainer = styled.div`
     
   } //추가
 
-  
-
   &#input_margin{
     
     label{
@@ -84,11 +82,19 @@ const InsertContainer = styled.div`
   } //코딩경험 라벨
 
     input{
-      margin: 10px;
+      margin: 3px;
+    }
+    h2{
+      margin-left: 10px;
+    }
+    textarea{
+      padding: 10px 5px;
+      height: 8rem;
+      width: 100%;
+      border: 1px solid black;
+      border-radius: 15px;
     }
   }
-
-
 `;
 
 const InputField = styled.div`
@@ -199,6 +205,10 @@ const ApplyForms = (props) => {
     setRecommend(e.target.value);
   };
 
+  const initialTextareaValue1 = "1번 약관 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur pretium mi sed tristique commodo. Nullam in massa neque. Etiam scelerisque diam sit amet est scelerisque, vitae ultricies quam efficitur. Nulla facilisi. Aliquam at elit eu mi sollicitudin tincidunt in non felis. Vivamus vitae lectus sed massa venenatis tincidunt. Donec euismod luctus tristique. Aliquam non feugiat tortor. Sed vel velit at risus venenatis sollicitudin eu eu justo. Mauris vel ipsum vel purus facilisis condimentum in ac dui. Nulla id erat at odio congue suscipit vel vitae purus. Sed eu nunc sed urna finibus";
+  const initialTextareaValue2 = "2번 약관 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur pretium mi sed tristique commodo. Nullam in massa neque. Etiam scelerisque diam sit amet est scelerisque, vitae ultricies quam efficitur. Nulla facilisi. Aliquam at elit eu mi sollicitudin tincidunt in non felis. Vivamus vitae lectus sed massa venenatis tincidunt. Donec euismod luctus tristique. Aliquam non feugiat tortor. Sed vel velit at risus venenatis sollicitudin eu eu justo. Mauris vel ipsum vel purus facilisis condimentum in ac dui. Nulla id erat at odio congue suscipit vel vitae purus. Sed eu nunc sed urna finibus";
+
+
   return (
     <ApplyForm id={id}>
       <Intro>
@@ -306,22 +316,32 @@ const ApplyForms = (props) => {
 
       <InsertContainer id="input_margin">
         <h2>해당 과정을 알게 된 경로를 선택해주시기 바랍니다. (복수 선택 가능)</h2> 
-        <label><input type="checkbox"/>검색(구글/네이버)</label>
-        <label><input type="checkbox"/>광고(페이스북/인스타그램)</label>
-        <label><input type="checkbox"/>학교 사이트</label>
-        <label><input type="checkbox"/>오픈 카톡</label>
-        <label><input type="checkbox"/>요즘것들</label>
-        <label><input type="checkbox"/>hrd-net</label>
-        <label><input type="checkbox"/>부트텐트</label>
-        <label><input type="checkbox"/>슈퍼루키</label>
-        <label><input type="checkbox"/>링커리어</label>
-        <label><input type="checkbox"/>네이버카페 취업대학교</label>
-        <label><input type="checkbox"/>커리어리/올마이스/씽굿/이벤터스/캠퍼즈/생각나눔소/스팩토리</label>
-        <label><input type="checkbox"/>서울시청년일자리센터</label>
-        <label><input type="checkbox" onChange={handleChange}/>Other {isChecked ? <InputField id={id}><input type="text" required/></InputField> : null}</label>  
+        <label><input type="checkbox" value={1}/>검색(구글/네이버)</label>
+        <label><input type="checkbox" value={2}/>광고(페이스북/인스타그램)</label>
+        <label><input type="checkbox" value={3}/>학교 사이트</label>
+        <label><input type="checkbox" value={4}/>오픈 카톡</label>
+        <label><input type="checkbox" value={5}/>요즘것들</label>
+        <label><input type="checkbox" value={6}/>hrd-net</label>
+        <label><input type="checkbox" value={7}/>부트텐트</label>
+        <label><input type="checkbox" value={8}/>슈퍼루키</label>
+        <label><input type="checkbox" value={9}/>링커리어</label>
+        <label><input type="checkbox" value={10}/>네이버카페 취업대학교</label>
+        <label><input type="checkbox" value={11}/>커리어리/올마이스/씽굿/이벤터스/캠퍼즈/생각나눔소/스팩토리</label>
+        <label><input type="checkbox" value={12}/>서울시청년일자리센터</label>
+        <label><input type="checkbox" value={13} onChange={handleChange}/>Other {isChecked ? <InputField id={id}><input type="text" required/></InputField> : null}</label>  
       </InsertContainer>
 
-      
+      <InsertContainer id="input_margin">
+        <h2>* 개인정보 수집 및 이용 동의</h2>
+        <InputField id={id}><textarea defaultValue={initialTextareaValue1} readOnly/></InputField>
+        <label><input type="checkbox"/>개인정보 수집 및 이용에 동의합니다.</label>
+      </InsertContainer>
+
+      <InsertContainer id="input_margin">
+        <h2>* 개인정보 제3자 제공 동의</h2>
+        <InputField id={id}><textarea defaultValue={initialTextareaValue2} readOnly/></InputField>
+        <label><input type="checkbox"/>개인정보 제3자 제공에 대해 동의합니다.</label>
+      </InsertContainer>
 
     </ApplyForm>
   );
