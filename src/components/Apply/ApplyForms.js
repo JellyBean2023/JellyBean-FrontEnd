@@ -92,9 +92,7 @@ const InsertContainer = styled.div`
       margin: 3px;
       accent-color: ${props => `var(--${props.id}-color)`};
     }
-    h2{
-      margin-left: 10px;
-    }
+    
     textarea{
       padding: 10px 5px;
       height: 8rem;
@@ -246,41 +244,23 @@ const ApplyForms = (props) => {
     { value: 13, text: 'Other' },
   ];
 
+  const experienceList = [
+    { value: 1, text: '없음' },
+    { value: 2, text: '1년 미만' },
+    { value: 3, text: '1~3년 이하' },
+    { value: 4, text: '3년 이상' },
+    { value: 5, text: 'Other' },
+  ]
+
   const initialTextareaValue1 = "1번 약관 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur pretium mi sed tristique commodo. Nullam in massa neque. Etiam scelerisque diam sit amet est scelerisque, vitae ultricies quam efficitur. Nulla facilisi. Aliquam at elit eu mi sollicitudin tincidunt in non felis. Vivamus vitae lectus sed massa venenatis tincidunt. Donec euismod luctus tristique. Aliquam non feugiat tortor. Sed vel velit at risus venenatis sollicitudin eu eu justo. Mauris vel ipsum vel purus facilisis condimentum in ac dui. Nulla id erat at odio congue suscipit vel vitae purus. Sed eu nunc sed urna finibus";
   const initialTextareaValue2 = "2번 약관 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur pretium mi sed tristique commodo. Nullam in massa neque. Etiam scelerisque diam sit amet est scelerisque, vitae ultricies quam efficitur. Nulla facilisi. Aliquam at elit eu mi sollicitudin tincidunt in non felis. Vivamus vitae lectus sed massa venenatis tincidunt. Donec euismod luctus tristique. Aliquam non feugiat tortor. Sed vel velit at risus venenatis sollicitudin eu eu justo. Mauris vel ipsum vel purus facilisis condimentum in ac dui. Nulla id erat at odio congue suscipit vel vitae purus. Sed eu nunc sed urna finibus";
   /* BackEnd DATA END */
-
-  //핸드폰 번호 유효성 검사
-  const [phone, setPhone] = useState('');
-  const [isValidPhone, setIsValidPhone] = useState(true);
-
-  useEffect(() => {
-    const phoneTimer = setTimeout(() => {
-      validatePhone();
-    }, 300);
-
-    return () => {
-      clearTimeout(phoneTimer);
-    };
-  }, [phone]);
-
-  const handlePhoneChange = (event) => {
-    setPhone(event.target.value);
-  };
-
-  const validatePhone = () => {
-    const regex = /^010-\d{4}-\d{4}$/;
-    if (!regex.test(phone))
-      setIsValidPhone(false);
-    else
-      setIsValidPhone(true);
-  };
 
   const [isOtherChecked, setIsOtherChecked] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
 
   const handleExperienceChange = (event) => {
-    setIsOtherChecked(event.target.value === "4");
+    setIsOtherChecked(event.target.value === "5");
   };
 
   const handleChange = (event) => {
@@ -308,9 +288,39 @@ const ApplyForms = (props) => {
     setEX(e.target.value);
   };
 
+  //핸드폰 번호 유효성 검사
+  const [phone, setPhone] = useState('');
+  const [isValidPhone, setIsValidPhone] = useState(true);
+
+  useEffect(() => {
+    const phoneTimer = setTimeout(() => {
+      validatePhone();
+    }, 300);
+
+    return () => {
+      clearTimeout(phoneTimer);
+    };
+  }, [phone]);
+
+  const handlePhoneChange = (event) => {
+    setPhone(event.target.value);
+  };
+
+  const validatePhone = () => {
+    const regex = /^010-\d{4}-\d{4}$/;
+    if (!regex.test(phone)) {
+      setIsValidPhone(false);
+    }
+    else {
+      setIsValidPhone(true);
+    }
+  };
+
   const handleSubmit = (event) => {
-    alert("비밀번호를 확인해주세요");
-    event.preventDefault();
+    if(!isValidPhone) {
+      event.preventDefault();
+      alert("비밀번호를 확인해주세요");
+    }
   };
 
   return (
@@ -326,7 +336,7 @@ const ApplyForms = (props) => {
         <p id="import">앞으로의 비전과 반드시 함께하겠다는 의지, 그리고 하루하루의 실천을 해 나갈 수 있는 많은 분들을 응원합니다.</p>
       </Intro>
 
-      <form onSubmit={handleSubmit}>
+      <form action={`/curriculum/${id}`} onSubmit={handleSubmit}>
         <InsertContainer id={`flex`}>
           <h2 id={`import`}>*기본 입력정보</h2>
           <InputField id={id}><input type="text" defaultValue={information.name} required /><label>Name</label></InputField>
@@ -400,27 +410,22 @@ const ApplyForms = (props) => {
         <InsertContainer className="input_margin">
           <h2>코딩 경험 여부를 알려주세요.</h2>
           <p>(코딩 공부 경험시간을 포함한 경험을 입력해주세요.)</p>
-          <label>
-            <input type="radio" name="experience" defaultValue={1} onChange={handleExperienceChange} required/>
-            없음
-          </label>
-          <label>
-            <input type="radio" name="experience" defaultValue={2} onChange={handleExperienceChange} />
-            1년 미만
-          </label>
-          <label>
-            <input type="radio" name="experience" defaultValue={3} onChange={handleExperienceChange} />
-            1~3년 이하
-          </label>
-          <label>
-            <input type="radio" name="experience" defaultValue={3} onChange={handleExperienceChange} />
-            3년 이상
-          </label>
-          <label>
-            <input type="radio" name="experience" defaultValue={4} onChange={handleExperienceChange} />
-            Other
-            {isOtherChecked ? <InputField id={id}><input id="universe" type="text" /></InputField> : null}
-          </label>
+          {experienceList.map((list, i) => (
+            <label key={i}>
+              {list.value === 5 ? (
+                <>
+                  <input type="radio" name="experience" value={list.value} onChange={handleExperienceChange} />
+                  {list.text}
+                  {isOtherChecked ? <InputField id={id}><input id="universe" type="text" /></InputField> : null}
+                </>
+              ) : (
+                <>
+                  <input type="radio" name="experience" value={list.value} onChange={handleExperienceChange} />
+                  {list.text}
+                </>
+              )}
+            </label>
+          ))}
         </InsertContainer>
 
         <InsertContainer>
@@ -460,7 +465,9 @@ const ApplyForms = (props) => {
           <label><input type="checkbox" required/>개인정보 제3자 제공에 대해 동의합니다.</label>
         </InsertContainer>
 
-        <ButtonContainer id={id}><input type="submit" value={`신청하기`} disabled={!isValidPhone}/></ButtonContainer>
+        <ButtonContainer id={id}>
+          <input type="submit" value={`신청하기`}/>
+        </ButtonContainer>
       </form>
     </ApplyForm>
   );
