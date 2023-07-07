@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { styled } from "styled-components";
 
 const ApplyForm = styled.main`
@@ -71,7 +71,14 @@ const InsertContainer = styled.div`
 
    &#flex{
     display: flex;
-    
+
+    &_column {
+      flex-direction: column;
+
+      input {
+        width: 50%;
+      }
+    }
   }
 
   &.input_margin{
@@ -95,6 +102,10 @@ const InsertContainer = styled.div`
       border: 1px solid black;
       border-radius: 15px;
     }
+  }
+
+  p {
+    color: var(--warning-color);
   }
 `;
 
@@ -154,20 +165,29 @@ const InputField = styled.div`
       min-height: 10rem;
       border: 1px solid ${props => `var(--${props.id}-sub-color)`};
       border-radius: 15px;
+      padding: 10px 5px;
     };
   }
 `;
 
-const ButtonContainer = styled.button`
-  background-color: ${props => `var(--${props.id}-sub-color)`};
-  color: #fff;
-  font-size: 17px;
-  font-weight: 500;
-  border-radius: 15px;
-  background-color: var(--theme-color);
-  width: 50%;
-  padding: 5px 10px;
-  cursor: pointer;
+const ButtonContainer = styled.div`
+  text-align: center;
+
+  input {
+    background-color: ${props => `var(--${props.id}-sub-color)`};
+    color: #fff;
+    font-size: 17px;
+    font-weight: 500;
+    border-radius: 15px;
+    width: 50%;
+    padding: 5px 10px;
+    cursor: pointer;
+
+    &:hover {
+      filter: invert();
+      transition: 0.3s;
+    }
+  }
 `;
 
 const ApplyForms = (props) => {
@@ -230,6 +250,32 @@ const ApplyForms = (props) => {
   const initialTextareaValue2 = "2번 약관 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur pretium mi sed tristique commodo. Nullam in massa neque. Etiam scelerisque diam sit amet est scelerisque, vitae ultricies quam efficitur. Nulla facilisi. Aliquam at elit eu mi sollicitudin tincidunt in non felis. Vivamus vitae lectus sed massa venenatis tincidunt. Donec euismod luctus tristique. Aliquam non feugiat tortor. Sed vel velit at risus venenatis sollicitudin eu eu justo. Mauris vel ipsum vel purus facilisis condimentum in ac dui. Nulla id erat at odio congue suscipit vel vitae purus. Sed eu nunc sed urna finibus";
   /* BackEnd DATA END */
 
+  //핸드폰 번호 유효성 검사
+  const [phone, setPhone] = useState('');
+  const [isValidPhone, setIsValidPhone] = useState(true);
+
+  useEffect(() => {
+    const phoneTimer = setTimeout(() => {
+      validatePhone();
+    }, 300);
+
+    return () => {
+      clearTimeout(phoneTimer);
+    };
+  }, [phone]);
+
+  const handlePhoneChange = (event) => {
+    setPhone(event.target.value);
+  };
+
+  const validatePhone = () => {
+    const regex = /^010-\d{4}-\d{4}$/;
+    if (!regex.test(phone))
+      setIsValidPhone(false);
+    else
+      setIsValidPhone(true);
+  };
+
   const [isOtherChecked, setIsOtherChecked] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
 
@@ -262,6 +308,11 @@ const ApplyForms = (props) => {
     setEX(e.target.value);
   };
 
+  const handleSubmit = (event) => {
+    alert("비밀번호를 확인해주세요");
+    event.preventDefault();
+  };
+
   return (
     <ApplyForm id={id}>
       <Intro>
@@ -275,138 +326,142 @@ const ApplyForms = (props) => {
         <p id="import">앞으로의 비전과 반드시 함께하겠다는 의지, 그리고 하루하루의 실천을 해 나갈 수 있는 많은 분들을 응원합니다.</p>
       </Intro>
 
-      <InsertContainer id={`flex`}>
-        <h2 id={`import`}>*기본 입력정보</h2>
-        <InputField id={id}><input type="text" defaultValue={information.name} required /><label>Name</label></InputField>
-        <InputField id={id}><input type="date" defaultValue={information.date} required /><label>생년월일</label></InputField>
-        <InputField id={id}><input type="email" defaultValue={information.email} required /><label>이메일</label></InputField>
-      </InsertContainer>
+      <form onSubmit={handleSubmit}>
+        <InsertContainer id={`flex`}>
+          <h2 id={`import`}>*기본 입력정보</h2>
+          <InputField id={id}><input type="text" defaultValue={information.name} required /><label>Name</label></InputField>
+          <InputField id={id}><input type="date" defaultValue={information.date} required /><label>생년월일</label></InputField>
+          <InputField id={id}><input type="email" defaultValue={information.email} required /><label>이메일</label></InputField>
+        </InsertContainer>
 
-      <InsertContainer id={`flex`}>
-        <h2>연락처</h2>
-        <InputField id={id}><input type="text" placeholder="ex) 010-0000-0000" required /><label>연락받을 연락처</label></InputField>
-      </InsertContainer>
+        <InsertContainer id={`flex_column`}>
+          <h2>연락처</h2>
+          <InputField id={id}>
+            <input type="text" value={phone} onChange={handlePhoneChange} placeholder="ex) 010-0000-0000" required />
+            <label>연락받을 연락처</label>
+          </InputField>{!isValidPhone && phone !== "" && <p>010-0000-0000 형식으로 작성해주세요</p>}
+        </InsertContainer>
 
-      <InsertContainer>
-        <h2>추천 전형 여부를 체크해주세요</h2>
-        <select onChange={handleRecommend} defaultValue={recommend}>
-          <option value="" disabled hidden>Choose</option>
-          {recommendList.map((list, i) => (
-            <option value={list.value} key={i}>
-              {list.text}
-            </option>
-          ))}
-        </select>
-      </InsertContainer>
-
-      <InsertContainer>
-        <h2>최종학력을 체크해주세요</h2>
-        <select onChange={handleGrade} defaultValue={grade}>
-          <option value="" disabled hidden>Choose</option>
-          {gradeList.map((list, i) => (
-            <option value={list.value} key={i}>
-              {list.text}
-            </option>
-          ))}
-        </select>
-      </InsertContainer>
-
-      <InsertContainer id={`flex`}>
-        <h2>최종 졸업 (혹은 졸업예정 학교)학교(전공명)를 입력해 주세요. <label id="sm">** 자료 수집용일 뿐 선발절차에 반영되지 않습니다.</label> </h2>
-        <InputField id={id}><input id="universe" type="text" placeholder="ex) 천재대학교(전공명)" required /><label>최종 졸업(전공명)</label></InputField>
-      </InsertContainer>
-
-      <InsertContainer>
-        <h2>국민내일배움카드를 소지하고 계신가요?</h2>
-        <p id="sm">내일배움카드 없이도 접수는 가능하지만 최소 교육시작일 전까지 국민내일배움카드 발급이 완료되어 있어야 합니다.</p>
-        <select onChange={handleCard} defaultValue={grade}>
-          <option value="" disabled hidden>Choose</option>
-          {getCardList.map((list, i) => (
-            <option value={list.value} key={i}>
-              {list.text}
-            </option>
-          ))}
-        </select>
-      </InsertContainer>
-
-      <InsertContainer>
-        <h2>기존 k-Digital Training 과정을 수강하신 적이 있으신가요.</h2>
-        <p id="sm">K-digital Training 과정은 5년간 1번 지원받을 수 있으므로, 교육비 전액의 자부담이 발생할 수 있습니다.</p>
-        <select onChange={handleEX} defaultValue={grade}>
-          <option value="" disabled hidden>Choose</option>
-          {getEXList.map((list, i) => (
-            <option value={list.value} key={i}>
-              {list.text}
-            </option>
-          ))}
-        </select>
-      </InsertContainer>
-
-      <InsertContainer className="input_margin">
-        <h2>코딩 경험 여부를 알려주세요.</h2>
-        <p>(코딩 공부 경험시간을 포함한 경험을 입력해주세요.)</p>
-        <label>
-          <input type="radio" name="experience" defaultValue={1} onChange={handleExperienceChange} />
-          없음
-        </label>
-        <label>
-          <input type="radio" name="experience" defaultValue={2} onChange={handleExperienceChange} />
-          1년 미만
-        </label>
-        <label>
-          <input type="radio" name="experience" defaultValue={3} onChange={handleExperienceChange} />
-          1~3년 이하
-        </label>
-        <label>
-          <input type="radio" name="experience" defaultValue={3} onChange={handleExperienceChange} />
-          3년 이상
-        </label>
-        <label>
-          <input type="radio" name="experience" defaultValue={4} onChange={handleExperienceChange} />
-          Other
-          {isOtherChecked ? <InputField id={id}><input id="universe" type="text" /></InputField> : null}
-        </label>
-      </InsertContainer>
-
-      <InsertContainer>
-        <h2>해당 분야로 지원하는 이유를 작성해주세요.</h2>
-        <InputField id={id}><textarea id="text_ap" /></InputField>
-      </InsertContainer>
-
-      <InsertContainer id={id} className="input_margin">
-        <h2>해당 과정을 알게 된 경로를 선택해주시기 바랍니다. (복수 선택 가능)</h2>
-        {pathList.map((list, i) => (
-          <label key={i}>
-            {list.value === 13 ? (
-              <>
-                <input type="checkbox" value={13} onChange={handleChange} />
+        <InsertContainer>
+          <h2>추천 전형 여부를 체크해주세요</h2>
+          <select onChange={handleRecommend} defaultValue={recommend} required>
+            <option value="" disabled hidden>Choose</option>
+            {recommendList.map((list, i) => (
+              <option value={list.value} key={i}>
                 {list.text}
-                {isChecked ? <InputField id={id}><input type="text" required /></InputField> : null}
-              </>
-            ) : (
-              <>
-                <input type="checkbox" value={list.value} />
+              </option>
+            ))}
+          </select>
+        </InsertContainer>
+
+        <InsertContainer>
+          <h2>최종학력을 체크해주세요</h2>
+          <select onChange={handleGrade} defaultValue={grade} required>
+            <option value="" disabled hidden>Choose</option>
+            {gradeList.map((list, i) => (
+              <option value={list.value} key={i}>
                 {list.text}
-              </>
-            )}
+              </option>
+            ))}
+          </select>
+        </InsertContainer>
+
+        <InsertContainer id={`flex`}>
+          <h2>최종 졸업 (혹은 졸업예정 학교)학교(전공명)를 입력해 주세요. <label id="sm">** 자료 수집용일 뿐 선발절차에 반영되지 않습니다.</label> </h2>
+          <InputField id={id}><input id="universe" type="text" placeholder="ex) 천재대학교(전공명)" required /><label>최종 졸업(전공명)</label></InputField>
+        </InsertContainer>
+
+        <InsertContainer>
+          <h2>국민내일배움카드를 소지하고 계신가요?</h2>
+          <p id="sm">내일배움카드 없이도 접수는 가능하지만 최소 교육시작일 전까지 국민내일배움카드 발급이 완료되어 있어야 합니다.</p>
+          <select onChange={handleCard} defaultValue={getCard} required>
+            <option value="" disabled hidden>Choose</option>
+            {getCardList.map((list, i) => (
+              <option value={list.value} key={i}>
+                {list.text}
+              </option>
+            ))}
+          </select>
+        </InsertContainer>
+
+        <InsertContainer>
+          <h2>기존 k-Digital Training 과정을 수강하신 적이 있으신가요.</h2>
+          <p id="sm">K-digital Training 과정은 5년간 1번 지원받을 수 있으므로, 교육비 전액의 자부담이 발생할 수 있습니다.</p>
+          <select onChange={handleEX} defaultValue={getEx} required>
+            <option value="" disabled hidden>Choose</option>
+            {getEXList.map((list, i) => (
+              <option value={list.value} key={i}>
+                {list.text}
+              </option>
+            ))}
+          </select>
+        </InsertContainer>
+
+        <InsertContainer className="input_margin">
+          <h2>코딩 경험 여부를 알려주세요.</h2>
+          <p>(코딩 공부 경험시간을 포함한 경험을 입력해주세요.)</p>
+          <label>
+            <input type="radio" name="experience" defaultValue={1} onChange={handleExperienceChange} required/>
+            없음
           </label>
-        ))}
-      </InsertContainer>
+          <label>
+            <input type="radio" name="experience" defaultValue={2} onChange={handleExperienceChange} />
+            1년 미만
+          </label>
+          <label>
+            <input type="radio" name="experience" defaultValue={3} onChange={handleExperienceChange} />
+            1~3년 이하
+          </label>
+          <label>
+            <input type="radio" name="experience" defaultValue={3} onChange={handleExperienceChange} />
+            3년 이상
+          </label>
+          <label>
+            <input type="radio" name="experience" defaultValue={4} onChange={handleExperienceChange} />
+            Other
+            {isOtherChecked ? <InputField id={id}><input id="universe" type="text" /></InputField> : null}
+          </label>
+        </InsertContainer>
 
-      <InsertContainer className="input_margin">
-        <h2>* 개인정보 수집 및 이용 동의</h2>
-        <InputField id={id}><textarea value={initialTextareaValue1} readOnly /></InputField>
-        <label><input type="checkbox" />개인정보 수집 및 이용에 동의합니다.</label>
-      </InsertContainer>
+        <InsertContainer>
+          <h2>해당 분야로 지원하는 이유를 작성해주세요.</h2>
+          <InputField id={id}><textarea id="text_ap" required/></InputField>
+        </InsertContainer>
 
-      <InsertContainer className="input_margin">
-        <h2>* 개인정보 제3자 제공 동의</h2>
-        <InputField id={id}><textarea value={initialTextareaValue2} readOnly /></InputField>
-        <label><input type="checkbox" />개인정보 제3자 제공에 대해 동의합니다.</label>
-      </InsertContainer>
+        <InsertContainer id={id} className="input_margin">
+          <h2>해당 과정을 알게 된 경로를 선택해주시기 바랍니다. (복수 선택 가능)</h2>
+          {pathList.map((list, i) => (
+            <label key={i}>
+              {list.value === 13 ? (
+                <>
+                  <input type="checkbox" value={13} onChange={handleChange} />
+                  {list.text}
+                  {isChecked ? <InputField id={id}><input type="text" required /></InputField> : null}
+                </>
+              ) : (
+                <>
+                  <input type="checkbox" value={list.value}/>
+                  {list.text}
+                </>
+              )}
+            </label>
+          ))}
+        </InsertContainer>
 
-      <ButtonContainer id={id}>신청하기</ButtonContainer>
+        <InsertContainer className="input_margin" id={id}>
+          <h2>* 개인정보 수집 및 이용 동의</h2>
+          <InputField id={id}><textarea value={initialTextareaValue1} readOnly /></InputField>
+          <label><input type="checkbox" required/>개인정보 수집 및 이용에 동의합니다.</label>
+        </InsertContainer>
 
+        <InsertContainer className="input_margin" id={id}>
+          <h2>* 개인정보 제3자 제공 동의</h2>
+          <InputField id={id}><textarea value={initialTextareaValue2} readOnly /></InputField>
+          <label><input type="checkbox" required/>개인정보 제3자 제공에 대해 동의합니다.</label>
+        </InsertContainer>
+
+        <ButtonContainer id={id}><input type="submit" value={`신청하기`} disabled={!isValidPhone}/></ButtonContainer>
+      </form>
     </ApplyForm>
   );
 }
