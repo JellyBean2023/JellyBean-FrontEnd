@@ -5,7 +5,6 @@ import styled from 'styled-components';
 const Form = styled.div`
   width: 50%;
   transition: margin-left 0.2s ease;
-  margin: 5rem;
 
   @media screen and (max-width: 1024px) {
       padding: 0 50px;
