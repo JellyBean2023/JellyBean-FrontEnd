@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
 const Form = styled.div`
-  margin-top: calc(var(--header-height) + 2rem);
+  margin-top: calc(var(--header-height) + 7rem);
   width: 50%;
   transition: margin-left 0.2s ease;
 

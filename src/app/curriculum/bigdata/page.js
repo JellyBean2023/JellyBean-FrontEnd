@@ -1,8 +1,8 @@
-import Section1BigData from "@/components/Curriculum/BigData/Section1BigData";
+import SectionHeroBigData from "@/components/Curriculum/BigData/SectionHeroBigData";
 
 const page = () => {
   return(
-    <Section1BigData/>
+    <SectionHeroBigData/>
   )
 }
 

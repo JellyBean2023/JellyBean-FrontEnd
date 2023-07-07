@@ -1,10 +1,9 @@
-import Section1Java from "@/components/Curriculum/Java/Section1Java.js";
+import SectionHeroJava from "@/components/Curriculum/Java/SectionHeroJava.js";
 
 const page = () => {
     return(
         <main>
-            <Section1Java/>
-            {/* <section>section 1</section> */}
+            <SectionHeroJava/>
         </main>
     );
 }

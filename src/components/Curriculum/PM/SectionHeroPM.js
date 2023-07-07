@@ -4,14 +4,13 @@ import { styled } from "styled-components";
 import React, { useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import obj from '../../../assets/img/오브젝트1.webp';
-import Image from "next/image";
 
-const Section1Container = styled.section`
+const SectionHeroContainer = styled.section`
   width: 100%;
   height: 1014.75px;
-  background-color: rgb(22, 93, 255);
-  margin-top: -20px;
+  background-color: rgb(45, 20, 132);
+  padding: 2rem;
+  color: white;
 `;
 
 const Main = styled.div`
@@ -19,7 +18,7 @@ const Main = styled.div`
   position: absolute;
   color: white;
   white-space: nowrap;
-  text-align: center;
+  text-align: left;
 
   img {
     position: absolute;
@@ -32,44 +31,62 @@ const Main = styled.div`
   }
 
   & #detail {
-    margin: 20px 0 40px 0;
+    margin: 20px 0 40px 20px;
   }
 `;
 
 const Title = styled.div`
   font-size: 80px;
-  padding-top: 100px;
-  margin: 0 auto;
-  text-align: center;
+  font-weight: 900;
+  padding-top: 150px;
+  margin-left: 200px;
+  text-align: left;
   align-items: center;
-
+  line-height: 90px;
   
   @media screen and (max-width: 1024px) {
     font-size: 43px;
   }
 
   #Emphasis {
-    color: yellow;
+    color: #FAE300;
   }
+
+  #thin{
+    font-weight: 350;
+  }
+
 `;
 
 const SubTitle = styled.div`
-  font-size: 18px;
+  font-size: 25px;
+  line-height: 80px;
 
   @media screen and (max-width: 1024px) {
     font-size: 11px;
+  }
+
+  &#sub {
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 30px;
+  }
+
+  &#yello{
+    color: #FAE300;
   }
 `;
 
 const ApplyButton = styled.button`
   width: 200px;
   height: 50px;
-  background-color: yellow;
+  background-color: #FAE300;
   color: black;
   border-radius: 60px;
   box-shadow: 0.31px 2.98px 8px -3px #595959;
   transition: all 0.2s ease, visibility 0s;
-  margin: 40px 0 0 0;
+  margin-top: 40px;
+  margin-left: 200px;
 
   &:hover {
     border: 0px solid rgb(29, 103, 205);
@@ -82,26 +99,40 @@ const BoxContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  margin-top: 50px;
 `;
 
 const Box = styled.div`
-  width: 225px;
+  width: 250px;
   height: 200px;
   margin: 0 10px;
-  background-color: rgba(0,0,0,0.3);
+  background-color: white;
   text-align: left;
   word-wrap: break-word; 
   padding: 20px;
+  color: var(--text-color);
+  border-radius: 20px;
 
   @media (max-width: 1024px) {
     flex-basis: calc(50% - 20px);
     margin-bottom: 20px;
   }
 
+  p{
+    &#center{
+      text-align: center;
+    }
+  }
+
   span {
     display: inline-block;
     font-size: 20px;
     margin: 10px 0;
+
+    &#puple{
+      color: rgb(45, 20, 132);
+      font-weight: 900;
+    }
   }
 
   div {
@@ -113,7 +144,7 @@ const Box = styled.div`
   }
 `;
 
-const CurriculumJava = () => {
+const CurriculumPM = () => {
   
   useEffect(() => {
     AOS.init({
@@ -122,26 +153,28 @@ const CurriculumJava = () => {
   });
 
   return (
-    <Section1Container>
+    <SectionHeroContainer>
       <Main data-aos="fade-up">
-        <Image id="L" src={obj}/>
-        <Image id="R" src={obj}/>
         <Title>
-          <p>평범함을 넘어</p>
-          <p>대체불가능한</p>
-          <p id="Emphasis">온리원 풀스택 개발자</p>
-          <SubTitle>
-            <p>대한민국 1위 교육˙출판 전문기업 천재교육에서 운영하는 천재 IT교육센터에서</p>
-            <p><strong>도전적이고 열정적인 에듀테크 풀스택(Full- stack) 개발자 2기</strong>를 모집합니다.</p>
+          <p id ="thin">제너릴리스트인 당신!</p>
+          <p><strong>천재 IT교육센터와 함께라면</strong></p>
+          <p><span id="Emphasis">슈퍼-제너릴리스트</span>가 됩니다.</p>
+          <SubTitle id ="yello">
+            <p>에듀테크 프로덕트 매니저 [PM/서비스 기획자] 2기 모집</p>
+          </SubTitle>
+          <SubTitle id = "sub">
+            <p>대한민국 1위 교육·출판 전문 기업 천재교육 GeniA 아카데미가 운영하는</p>
+            <p>에듀테크 PM 과정은 그동안 없었던 <strong>새로운 PM 교육과정</strong>입니다.</p>
           </SubTitle>
         </Title>
-        <Link href={'/apply/java'}>
+        <Link href={'/apply/PM'}>
           <ApplyButton>신청하기 {`>`}</ApplyButton>
         </Link>
-        <p id="detail">※모집 정원에 따라 예정된 기한보다 조기 마감될 수 있습니다. </p>
+        <span id="detail">※모집 정원에 따라 예정된 기한보다 조기 마감될 수 있습니다. </span>
         <BoxContainer>
           <Box>
-            <span>모집기간 ....</span>
+            <p id="center">1</p>
+            <span id="puple">모집기간</span>
             <div>
               <p><b>모집기간 : 2023.05.22~07.04</b></p>
               <p><b>합격자 발표</b> : 전화인터뷰 후</p>
@@ -149,7 +182,8 @@ const CurriculumJava = () => {
             </div>
           </Box>
           <Box>
-            <span>지원방법 ....</span>
+          <p id="center">2</p>
+            <span id="puple">지원방법</span>
             <div>
               <p><b>서류심사</b> : 신청폼 작성</p>
               <p><b>면접심사</b> : 개별 연락 후 전화인터뷰</p>
@@ -157,23 +191,24 @@ const CurriculumJava = () => {
             </div>
           </Box>
           <Box>
-            <span>참여대상 ....</span>
+          <p id="center">3</p>
+            <span id="puple">참여대상</span>
             <div>
               <p>-국민내일배움카드 보유 혹은 발급 가능한 자</p>
               <p>-K-Digital Training 수강 이력이없는 자</p>
             </div>
           </Box>
           <Box>
-          <span>훈련기간 ....</span>
+          <p id="center">3</p>
+          <span id="puple">훈련기간</span>
           <div>
-            <p><b>2023.07.03~12.28</b></p>
-            <p>(약 6개월)</p>
+            <p><b>2023.07.03~12.28 (약 6개월)</b></p>
           </div>
           </Box>
         </BoxContainer>
       </Main>
-    </Section1Container>
+    </SectionHeroContainer>
   )
 }
 
-export default CurriculumJava;
+export default CurriculumPM;
