@@ -4,7 +4,7 @@ import { styled } from "styled-components";
 import o1 from '../../../assets/img/0101.webp'
 import Image from "next/image";
 
-const Section1Container = styled.main`
+const SectionHeroContainer = styled.main`
   width: 100%;
   height: 1014.75px;
   background-color: rgb(85, 59, 243);
@@ -83,11 +83,11 @@ const ApplyButton = styled.button`
   }
 `;
 
-const Section1BigData = () => {
+const SectionHeroBigData = () => {
   return (
-  <Section1Container>
+  <SectionHeroContainer>
     <Image src={o1} alt="Image" />
-    <MainContainer>
+    <MainContainer data-aos="fade-up">
       <Title>
         <p>프로젝트 기반</p>
         <p><strong>​빅데이터</strong> 서비스</p>
@@ -104,8 +104,8 @@ const Section1BigData = () => {
       </Link>
       <p id="detail">※모집 정원에 따라 예정된 기한보다 조기 마감될 수 있습니다. </p>
     </MainContainer>
-  </Section1Container>
+  </SectionHeroContainer>
   )
 }
 
-export default Section1BigData;
+export default SectionHeroBigData;

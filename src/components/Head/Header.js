@@ -122,7 +122,7 @@ const Header = () => {
                                 <ul className="dropdown_menu" id={activeDropdown === 2 ? "show-menu" : ""}>
                                     <li className="dropdown_item"><Link href={`/curriculum/java`} className="nav_link">Java 풀스택</Link></li>
                                     <li className="dropdown_item"><Link href={`/curriculum/bigdata`} className="nav_link">빅데이터</Link></li>
-                                    <li className="dropdown_item"><Link href={`/`} className="nav_link">프로덕트 매니저</Link></li>
+                                    <li className="dropdown_item"><Link href={`/curriculum/pm`} className="nav_link">프로덕트 매니저</Link></li>
                                 </ul>
                             </li>
                             <li className="nav_item dropdown">
