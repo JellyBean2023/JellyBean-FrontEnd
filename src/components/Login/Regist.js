@@ -30,9 +30,11 @@ const Forms = styled.form`
   align-items: center;
   transition: height 0.3s ease;
   width: 200%;
+  padding-top: calc(var(--header-height) + 2rem);
 
   @media (max-width: 1024px) {
     align-items: normal;
+    padding-top: 1.5rem;
   }
 `;
 

@@ -7,7 +7,6 @@ const Form = styled.div`
   transition: margin-left 0.2s ease;
 
   @media screen and (max-width: 1024px) {
-    margin-top: 2rem;
     padding: 0 50px;
   }
 `;
@@ -126,7 +125,7 @@ const RegistCheck = (active) => {
 
       <CheckboxContent id='agree_all'>
         <label>
-          <input type="checkbox" checked={selectAllChecked} onChange={handleSelectAllChange} required/>
+          <input type="checkbox" checked={selectAllChecked} onChange={handleSelectAllChange} required />
           전체 동의하기
         </label>
       </CheckboxContent>
@@ -136,9 +135,9 @@ const RegistCheck = (active) => {
           <textarea placeholder={checkbox.contents} />
           <CheckboxContent>
             {checkbox.require ? (
-              <input type="checkbox" checked={checkbox.checked} onChange={() => handleCheckboxChange(checkbox.id)} required/>
-            ): (
-              <input type="checkbox" checked={checkbox.checked} onChange={() => handleCheckboxChange(checkbox.id)}/>
+              <input type="checkbox" checked={checkbox.checked} onChange={() => handleCheckboxChange(checkbox.id)} required />
+            ) : (
+              <input type="checkbox" checked={checkbox.checked} onChange={() => handleCheckboxChange(checkbox.id)} />
             )}
             <label>동의하기{checkbox.require ? '(필수)' : null}</label>
           </CheckboxContent>
@@ -146,12 +145,11 @@ const RegistCheck = (active) => {
         </CheckSection>
       ))}
 
-      <Link href={'#'}>
+      <Link href={'#'} onClick={() => isAllRequiredChecked || alert('필수약관 동의를 해주세요')}>
         <Button className="signup-link" id={isAllRequiredChecked ? "" : "non_check"}>
           <input type="button" value="회원 정보 입력" />
         </Button>
       </Link>
-      
     </Form>
   );
 }
