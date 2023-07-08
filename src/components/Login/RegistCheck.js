@@ -62,7 +62,7 @@ const CheckboxContent = styled.div`
 const Button = styled.div`
   margin: 30px 0 10px 0;
 
-  &#check {
+  &#non_check {
     display: none;
   }
   
@@ -114,24 +114,36 @@ const RegistCheck = (active) => {
     setSelectAllChecked(updatedCheckboxes.every((checkbox) => checkbox.checked));
   };
 
+  const isAllRequiredChecked = checkboxes
+    .filter((checkbox) => checkbox.require)
+    .every((checkbox) => checkbox.checked);
+
   return (
     <Form className={`login ${active ? 'active' : ''}`}>
       <Title>약관동의</Title>
 
       <CheckboxContent id='agree_all'>
-        <label><input type="checkbox" checked={selectAllChecked} onChange={handleSelectAllChange} required/>전체 동의하기</label>
+        <label>
+          <input type="checkbox" checked={selectAllChecked} onChange={handleSelectAllChange} required/>
+          전체 동의하기
+        </label>
       </CheckboxContent>
 
       {checkboxes.map((checkbox) => (
         <CheckSection key={checkbox.id}>
-          <textarea placeholder={checkbox.contents}/>
-          <CheckboxContent><input type="checkbox" checked={checkbox.checked} onChange={() => handleCheckboxChange(checkbox.id)}/><label>동의하기</label></CheckboxContent>
+          <textarea placeholder={checkbox.contents} />
+          <CheckboxContent>
+            <input type="checkbox" checked={checkbox.checked} onChange={() => handleCheckboxChange(checkbox.id)}/>
+            <label>동의하기</label>
+          </CheckboxContent>
           <hr />
-      </CheckSection>
+        </CheckSection>
       ))}
-      
+
       <Link href={'#'}>
-        <Button className="signup-link" id={selectAllChecked ? "" : "check"}><input type="button" value="회원 정보 입력" /></Button>
+        <Button className="signup-link" id={isAllRequiredChecked ? "" : "non_check"}>
+          <input type="button" value="회원 정보 입력" />
+        </Button>
       </Link>
     </Form>
   );
