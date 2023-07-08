@@ -8,7 +8,8 @@ const Form = styled.div`
   transition: margin-left 0.2s ease;
 
   @media screen and (max-width: 1024px) {
-      padding: 0 50px;
+    margin-top: 2rem;
+    padding: 0 50px;
   }
 
   p {
@@ -237,32 +238,32 @@ const RegistInfoInsert = (active) => {
       <Title className="title">회원 가입</Title>
 
       <InputField><input type="text" required value={name} onChange={handleNameChange} placeholder="한글 또는 영문으로 입력 가능" />
-        <label>이름</label><span />
+        <label>이름</label><span/>
       </InputField> {!isValidName && name !== "" && <p>한글 또는 영문으로만 입력해주세요</p>}
 
       <InputField><input type="text" required value={email} onChange={handleEmailChange} placeholder="ex)chunjae@chunjae.com" />
-        <label>이메일</label><span />
+        <label>이메일</label><span/>
       </InputField> {!isValidEmail && email !== "" && <p>이메일 형식에 맞게 입력해주세요</p>}
       {isValidEmail && email !== "" && <ApplyButton>인증하기</ApplyButton>}
 
       <InputField><input type="text" placeholder="인증코드를 입력해주세요" required />
-        <label>이메일 인증코드 입력</label><span />
+        <label>이메일 인증코드 입력</label><span/>
       </InputField>
 
       <InputField><input type="password" required value={password} onChange={handlePasswordChange} placeholder="영문,숫자,특수문자 포함 8~20자내" />
-        <label>비밀번호</label><span />
+        <label>비밀번호</label><span/>
       </InputField> {!isValidPassword && password !== "" && <p>비밀번호는 영문, 숫자, 특수문자를 모두 포함하여 공백없이 8~20자로 입력해주세요</p>}
 
       <InputField><input type="password" required value={confirmPassword} onChange={handleConfirmPasswordChange} placeholder="비밀번호를 확인해주세요" />
-        <label>비밀번호 확인</label><span />
+        <label>비밀번호 확인</label><span/>
       </InputField> {!isValidConfirmPassword && confirmPassword !== "" && <p>비밀번호가 일치하지 않습니다</p>}
 
       <InputField><input type="text" required value={birthday} onChange={handleBirthdayChange} placeholder="생년월일" />
-        <label>생년월일</label><span />
+        <label>생년월일</label><span/>
       </InputField> {!isValidBirthday && birthday !== "" && <p>YYYY-MM-DD 형식으로 작성해주세요</p>}
 
       <InputField><input type="text" required value={phone} onChange={handlePhoneChange} placeholder="휴대전화 번호" />
-        <label>휴대전화 번호</label><span />
+        <label>휴대전화 번호</label><span/>
       </InputField> {!isValidPhone && phone !== "" && <p>010-0000-0000 형식으로 작성해주세요</p>}
 
       <Button> <input type="submit" value="회원 등록하기" /></Button>

@@ -8,7 +8,7 @@ const Container = styled.main`
   width: 100%;
   height: 45rem;
   overflow: hidden;
-  margin: 10rem auto 5rem auto;
+  margin: 7rem auto 5rem auto;
 
   &.active {
     .login{
@@ -50,6 +50,10 @@ const Title = styled.label`
   justify-content: center;
   font-size: 50px;
   font-weight: 600;
+
+  @media screen and (max-width: 1024px) {
+    font-size: 40px;
+  }
 `;
 
 

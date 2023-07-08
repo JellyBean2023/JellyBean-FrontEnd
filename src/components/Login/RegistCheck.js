@@ -7,7 +7,8 @@ const Form = styled.div`
   transition: margin-left 0.2s ease;
 
   @media screen and (max-width: 1024px) {
-      padding: 0 50px;
+    margin-top: 2rem;
+    padding: 0 50px;
   }
 `;
 
@@ -63,7 +64,8 @@ const Button = styled.div`
   margin: 30px 0 10px 0;
 
   &#non_check {
-    display: none;
+    filter: brightness(0.4);
+    pointer-events: none;
   }
   
   input {
@@ -133,8 +135,12 @@ const RegistCheck = (active) => {
         <CheckSection key={checkbox.id}>
           <textarea placeholder={checkbox.contents} />
           <CheckboxContent>
-            <input type="checkbox" checked={checkbox.checked} onChange={() => handleCheckboxChange(checkbox.id)}/>
-            <label>동의하기</label>
+            {checkbox.require ? (
+              <input type="checkbox" checked={checkbox.checked} onChange={() => handleCheckboxChange(checkbox.id)} required/>
+            ): (
+              <input type="checkbox" checked={checkbox.checked} onChange={() => handleCheckboxChange(checkbox.id)}/>
+            )}
+            <label>동의하기{checkbox.require ? '(필수)' : null}</label>
           </CheckboxContent>
           <hr />
         </CheckSection>
@@ -145,6 +151,7 @@ const RegistCheck = (active) => {
           <input type="button" value="회원 정보 입력" />
         </Button>
       </Link>
+      
     </Form>
   );
 }

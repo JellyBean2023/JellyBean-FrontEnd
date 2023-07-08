@@ -9,7 +9,7 @@ const inter = Inter({ subsets: ['latin'] })
 export const metadata = {
   title: '천재교육 디지털 러닝',
   description: '천재교육 디지털 러닝 GENIA',
-  themeColor: "#5B65F5",
+  themeColor: "#FFB400",
 }
 
 export default function RootLayout({ children }) {
