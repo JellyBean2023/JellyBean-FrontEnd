@@ -16,14 +16,14 @@ const CurriculumBox = (props) => {
 
     return (
         <div data-aos="fade-up" className="p-4 lg:w-1/3">
-            <div className="h-full bg-gray-100 bg-opacity-75 px-8 pt-16 pb-24 rounded-lg overflow-hidden text-center relative">
-                <h2 className="tracking-widest text-base title-font font-medium text-black-400 mb-1">
+            <div className="h-full bg-gray-100 bg-opacity-75 px-8 pt-16 pb-24 rounded-lg overflow-hidden text-center relative dark:bg-slate-800 ">
+                <h2 className="tracking-widest text-base title-font font-medium text-black-400 mb-1 dark:text-slate-400">
                     {variable.state ? "모집중" : "모집마감"}
                 </h2>
-                <h1 className="title-font sm:text-2xl text-xl font-medium text-gray-900 mb-3">
+                <h1 className="title-font sm:text-2xl text-xl font-medium text-gray-900 mb-3 dark:text-white">
                     {variable.title}
                 </h1>
-                <p className="leading-relaxed mb-3">
+                <p className="leading-relaxed mb-3 dark:text-slate-400">
                     {variable.content}
                 </p>
                 <Link href={`/curriculum/${variable.id}`} className="text-indigo-500 inline-flex items-center">

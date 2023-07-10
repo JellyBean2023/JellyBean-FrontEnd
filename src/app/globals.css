@@ -45,9 +45,9 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background-rgb: 0, 0, 0;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+    --background-rgb: 32, 41, 58;
+    --background-start-rgb: 32, 41, 58;
+    --background-end-rgb: 32, 41, 58;
     --text-color: #fff;
     --anti-text-color: #000;
   }
