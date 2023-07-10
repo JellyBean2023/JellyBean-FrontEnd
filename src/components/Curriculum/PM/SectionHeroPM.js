@@ -4,6 +4,7 @@ import { styled } from "styled-components";
 import React, { useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import "aos/dist/aos.css";
 
 const SectionHeroContainer = styled.section`
   width: 100%;
@@ -100,6 +101,7 @@ const BoxContainer = styled.div`
   flex-wrap: wrap;
   justify-content: center;
   margin-top: 50px;
+  margin-left: -50px;
 `;
 
 const Box = styled.div`
@@ -119,6 +121,7 @@ const Box = styled.div`
   }
 
   p{
+
     &#center{
       text-align: center;
     }

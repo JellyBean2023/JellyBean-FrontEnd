@@ -27,7 +27,7 @@
     "react-icons": "^4.9.0",
     "recoil": "^0.7.7",
     "sass": "^1.63.4",
-    "styled-components": "^6.0.0-rc.3",
+    "styled-components": "^6.0.3",
     "swiper": "^9.4.1",
     "tailwindcss": "3.3.2"
   },

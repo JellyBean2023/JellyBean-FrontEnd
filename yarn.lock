@@ -1205,7 +1205,7 @@
 
 "@next/swc-darwin-arm64@13.4.6":
   version "13.4.6"
-  resolved "https://registry.yarnpkg.com/@next/swc-darwin-arm64/-/swc-darwin-arm64-13.4.6.tgz#47485f3deaee6681b4a4036c74bb9c4b728d5ddd"
+  resolved "https://registry.npmjs.org/@next/swc-darwin-arm64/-/swc-darwin-arm64-13.4.6.tgz"
   integrity sha512-ahi6VP98o4HV19rkOXPSUu+ovfHfUxbJQ7VVJ7gL2FnZRr7onEFC1oGQ6NQHpm8CxpIzSSBW79kumlFMOmZVjg==
 
 "@next/swc-darwin-x64@13.4.6":
@@ -1245,7 +1245,7 @@
 
 "@next/swc-win32-x64-msvc@13.4.6":
   version "13.4.6"
-  resolved "https://registry.npmjs.org/@next/swc-win32-x64-msvc/-/swc-win32-x64-msvc-13.4.6.tgz"
+  resolved "https://registry.yarnpkg.com/@next/swc-win32-x64-msvc/-/swc-win32-x64-msvc-13.4.6.tgz#38620bd68267ff13e50ecd432f1822eac51382a8"
   integrity sha512-OrZs94AuO3ZS5tnqlyPRNgfWvboXaDQCi5aXGve3o3C+Sj0ctMUV9+Do+0zMvvLRumR8E0PTWKvtz9n5vzIsWw==
 
 "@nicolo-ribaudo/chokidar-2@2.1.8-no-fsevents.3":
@@ -1462,7 +1462,7 @@ anymatch@~3.1.2:
 
 aos@^2.3.4:
   version "2.3.4"
-  resolved "https://registry.yarnpkg.com/aos/-/aos-2.3.4.tgz#eb1c29f5c1806a197cf6323080747547edd3db8e"
+  resolved "https://registry.npmjs.org/aos/-/aos-2.3.4.tgz"
   integrity sha512-zh/ahtR2yME4I51z8IttIt4lC1Nw0ktsFtmeDzID1m9naJnWXhCoARaCgNOGXb5CLy3zm+wqmRAEgMYB5E2HUw==
   dependencies:
     classlist-polyfill "^1.0.3"
@@ -1809,7 +1809,7 @@ chalk@^4.0.0:
 
 classlist-polyfill@^1.0.3:
   version "1.2.0"
-  resolved "https://registry.yarnpkg.com/classlist-polyfill/-/classlist-polyfill-1.2.0.tgz#935bc2dfd9458a876b279617514638bcaa964a2e"
+  resolved "https://registry.npmjs.org/classlist-polyfill/-/classlist-polyfill-1.2.0.tgz"
   integrity sha512-GzIjNdcEtH4ieA2S8NmrSxv7DfEV5fmixQeyTmqmRmRJPGpRBaSnA2a0VrCjyT8iW8JjEdMbKzDotAJf+ajgaQ==
 
 client-only@0.0.1, client-only@^0.0.1:
@@ -2702,7 +2702,7 @@ fs.realpath@^1.0.0:
 
 fsevents@~2.3.2:
   version "2.3.2"
-  resolved "https://registry.yarnpkg.com/fsevents/-/fsevents-2.3.2.tgz#8a526f78b8fdf4623b709e0b975c52c24c02fd1a"
+  resolved "https://registry.npmjs.org/fsevents/-/fsevents-2.3.2.tgz"
   integrity sha512-xiqMQR4xAeHTuB9uWm+fFRcIOgKBMiOBP+eXiyT7jsgVCq1bkVygt00oASowB7EdtpOHaaPgKt812P9ab+DDKA==
 
 function-bind@^1.1.1:
@@ -3417,7 +3417,7 @@ lodash.merge@^4.6.2:
 
 lodash.throttle@^4.0.1:
   version "4.1.1"
-  resolved "https://registry.yarnpkg.com/lodash.throttle/-/lodash.throttle-4.1.1.tgz#c23e91b710242ac70c37f1e1cda9274cc39bf2f4"
+  resolved "https://registry.npmjs.org/lodash.throttle/-/lodash.throttle-4.1.1.tgz"
   integrity sha512-wIkUCfVKpVsWo3JSZlc+8MB5it+2AN5W8J7YVMST30UrvcQNZ1Okbj+rbVniijTWE6FGYy4XJq/rHkas8qJMLQ==
 
 lodash.uniq@^4.5.0:
@@ -4719,10 +4719,10 @@ strip-json-comments@^3.1.0, strip-json-comments@^3.1.1:
   resolved "https://registry.npmjs.org/strip-json-comments/-/strip-json-comments-3.1.1.tgz"
   integrity sha512-6fPc+R4ihwqP6N/aIv2f1gMH8lOVtWQHoqC4yK6oSDVVocumAsfCqjkXnqiYMhmMwS/mEHLp7Vehlt3ql6lEig==
 
-styled-components@^6.0.0-rc.3:
-  version "6.0.0"
-  resolved "https://registry.npmjs.org/styled-components/-/styled-components-6.0.0.tgz"
-  integrity sha512-OPraU50BgQ+cqiXmO9JnJiDP8N7gTB7Pzx9Yk6M+koZuzOvFf+Fd8ff6Qp57OnE65KAYO058IIWj+RWng3Cmiw==
+styled-components@^6.0.3:
+  version "6.0.3"
+  resolved "https://registry.npmjs.org/styled-components/-/styled-components-6.0.3.tgz"
+  integrity sha512-qEyWvDK4CYCyDckNIruRJIcQSvcUR3dVEw/fwxu1v0LFzUMPr2uf5PhXHp17FkGK+S4TkglOS+XIealo1MssQA==
   dependencies:
     "@babel/cli" "^7.21.0"
     "@babel/core" "^7.21.0"
