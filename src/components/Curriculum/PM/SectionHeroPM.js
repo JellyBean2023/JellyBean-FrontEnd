@@ -100,6 +100,7 @@ const BoxContainer = styled.div`
   flex-wrap: wrap;
   justify-content: center;
   margin-top: 50px;
+  margin-left: -50px;
 `;
 
 const Box = styled.div`
@@ -119,6 +120,7 @@ const Box = styled.div`
   }
 
   p{
+
     &#center{
       text-align: center;
     }
