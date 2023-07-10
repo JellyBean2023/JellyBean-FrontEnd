@@ -1,7 +1,10 @@
+'use client';
 import Image from 'next/image';
 import Link from 'next/link';
 import styled from 'styled-components';
 import Logo from '../../assets/img/CI/img_ci_var02.jpg';
+import { atom, useRecoilState } from "recoil";
+
 
 const Container = styled.main`
   max-width: 600px;
@@ -145,28 +148,43 @@ const Button = styled.div`
   }
 `;
 
-const Login = () => {
+export const loginState = atom({
+  key: 'loginState', 
+  default: '',
+});
 
-    return (
-        <Container>
-            <Forms>
-                <Form action="#">
-                    <Title>천재교육 IT센터</Title>
-                    <Image src={Logo} alt='Image'/>
-                    <Text>아직 회원이 아니세요? <Link href="/regist">회원가입 하러가기</Link></Text>
-                    <InputField><input type="text" placeholder="Enter your ID" required /></InputField>
-                    <InputField><input type="password" className="password" placeholder="Enter your password" required /></InputField>
-                    <CheckboxText>
-                        <CheckboxContent><input type="checkbox" /> <label htmlFor="logCheck">아이디 기억하기</label></CheckboxContent>
-                    </CheckboxText>
-                    <Button><input type="submit" value="로그인" /></Button>
-                    <Text id='pw'>
-                      비밀번호를 잊어버렸어요 <Link href="#">Reset Password</Link>
-                    </Text>
-                </Form>
-            </Forms>
-        </Container>
-    );
+const Login = () => {
+  const [login, setLogin] = useRecoilState(loginState);
+
+  const onSubmitHandler = async (event) => {
+    event.preventDefault();
+    // const response  = await login({id:id, password:password});
+    // const token = await response.json();
+    const token = "USER_TOKEN"
+    setLogin(token);
+  };
+
+  return (
+    <Container>
+      <Forms>
+        <Form action="#" onSubmit={onSubmitHandler}>
+          <Title>천재교육 IT센터</Title>
+          <Image src={Logo} alt='Image' />
+          <Text>아직 회원이 아니세요? <Link href="/regist">회원가입 하러가기</Link></Text>
+          <InputField><input type="text" placeholder="Enter your ID" required /></InputField>
+          <InputField><input type="password" className="password" placeholder="Enter your password" required /></InputField>
+          <CheckboxText>
+            <CheckboxContent><input type="checkbox" /> <label htmlFor="logCheck">아이디 기억하기</label></CheckboxContent>
+          </CheckboxText>
+          <Button><input type="submit" value="로그인"/></Button>
+          <Text id='pw'>
+            비밀번호를 잊어버렸어요 <Link href="#">Reset Password</Link>
+          </Text>
+        </Form>
+        <Link href="/Test">test</Link>
+      </Forms>
+    </Container>
+  );
 };
 
 export default Login;
