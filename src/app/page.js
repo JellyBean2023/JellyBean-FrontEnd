@@ -24,7 +24,7 @@ const LayerContainer = styled.section`
   font-size: 40px;
   color: var(--text-color);
   height: 50rem;
-  background-color: blue;
+  background-color: #553BF3;
 
   span{
     &#line-block{
@@ -35,6 +35,16 @@ const LayerContainer = styled.section`
 
     display: block;
   margin-bottom: 10px;
+  }
+
+  p{
+    &#title{
+      color:white;
+    }
+  }
+
+  &#benefitContainer{
+    height: 110rem;
   }
   `;
 
@@ -48,7 +58,7 @@ const BoxContainer = styled.div`
 const Box = styled.div`
   width: 250px;
   height: 200px;
-  margin: 0 10px;
+  margin: 0 25px;
   background-color: white;
   text-align: left;
   color: black;
@@ -76,6 +86,36 @@ const Box = styled.div`
   }
   }
 
+  &#benefit{
+    width: 54rem;
+    height: 250px;
+    margin-top: 35px;
+
+    p{
+      
+      &#rightTitle{
+        font-size: 40px;
+        padding-left: 230px;
+      }
+
+      &#rightContent{
+        font-size: 20px;
+        padding-left: 230px;
+      }
+
+      &#leftTitle{
+        font-size: 40px;
+        padding-right: 230px;
+        padding-left: 20px;
+      }
+
+      &#leftContent{
+        font-size: 20px;
+        padding-right: 230px;
+        padding-left: 20px;
+      }
+    }
+  }
   &#FAQ{
     width: 300px;
     height: 300px;
@@ -94,6 +134,15 @@ const Box = styled.div`
     flex-basis: calc(50% - 20px);
     margin-bottom: 20px;
   }
+    p{
+      font-size: 17px;
+      padding-top: 10px ;
+      padding-left: 20px;
+
+      &#margintop{
+        margin-top: 20px;
+      }
+    }
   }
 
   p{
@@ -141,6 +190,11 @@ const ReviewBox = styled.div`
   border-radius: 20px;
 
 `
+const BannerBox = styled.div`
+  width: 93.5rem;
+  height: 130px;
+  background-color: pink;
+`
 
 const Main = () => {
   useEffect(() => {
@@ -155,7 +209,7 @@ const Main = () => {
       <LayerContainer>
         <div>
           <span data-aos="zoom-in-up">
-            <p>내게 맞는 코스를 찾아주세요</p>
+            <p id='title'>내게 맞는 코스를 찾아주세요</p>
             <BoxContainer>
           <Box data-aos="zoom-in-up">
             <span>빅데이터 4기</span>
@@ -185,7 +239,7 @@ const Main = () => {
 
       <LayerContainer>
         <span data-aos="zoom-in-up">
-          <p>천재교육 디지털 러닝팀에서 만나요</p>
+          <p id='title'>천재교육 디지털 러닝팀에서 만나요</p>
           <BoxContainer>
             <ReviewBox data-aos="zoom-in-up">
               <Box id='review'></Box>
@@ -196,35 +250,63 @@ const Main = () => {
           </BoxContainer>
         </span>
       </LayerContainer>
-      <LayerContainer>
+      <LayerContainer id='benefitContainer'>
         <span data-aos="zoom-in-up">
-          <p>왜 천재교육 IT센터여야 할까요?</p> 훈련생들분들께 제공되는 혜택을 소개합니다
+          <p id='title'><p>왜 천재교육 IT센터여야 할까요?</p> 훈련생들분들께 제공되는 혜택을 소개합니다</p>
             <BoxContainer>
+              <Box id='benefit'>
+                <p id='rightTitle'>제목1</p>
+                <p id='rightContent'>내용이 들어갈 자리입니다.내용이 들어갈 자리입니다.내용이 들어갈 자리입니다.내용이 들어갈 자리입니다.</p>
+              </Box>
+              <Box id='benefit'>
+                <p id='leftTitle'>제목2</p>
+                <p id='leftContent'>내용이 들어갈 자리입니다.내용이 들어갈 자리입니다.내용이 들어갈 자리입니다.내용이 들어갈 자리입니다.</p>
+              </Box>
+              <Box id='benefit'>
+                <p id='rightTitle'>제목3</p>
+                <p id='rightContent'>내용이 들어갈 자리입니다.내용이 들어갈 자리입니다.내용이 들어갈 자리입니다.내용이 들어갈 자리입니다.</p>
+              </Box>
+              <Box id='benefit'>
+                <p id='leftTitle'>제목4</p>
+                <p id='leftContent'>내용이 들어갈 자리입니다.내용이 들어갈 자리입니다.내용이 들어갈 자리입니다.내용이 들어갈 자리입니다.</p>
+              </Box>
+              
             </BoxContainer>
         </span>
       </LayerContainer>
 
       <LayerContainer>
         <span data-aos="zoom-in-up">
-          <p>천재가 되는 교육의 발견</p>
+          <p id='title'>천재가 되는 교육의 발견</p>
             <BoxContainer>
-              <Box id='FAQ'></Box>
-              <Box id='FAQ'></Box>
-              <Box id='FAQ'></Box>
+              <Box id='FAQ'>
+                <p><b>카카오톡 1:1 상담</b></p>
+              </Box>
+              <Box id='FAQ'>
+                <p><b>고객문의</b></p>
+              </Box>
+              <Box id='FAQ'>
+                <p><b>자주하는 질문</b></p>
+              </Box>
             </BoxContainer>
         </span>
       </LayerContainer>
 
       <LayerContainer>
         <span data-aos="zoom-in-up">
-          <p>교육 혁신을 선도하는 정보 공간</p>
+          <p id='title'>교육 혁신을 선도하는 정보 공간</p>
             <BoxContainer>
               <Box id='info'></Box>
-              <Box id='info'></Box>
+              <Box id='info'>
+                <p><b>공지사항</b></p>
+                <p id='margintop'>내용들어갈 자리</p>
+              </Box>
             </BoxContainer>
         </span>
       </LayerContainer>
       
+      <BannerBox>하단 배너 이미지 들어갈 자리</BannerBox>  
+
     </MainContainer>
   );
 }
