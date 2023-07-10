@@ -3,8 +3,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import styled from 'styled-components';
 import Logo from '../../assets/img/CI/img_ci_var02.jpg';
-import { atom, useRecoilState } from "recoil";
-
+import React, { useRef } from 'react'
+import { signIn } from 'next-auth/react'
 
 const Container = styled.main`
   max-width: 600px;
@@ -126,7 +126,7 @@ const Text = styled.span`
   }
 `;
 
-const Button = styled.div`
+const Button = styled.button`
   margin: 30px 0 10px 0;
 
   input {
@@ -147,36 +147,35 @@ const Button = styled.div`
     }
   }
 `;
-
-export const loginState = atom({
-  key: 'loginState', 
-  default: '',
-});
-
 const Login = () => {
-  const [login, setLogin] = useRecoilState(loginState);
+  const emailRef = useRef(null)
+  const passwordRef = useRef(null)
 
-  const onSubmitHandler = async (event) => {
-    event.preventDefault();
-    // const response  = await login({id:id, password:password});
-    // const token = await response.json();
-    const token = "USER_TOKEN"
-    setLogin(token);
-  };
+  const handleSubmit = async () => {
+    // console.log(emailRef.current);
+    // console.log(passwordRef.current);
+
+    const result = await signIn("credentials", {
+      username: emailRef.current,
+      password: passwordRef.current,
+      redirect: true,
+      callbackUrl: "/",
+    });
+  }
 
   return (
     <Container>
       <Forms>
-        <Form action="#" onSubmit={onSubmitHandler}>
+        <Form action="#">
           <Title>천재교육 IT센터</Title>
           <Image src={Logo} alt='Image' />
           <Text>아직 회원이 아니세요? <Link href="/regist">회원가입 하러가기</Link></Text>
-          <InputField><input type="text" placeholder="Enter your ID" required /></InputField>
-          <InputField><input type="password" className="password" placeholder="Enter your password" required /></InputField>
+          <InputField><input type="text" placeholder="Enter your ID" required ref={emailRef} onChange={(e) => {emailRef.current = e.target.value}} /></InputField>
+          <InputField><input type="password" className="password" placeholder="Enter your password" required ref={passwordRef} onChange={(e) => (passwordRef.current = e.target.value)}/></InputField>
           <CheckboxText>
             <CheckboxContent><input type="checkbox" /> <label htmlFor="logCheck">아이디 기억하기</label></CheckboxContent>
           </CheckboxText>
-          <Button><input type="submit" value="로그인"/></Button>
+          <Button onClick={handleSubmit}><input type="text" value="로그인" readOnly/></Button>
           <Text id='pw'>
             비밀번호를 잊어버렸어요 <Link href="#">Reset Password</Link>
           </Text>
