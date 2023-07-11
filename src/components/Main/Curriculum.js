@@ -8,7 +8,7 @@ const list = [
 ]
 
 const CurriculumContainer = styled.section`
-    background-color: peachpuff;
+    background-color: #553BF3;
 `;
 
 
