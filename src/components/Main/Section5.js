@@ -2,6 +2,8 @@ import styled from 'styled-components';
 import { useEffect } from 'react';
 import AOS from "aos";
 import "aos/dist/aos.css";
+import Image from 'next/image';
+import dummy from '@/assets/img/dummy.jpg';
 
 
 const LayerContainer = styled.section`
@@ -198,7 +200,7 @@ const Section5 = () => {
             <span data-aos="zoom-in-up">
                 <p id='title'>교육 혁신을 선도하는 정보 공간</p>
                 <BoxContainer>
-                    <Box id='info'></Box>
+                    <Box id='info'><Image src={dummy} alt='Image'/></Box>
                     <Box id='info'>
                         <p><b>공지사항</b></p>
                         <p id='margintop'>내용들어갈 자리</p>

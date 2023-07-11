@@ -170,7 +170,7 @@ const CurriculumPM = () => {
             <p>에듀테크 PM 과정은 그동안 없었던 <strong>새로운 PM 교육과정</strong>입니다.</p>
           </SubTitle>
         </Title>
-        <Link href={'/apply/PM'}>
+        <Link href={'/apply/pm'}>
           <ApplyButton>신청하기 {`>`}</ApplyButton>
         </Link>
         <span id="detail">※모집 정원에 따라 예정된 기한보다 조기 마감될 수 있습니다. </span>

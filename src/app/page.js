@@ -31,8 +31,8 @@ const Main = () => {
   return (
     <MainContainer>
       <Banner />
-      <Curriculum />
       <Section1 />
+      <Curriculum />
       <Section2/>
       <Section3 />
       <Section4 />

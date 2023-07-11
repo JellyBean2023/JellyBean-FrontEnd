@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import AOS from "aos";
 import "aos/dist/aos.css";
 
+
 const LayerContainer = styled.section`
 text-align: center;
 vertical-align: middle;
@@ -197,24 +198,24 @@ const Section3 = () => {
       <span data-aos="zoom-in-up">
         <p id='title'>왜 천재교육 IT센터여야 할까요?</p> <p id='title'>훈련생들분들께 제공되는 혜택을 소개합니다</p>
         <BoxContainer>
-          <Box id='benefit'>
+          <Box id='benefit' data-aos="zoom-in-up">
             <p id='rightTitle'>제목1</p>
             <p id='rightContent'>내용이 들어갈 자리입니다.내용이 들어갈 자리입니다.내용이 들어갈 자리입니다.내용이 들어갈 자리입니다.</p>
           </Box>
-          <Box id='benefit'>
+          <Box id='benefit' data-aos="zoom-in-up">
             <p id='leftTitle'>제목2</p>
             <p id='leftContent'>내용이 들어갈 자리입니다.내용이 들어갈 자리입니다.내용이 들어갈 자리입니다.내용이 들어갈 자리입니다.</p>
           </Box>
-          <Box id='benefit'>
+          <Box id='benefit' data-aos="zoom-in-up">
             <p id='rightTitle'>제목3</p>
             <p id='rightContent'>내용이 들어갈 자리입니다.내용이 들어갈 자리입니다.내용이 들어갈 자리입니다.내용이 들어갈 자리입니다.</p>
           </Box>
-          <Box id='benefit'>
+          <Box id='benefit' data-aos="zoom-in-up">
             <p id='leftTitle'>제목4</p>
             <p id='leftContent'>내용이 들어갈 자리입니다.내용이 들어갈 자리입니다.내용이 들어갈 자리입니다.내용이 들어갈 자리입니다.</p>
           </Box>
-
         </BoxContainer>
+       
       </span>
     </LayerContainer>
   )
