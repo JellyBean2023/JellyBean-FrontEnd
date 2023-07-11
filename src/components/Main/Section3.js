@@ -195,7 +195,7 @@ const Section3 = () => {
 
     <LayerContainer id='benefitContainer'>
       <span data-aos="zoom-in-up">
-        <p id='title'><p>왜 천재교육 IT센터여야 할까요?</p> 훈련생들분들께 제공되는 혜택을 소개합니다</p>
+        <p id='title'>왜 천재교육 IT센터여야 할까요?</p> <p id='title'>훈련생들분들께 제공되는 혜택을 소개합니다</p>
         <BoxContainer>
           <Box id='benefit'>
             <p id='rightTitle'>제목1</p>
