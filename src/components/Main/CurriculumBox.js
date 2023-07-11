@@ -15,18 +15,18 @@ const CurriculumBox = (props) => {
     });
 
     return (        
-        <div data-aos="fade-up" className="p-4 lg:w-1/3">
+        <div data-aos="fade-up" className="p-4 w-full lg:w-1/3">
             <div className="h-full bg-gray-100 bg-opacity-75 px-8 pt-16 pb-24 rounded-lg overflow-hidden text-center relative dark:bg-slate-800 ">
                 <h2 className="tracking-widest text-base title-font font-medium text-black-400 mb-1 dark:text-slate-400">
-                    {variable.state ? "모집중" : "모집마감"}
+                    {variable.lecStatus}
                 </h2>
                 <h1 className="title-font sm:text-2xl text-xl font-medium text-gray-900 mb-3 dark:text-white">
-                    {variable.title}
+                    {variable.cardinalName}
                 </h1>
-                <p className="leading-relaxed mb-3 dark:text-slate-400">
-                    {variable.content}
+                <p className="leading-relaxed mb-3 dark:text-slate-400 min-h-[7rem]">
+                    {variable.lecInfo}
                 </p>
-                <Link href={`/curriculum/${variable.id}`} className="text-indigo-500 inline-flex items-center">
+                <Link href={`/curriculum/${variable.lecName}`} className="text-indigo-500 inline-flex items-center">
                     더 알아보기
                     <svg className="w-4 h-4 ml-2" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round">
                         <path d="M5 12h14"></path>

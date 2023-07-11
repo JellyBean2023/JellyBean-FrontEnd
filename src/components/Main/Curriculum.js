@@ -1,23 +1,41 @@
+'use client';
 import { styled } from "styled-components";
+import { useEffect, useState } from 'react';
 import CurriculumBox from "./CurriculumBox";
-
-const list = [
-    { id: "pm", title: "프로덕트 매니저 2기", state: true, content: "뼈 끝에 스며들어 가는 멸락의 소리다이것은 피어나기 전인 유소년" },
-    { id: "java", title: "풀스택 1기", state: false, content: "뼈 끝에 스며들어 가는 멸락의 소리다이것은 피어나기 전인 유소년" },
-    { id: "bigdata", title: "빅데이터 4기", state: false, content: "뼈 끝에 스며들어 가는 멸락의 소리다이것은 피어나기 전인 유소년" },
-]
+import axios from "axios";
 
 const CurriculumContainer = styled.section`
     background-color: #553BF3;
 `;
 
-
 const Curriculum = () => {
+    //BACKEND_DATA
+    // const [data, setData] = useState([]);
+
+    // useEffect(() => {
+    //   const fetchData = async () => {
+    //     try {
+    //       const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/lectures`);
+    //       const data = response.data;
+    //       setData(data);
+    //     } catch (error) {
+    //       console.error('Error:', error);
+    //     }
+    //   };
+    //   fetchData();
+    // }, []);
+
+    const data = [
+        { lecName: "pm", cardinalName: "프로덕트 매니저 2기", lecStatus: true, lecInfo: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam sed sagittis sapien. Mauris posuere consequat lorem. Duis lorem risus, facilisis id lorem ac, placerat tempor turpis. Ut nec condimentum diam." },
+        { lecName: "java", cardinalName: "풀스택 1기", lecStatus: false, lecInfo: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam sed sagittis sapien." },
+        { lecName: "bigdata", cardinalName: "빅데이터 4기", lecStatus: false, lecInfo: "Lorem ipsum dolor sit amet" },
+    ]
+
     return (
         <CurriculumContainer className="text-gray-600 body-font">
             <div className="container px-5 py-24 mx-auto flex items-center h-full">
                 <div className="flex flex-wrap -m-4">
-                    {list.map((v,i) => (
+                    {data.map((v,i) => (
                         <CurriculumBox key={i} variable={v}/>
                     ))}
                 </div>
