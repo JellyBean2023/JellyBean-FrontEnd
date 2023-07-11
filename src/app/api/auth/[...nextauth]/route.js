@@ -2,6 +2,7 @@ import NextAuth from "next-auth/next"
 import CredentialsProvider from "next-auth/providers/credentials"
 
 const handler = NextAuth({
+  secret: process.env.NEXTAUTH_SECRET,
   providers: [
     CredentialsProvider({
       // The name to display on the sign in form (e.g. "Sign in with...")
@@ -20,16 +21,21 @@ const handler = NextAuth({
       },
 
       async authorize(credentials, req) {
-        const res = await fetch(`${process.env.NEXTAUTH_URL}/api/login`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify({
-            username: credentials?.username,
-            password: credentials?.password
-          })
-        })
+        // const res = await fetch(`${process.env.NEXTAUTH_URL}/api/login`, {
+        //   method: "POST",
+        //   headers: {
+        //     "Content-Type": "application/json"
+        //   },
+        //   body: JSON.stringify({
+        //     username: credentials?.username,
+        //     password: credentials?.password
+        //   })
+        // })
+        if (!credentials)
+          throw new Error("잘못된 입력값으로 인한 오류가 발생했습니다.");
+
+        return credentials;
+
         const user = await res.json()
         console.log(user)
 

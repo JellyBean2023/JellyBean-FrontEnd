@@ -3,8 +3,9 @@ import Image from 'next/image';
 import Link from 'next/link';
 import styled from 'styled-components';
 import Logo from '../../assets/img/CI/img_ci_var02.jpg';
-import React, { useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { signIn } from 'next-auth/react'
+import { useRouter } from 'next/navigation';
 
 const Container = styled.main`
   max-width: 600px;
@@ -27,7 +28,7 @@ const Container = styled.main`
   }
 `;
 
-const Forms = styled.div`
+const LoginContainer = styled.div`
   align-items: center;
   transition: height 0.3s ease;
   width: 200%;
@@ -44,6 +45,12 @@ const Form = styled.form`
 
   @media screen and (max-width: 1024px) {
       padding: 0 50px;
+  }
+
+  p {
+    color: red;
+    font-size: 15px;
+    margin-left: 5px;
   }
 `;
 
@@ -128,60 +135,96 @@ const Text = styled.span`
 
 const Button = styled.button`
   margin: 30px 0 10px 0;
+  width: 100%;
+  padding: 5px 10px;
+  border: none;
+  color: #fff;
+  font-size: 17px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  background-color: var(--theme-color);
+  transition: all 0.3s ease;
+  border-radius: 15px;
+  cursor: pointer;
 
-  input {
-    width: 100%;
-    padding: 5px 10px;
-    border: none;
-    color: #fff;
-    font-size: 17px;
-    font-weight: 500;
-    letter-spacing: 1px;
-    background-color: var(--theme-color);
-    transition: all 0.3s ease;
-    border-radius: 15px;
-    cursor: pointer;
-
-    &:hover {
-      background-color: var(--anti-theme-color);
-    }
+  &:hover {
+    background-color: var(--anti-theme-color);
   }
 `;
 const Login = () => {
   const emailRef = useRef(null)
   const passwordRef = useRef(null)
+  const router = useRouter();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
-  const handleSubmit = async () => {
-    // console.log(emailRef.current);
-    // console.log(passwordRef.current);
+  const [isValidEmail, setIsValidEmail] = useState(true);
+  const [isValidPassword, setIsValidPassword] = useState(true);
+
+  useEffect(() => { //유효성 검사
+    const emailTimer = setTimeout(() => { validateEmail() }, 300);
+    const passwordTimer = setTimeout(() => { validatePassword() }, 300);
+
+    return () => {
+      clearTimeout(emailTimer);
+      clearTimeout(passwordTimer);
+    };
+  }, [email, password]);
+
+  const handleEmailChange = (event) => { setEmail(event.target.value) }; //이메일
+  const handlePasswordChange = (event) => { setPassword(event.target.value) }; //비밀번호
+
+  const validateEmail = () => { //이메일
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!regex.test(email))
+      setIsValidEmail(false);
+    else
+      setIsValidEmail(true);
+  };
+
+  const validatePassword = () => {  //비밀번호
+    const regex = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,20}$/;
+    if (!regex.test(password))
+      setIsValidPassword(false);
+    else
+      setIsValidPassword(true);
+  };
+
+  const handleSubmit = async (e) => { //Session
+    e.preventDefault();
+    if (!emailRef.current.value || !passwordRef.current.value) return;
 
     const result = await signIn("credentials", {
-      username: emailRef.current,
-      password: passwordRef.current,
-      redirect: true,
-      callbackUrl: "/",
+      username: emailRef.current.value,
+      password: passwordRef.current.value,
+      redirect: false,
     });
-  }
+    router.replace("/");
+  };
 
   return (
     <Container>
-      <Forms>
+      <LoginContainer>
         <Form action="#">
           <Title>천재교육 IT센터</Title>
           <Image src={Logo} alt='Image' />
           <Text>아직 회원이 아니세요? <Link href="/regist">회원가입 하러가기</Link></Text>
-          <InputField><input type="text" placeholder="Enter your ID" required ref={emailRef} onChange={(e) => {emailRef.current = e.target.value}} /></InputField>
-          <InputField><input type="password" className="password" placeholder="Enter your password" required ref={passwordRef} onChange={(e) => (passwordRef.current = e.target.value)}/></InputField>
+
+          <InputField><input type="text" value={email} ref={emailRef} onChange={handleEmailChange} placeholder="ID" required/></InputField> 
+          {!isValidEmail && email !== "" && <p>이메일 형식에 맞게 입력해주세요</p>}
+
+          <InputField><input type="password" value={password} ref={passwordRef} onChange={handlePasswordChange} placeholder="PASSWORD" required/></InputField> 
+          {!isValidPassword && password !== "" && <p>비밀번호는 영문, 숫자, 특수문자를 모두 포함하여 공백없이 8~20자로 입력해주세요</p>}
+
           <CheckboxText>
             <CheckboxContent><input type="checkbox" /> <label htmlFor="logCheck">아이디 기억하기</label></CheckboxContent>
           </CheckboxText>
-          <Button onClick={handleSubmit}><input type="text" value="로그인" readOnly/></Button>
+          <Button onClick={handleSubmit} type='submit'>로그인</Button>
           <Text id='pw'>
             비밀번호를 잊어버렸어요 <Link href="#">Reset Password</Link>
           </Text>
         </Form>
-        <Link href="/Test">test</Link>
-      </Forms>
+      </LoginContainer>
     </Container>
   );
 };
