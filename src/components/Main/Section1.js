@@ -4,29 +4,32 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 
 const LayerContainer = styled.section`
-        text-align: center;
-        vertical-align: middle;
-        display : flex;
-        justify-content : center;
-        align-items : center;
-        font-size: 40px;
-        color: var(--text-color);
-        height: 10rem;
-        background-color: #553BF3;
-        padding: 300px 0 55px 0;
+  text-align: center;
+  vertical-align: middle;
+  display : flex;
+  justify-content : center;
+  align-items : center;
+  font-size: 40px;
+  color: var(--text-color);
+  height: 40rem;
+  background-color: #553BF3;
 
-        span{
-        display: block;
-        margin-bottom: 10px;
-        }
+  span{
+    display: block;
+    margin-bottom: 10px;
+  }
 
-        p{
-            &#title{
-            color:white;
-            }
-        }
+  p{
+    &#title{
+      color:white;
+    }
+  }
 
-        `;
+  @media (max-width: 1024px) {
+    font-size: 30px;
+  }
+
+`;
 
 const Main = () => {
   useEffect(() => {
