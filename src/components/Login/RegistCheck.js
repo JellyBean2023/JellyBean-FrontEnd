@@ -102,14 +102,14 @@ const RegistCheck = (active) => {
     { id: 4, require: false, checked: false, contents: '4번 약관 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur pretium mi sed tristique commodo. Nullam in massa neque. Etiam scelerisque diam sit amet est scelerisque, vitae ultricies quam efficitur. Nulla facilisi. Aliquam at elit eu mi sollicitudin tincidunt in non felis. Vivamus vitae lectus sed massa venenatis tincidunt. Donec euismod luctus tristique. Aliquam non feugiat tortor. Sed vel velit at risus venenatis sollicitudin eu eu justo. Mauris vel ipsum vel purus facilisis condimentum in ac dui. Nulla id erat at odio congue suscipit vel vitae purus. Sed eu nunc sed urna finibus' },
   ]);
   
-  const [registCheck, setRegistCheck] = useRecoilState(RegistCheckState);
-  const onSubmitHandler = async (event) => {
-    event.preventDefault();
-    const check = ([
-      {id:1, checked:  }
-    ]);
-    setLogin(check);
-  };
+  // const [registCheck, setRegistCheck] = useRecoilState(RegistCheckState);
+  // const onSubmitHandler = async (event) => {
+  //   event.preventDefault();
+  //   const check = ([
+  //     {id:1, checked:  }
+  //   ]);
+  //   setLogin(check);
+  // };
 
   // 전체 선택 체크박스 클릭 이벤트 핸들러
   const handleSelectAllChange = () => {
