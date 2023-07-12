@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import RegistCheck from './RegistCheck';
 import RegistInfoInsert from './RegistInfoInsert';
 
-
 const Container = styled.main`
   position: relative;
   max-width: 600px;
@@ -40,7 +39,6 @@ const Forms = styled.form`
 
 const Regist = () => {
   const [active, setActive] = useState(false);
-  const [isAgreed, setIsAgreed] = useState(false);
 
   useEffect(() => {
     const login = document.querySelector(".login-link");
@@ -55,16 +53,14 @@ const Regist = () => {
     });
   }, []);
 
-  
-
   return (
     <Container className={`${active ? 'active' : ''}`}>
       <Forms action={'#'}>
         {/* 약관동의 페이지 */}
-        <RegistCheck name={active} setIsAgreed/>
+        <RegistCheck name={active}/>
 
         {/* 회원가입 페이지 */}
-        <RegistInfoInsert name={active} isAgreed/>
+        <RegistInfoInsert name={active}/>
       </Forms>
     </Container>
   );

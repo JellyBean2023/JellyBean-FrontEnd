@@ -100,7 +100,6 @@ const Header = () => {
     const [activeDropdown, setActiveDropdown] = useState(false);
     const navRef = useRef(null);
     const buttonRef = useRef(null);
-    const { status } = useSession();
 
     const toggleDropdown = (Dropdown) => {
         if (activeDropdown === Dropdown) {

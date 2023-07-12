@@ -1,12 +1,10 @@
-"use client";
+'use client'
+import React, { useEffect, useMemo } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
 import styled from 'styled-components';
 import Banner from "@/components/Main/Banner";
 import Curriculum from '@/components/Main/Curriculum';
-
-import React, { useEffect } from "react";
-import AOS from "aos";
-import "aos/dist/aos.css";
-import "aos/dist/aos.css";
 import Section1 from '@/components/Main/Section1';
 import Section2 from '@/components/Main/Section2';
 import Section3 from '@/components/Main/Section3';
@@ -26,9 +24,9 @@ const Main = () => {
     AOS.init({
       duration: 500,
     });
-  });
+  }, []);
 
-  return (
+  const memoizedMain = useMemo(() => (
     <MainContainer>
       <Banner />
       <Section1 />
@@ -39,7 +37,9 @@ const Main = () => {
       <Section5 />
       <Section6 />
     </MainContainer>
-  );
-}
+  ), []);
+
+  return memoizedMain;
+};
 
 export default Main;
