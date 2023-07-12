@@ -4,6 +4,7 @@ import Header from "../components/Head/Header"
 import Footer from "../components/Foot/Footer"
 import StyledComponentsRegistry from './lib/registry';
 import Providers from '@/components/Providers';
+import RecoilHOC from './RecoilHOC';
 
 const notoSansKr = Noto_Sans_KR({
   subsets: ["latin"],
@@ -21,11 +22,13 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={notoSansKr.className}>
         <Providers>
+          <RecoilHOC>
           <Header />
           <StyledComponentsRegistry>
             {children}
           </StyledComponentsRegistry>
           <Footer />
+          </RecoilHOC>
         </Providers>
       </body>
     </html>

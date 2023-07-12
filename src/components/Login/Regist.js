@@ -40,6 +40,7 @@ const Forms = styled.form`
 
 const Regist = () => {
   const [active, setActive] = useState(false);
+  const [isAgreed, setIsAgreed] = useState(false);
 
   useEffect(() => {
     const login = document.querySelector(".login-link");
@@ -54,14 +55,16 @@ const Regist = () => {
     });
   }, []);
 
+  
+
   return (
     <Container className={`${active ? 'active' : ''}`}>
       <Forms action={'#'}>
         {/* 약관동의 페이지 */}
-        <RegistCheck name={active}/>
+        <RegistCheck name={active} setIsAgreed/>
 
         {/* 회원가입 페이지 */}
-        <RegistInfoInsert name={active}/>
+        <RegistInfoInsert name={active} isAgreed/>
       </Forms>
     </Container>
   );

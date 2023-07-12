@@ -1,8 +1,9 @@
 import Link from 'next/link';
 import React, { useState } from 'react';
+import { atom, useRecoilState } from 'recoil';
 import styled from 'styled-components';
 
-const Form = styled.div`
+const RegistCheckContainer = styled.div`
   width: 50%;
   transition: margin-left 0.2s ease;
 
@@ -87,6 +88,11 @@ const Button = styled.div`
   }
 `;
 
+export const RegistCheckState = atom({
+  key: 'RegistCheckState',
+  default: '',
+});
+
 const RegistCheck = (active) => {
   const [selectAllChecked, setSelectAllChecked] = useState(false);
   const [checkboxes, setCheckboxes] = useState([
@@ -95,6 +101,15 @@ const RegistCheck = (active) => {
     { id: 3, require: false, checked: false, contents: '3번 약관 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur pretium mi sed tristique commodo. Nullam in massa neque. Etiam scelerisque diam sit amet est scelerisque, vitae ultricies quam efficitur. Nulla facilisi. Aliquam at elit eu mi sollicitudin tincidunt in non felis. Vivamus vitae lectus sed massa venenatis tincidunt. Donec euismod luctus tristique. Aliquam non feugiat tortor. Sed vel velit at risus venenatis sollicitudin eu eu justo. Mauris vel ipsum vel purus facilisis condimentum in ac dui. Nulla id erat at odio congue suscipit vel vitae purus. Sed eu nunc sed urna finibus' },
     { id: 4, require: false, checked: false, contents: '4번 약관 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur pretium mi sed tristique commodo. Nullam in massa neque. Etiam scelerisque diam sit amet est scelerisque, vitae ultricies quam efficitur. Nulla facilisi. Aliquam at elit eu mi sollicitudin tincidunt in non felis. Vivamus vitae lectus sed massa venenatis tincidunt. Donec euismod luctus tristique. Aliquam non feugiat tortor. Sed vel velit at risus venenatis sollicitudin eu eu justo. Mauris vel ipsum vel purus facilisis condimentum in ac dui. Nulla id erat at odio congue suscipit vel vitae purus. Sed eu nunc sed urna finibus' },
   ]);
+  
+  const [registCheck, setRegistCheck] = useRecoilState(RegistCheckState);
+  const onSubmitHandler = async (event) => {
+    event.preventDefault();
+    const check = ([
+      {id:1, checked:  }
+    ]);
+    setLogin(check);
+  };
 
   // 전체 선택 체크박스 클릭 이벤트 핸들러
   const handleSelectAllChange = () => {
@@ -120,7 +135,7 @@ const RegistCheck = (active) => {
     .every((checkbox) => checkbox.checked);
 
   return (
-    <Form className={`login ${active ? 'active' : ''}`}>
+    <RegistCheckContainer className={`login ${active ? 'active' : ''}`}>
       <Title>약관동의</Title>
 
       <CheckboxContent id='agree_all'>
@@ -135,9 +150,9 @@ const RegistCheck = (active) => {
           <textarea placeholder={checkbox.contents} />
           <CheckboxContent>
             {checkbox.require ? (
-              <input type="checkbox" checked={checkbox.checked} onChange={() => handleCheckboxChange(checkbox.id)} required />
+              <input type="checkbox" value={checkbox.id} checked={checkbox.checked} onChange={() => handleCheckboxChange(checkbox.id)} required />
             ) : (
-              <input type="checkbox" checked={checkbox.checked} onChange={() => handleCheckboxChange(checkbox.id)} />
+              <input type="checkbox" value={checkbox.id} checked={checkbox.checked} onChange={() => handleCheckboxChange(checkbox.id)} />
             )}
             <label>동의하기{checkbox.require ? '(필수)' : null}</label>
           </CheckboxContent>
@@ -150,7 +165,7 @@ const RegistCheck = (active) => {
           <input type="button" value="회원 정보 입력" />
         </Button>
       </Link>
-    </Form>
+    </RegistCheckContainer>
   );
 }
 

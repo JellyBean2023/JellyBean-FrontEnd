@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
-const Form = styled.div`
+const RegistInfo = styled.div`
   width: 50%;
   transition: margin-left 0.2s ease;
 
@@ -232,14 +232,14 @@ const RegistInfoInsert = (active) => {
   };
 
   return (
-    <Form className={`signup ${active ? 'active' : ''}`}>
+    <RegistInfo className={`signup ${active ? 'active' : ''}`}>
       <Title className="title">회원 가입</Title>
 
-      <InputField><input type="text" required value={name} onChange={handleNameChange} placeholder="한글 또는 영문으로 입력 가능" />
+      <InputField><input type="text" value={name} onChange={handleNameChange} placeholder="한글 또는 영문으로 입력 가능" required/>
         <label>이름</label><span/>
       </InputField> {!isValidName && name !== "" && <p>한글 또는 영문으로만 입력해주세요</p>}
 
-      <InputField><input type="text" required value={email} onChange={handleEmailChange} placeholder="ex)chunjae@chunjae.com" />
+      <InputField><input type="text" value={email} onChange={handleEmailChange} placeholder="ex)chunjae@chunjae.com" required/>
         <label>이메일</label><span/>
       </InputField> {!isValidEmail && email !== "" && <p>이메일 형식에 맞게 입력해주세요</p>}
       {isValidEmail && email !== "" && <ApplyButton>인증하기</ApplyButton>}
@@ -248,25 +248,25 @@ const RegistInfoInsert = (active) => {
         <label>이메일 인증코드 입력</label><span/>
       </InputField>
 
-      <InputField><input type="password" required value={password} onChange={handlePasswordChange} placeholder="영문,숫자,특수문자 포함 8~20자내" />
+      <InputField><input type="password" value={password} onChange={handlePasswordChange} placeholder="영문,숫자,특수문자 포함 8~20자내" required/>
         <label>비밀번호</label><span/>
       </InputField> {!isValidPassword && password !== "" && <p>비밀번호는 영문, 숫자, 특수문자를 모두 포함하여 공백없이 8~20자로 입력해주세요</p>}
 
-      <InputField><input type="password" required value={confirmPassword} onChange={handleConfirmPasswordChange} placeholder="비밀번호를 확인해주세요" />
+      <InputField><input type="password" value={confirmPassword} onChange={handleConfirmPasswordChange} placeholder="비밀번호를 확인해주세요" required/>
         <label>비밀번호 확인</label><span/>
       </InputField> {!isValidConfirmPassword && confirmPassword !== "" && <p>비밀번호가 일치하지 않습니다</p>}
 
-      <InputField><input type="text" required value={birthday} onChange={handleBirthdayChange} placeholder="생년월일" />
+      <InputField><input type="text" value={birthday} onChange={handleBirthdayChange} placeholder="생년월일" required/>
         <label>생년월일</label><span/>
       </InputField> {!isValidBirthday && birthday !== "" && <p>YYYY-MM-DD 형식으로 작성해주세요</p>}
 
-      <InputField><input type="text" required value={phone} onChange={handlePhoneChange} placeholder="휴대전화 번호" />
+      <InputField><input type="text" value={phone} onChange={handlePhoneChange} placeholder="휴대전화 번호" required/>
         <label>휴대전화 번호</label><span/>
       </InputField> {!isValidPhone && phone !== "" && <p>010-0000-0000 형식으로 작성해주세요</p>}
 
       <Button> <input type="submit" value="회원 등록하기" /></Button>
       <Text> <Link href="#" className="login-link">약관동의 다시 돌아가기</Link></Text>
-    </Form>
+    </RegistInfo>
   );
 };
 
