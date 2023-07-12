@@ -1,15 +1,9 @@
-import Link from 'next/link';
 import { useState, useEffect } from 'react';
+import { atom, useRecoilState, useRecoilValue } from 'recoil';
 import styled from 'styled-components';
 
+
 const RegistInfo = styled.div`
-  width: 50%;
-  transition: margin-left 0.2s ease;
-
-  @media screen and (max-width: 1024px) {
-    padding: 0 50px;
-  }
-
   p {
     color: var(--warning-color);
   }
@@ -94,42 +88,6 @@ const InputField = styled.div`
   }
 `;
 
-const Button = styled.div`
-  margin: 30px 0 10px 0;
-
-  input {
-    background-color: var(--theme-color);
-    padding: 5px 10px;
-    border: none;
-    border-radius: 15px;
-    color: #fff;
-    font-size: 17px;
-    font-weight: 500;
-    letter-spacing: 1px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    width: 100%;
-
-    &:hover {
-      background-color: var(--anti-theme-color);
-    }
-  }
-`;
-
-const Text = styled.span`
-  color: var(--accent-link-color);
-  font-size: 14px;
-
-  a.text {
-    color: var(--theme-color);
-    text-decoration: none;
-  }
-
-  a:hover {
-    text-decoration: underline;
-  }
-`;
-
 const ApplyButton = styled.button`
   position: relative;
   background-color: gray;
@@ -144,7 +102,28 @@ const ApplyButton = styled.button`
   }
 `;
 
+// 회원 가입 입력 상태
+const registrationState = atom({
+  key: 'registrationState',
+  default: {
+    name: '',
+    email: '',
+    password: '',
+    // 추가 데이터 ++
+  },
+});
+
 const RegistInfoInsert = (active) => {
+  const [registration, setRegistration] = useRecoilState(registrationState);
+
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setRegistration((prevRegistration) => ({
+      ...prevRegistration,
+      [name]: value,
+    }));
+  };
+
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -264,8 +243,7 @@ const RegistInfoInsert = (active) => {
         <label>휴대전화 번호</label><span/>
       </InputField> {!isValidPhone && phone !== "" && <p>010-0000-0000 형식으로 작성해주세요</p>}
 
-      <Button> <input type="submit" value="회원 등록하기" /></Button>
-      <Text> <Link href="#" className="login-link">약관동의 다시 돌아가기</Link></Text>
+      
     </RegistInfo>
   );
 };
