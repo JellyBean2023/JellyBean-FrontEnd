@@ -28,8 +28,12 @@ const LayerContainer = styled.section`
   }
 
   p{
-    &#title{
+    &#title1{
       color:white;
+    }
+    &#title2{
+      color:white;
+      padding-bottom: 10rem;
     }
   }
   @media (max-width: 1024px) {
@@ -143,7 +147,7 @@ const Section3 = () => {
 
     <LayerContainer id='benefitContainer'>
       <span data-aos="zoom-in-up">
-        <p id='title'>왜 천재교육 IT센터여야 할까요?</p> <p id='title'>훈련생들분들께 제공되는 혜택을 소개합니다</p>
+        <p id='title1'>왜 천재교육 IT센터여야 할까요?</p> <p id='title2'>훈련생들분들께 제공되는 혜택을 소개합니다</p>
         <BoxContainer>
           <Box id='benefit' data-aos="zoom-in-up">
             <p id='rightTitle'>제목1</p>

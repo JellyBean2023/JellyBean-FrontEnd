@@ -2,11 +2,17 @@ import styled from 'styled-components';
 import { useEffect } from 'react';
 import AOS from "aos";
 import "aos/dist/aos.css";
+import Image from 'next/image';
+import banner from '@/assets/img/천재교육 디지털 러닝 GENIA.png';
 
 const BannerBox = styled.div`
-    width: 93.5rem;
+    width: 100%;
     height: 130px;
     background-color: pink;
+
+    @media (max-width: 1024px) {
+        width: 100%;
+    }
 `;
 
 const Section6 = () => {
@@ -17,7 +23,7 @@ const Section6 = () => {
     });
 
     return (
-        <BannerBox>하단 배너 이미지 들어갈 자리</BannerBox>
+        <BannerBox><Image src={banner} width={`auto`} alt='Image'/></BannerBox>
     )
 }
 export default Section6;

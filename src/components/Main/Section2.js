@@ -11,7 +11,7 @@ const LayerContainer = styled.section`
     align-items : center;
     font-size: 40px;
     color: var(--text-color);
-    height: 50rem;
+    height: 100rem;
     background-color: #553BF3;
 
     span{
@@ -28,12 +28,18 @@ const LayerContainer = styled.section`
     p{
         &#title{
             color:white;
+            padding-bottom: 7rem;
+        }
+
+        @media screen and (max-width: 1024px) {
+           
         }
     }
 
     @media (max-width: 1024px) {
         font-size: 25px;
-        height: 70rem;
+        height: 100rem;
+        padding-top: 30rem;
     }
 `;
 

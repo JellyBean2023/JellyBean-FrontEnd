@@ -17,30 +17,31 @@ const LayerContainer = styled.section`
     height: 50rem;
     background-color: #553BF3;
 
-span{
-        &#line-block{
-            display: block;
-            margin-top: 10px;
-            content: "";
+    span{
+            &#line-block{
+                display: block;
+                margin-top: 10px;
+                content: "";
+            }
+
+        display: block;
+        margin-bottom: 10px;
+    }
+
+    p{
+        &#title{
+            color:white;
         }
-
-    display: block;
-    margin-bottom: 10px;
-}
-
-p{
-    &#title{
-        color:white;
     }
-}
 
-@media (max-width: 1024px) {
+    @media (max-width: 1024px) {
         font-size: 27px;
+        height: 70rem;
     }
 
-&#benefitContainer{
-    height: 110rem;
-}
+    &#benefitContainer{
+        height: 110rem;
+    }
 `;
 
 const BoxContainer = styled.div`
@@ -61,19 +62,9 @@ const Box = styled.div`
     padding: 20px;
     border-radius: 20px;
 
-    @media (max-width: 1024px) {
-        flex-basis: calc(50% - 20px);
-        margin-bottom: 20px;
-    }
-
     &#info{
         width:600px;
         height: 360px;
-
-        @media (max-width: 1024px) {
-            flex-basis: calc(50% - 20px);
-            margin-bottom: 20px;
-        }
 
         p{
             font-size: 17px;
@@ -86,20 +77,34 @@ const Box = styled.div`
 
             &#date{
                 font-size: 10px;
+
+                @media (max-width: 1024px) {
+                     margin-left: -10px;
+                }
             }
+        }
+
+        @media (max-width: 1024px) {
+            width: 100%;
+            height: 20rem;
+            margin-bottom: 70px;
         }
     }
 
     p{
-    font-size: 13px;
+        font-size: 13px;
 
-    &#center{
-    text-align: center;
-    }
+        &#center{
+            text-align: center;
+        }
 
-    &#margintop{
-    margin-top: 30px;
-    }
+        &#margintop{
+            margin-top: 30px;
+
+            @media (max-width: 1024px) {
+                margin-left: -13px;
+            }
+        }
     }
 
     span {

@@ -11,9 +11,8 @@ const LayerContainer = styled.section`
   align-items : center;
   font-size: 40px;
   color: var(--text-color);
-  height: 10rem;
+  height: 40rem;
   background-color: #553BF3;
-  padding: 300px 0 55px 0;
 
   span{
     display: block;
