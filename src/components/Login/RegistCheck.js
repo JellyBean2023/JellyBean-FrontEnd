@@ -1,9 +1,7 @@
 import Link from 'next/link';
 import React, { useState } from 'react';
 import { atom, useRecoilState } from 'recoil';
-
 import styled from 'styled-components';
-
 
 const RegistCheckContainer = styled.div`
   width: 50%;
@@ -90,10 +88,9 @@ const Button = styled.div`
   }
 `;
 
-// 약관 동의 상태
-const agreementState = atom({
-  key: 'agreementState',
-  default: [],
+export const RegistCheckState = atom({
+  key: 'RegistCheckState',
+  default: '',
 });
 
 const RegistCheck = (active) => {
@@ -105,13 +102,14 @@ const RegistCheck = (active) => {
     { id: 4, require: false, checked: false, contents: '4번 약관 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur pretium mi sed tristique commodo. Nullam in massa neque. Etiam scelerisque diam sit amet est scelerisque, vitae ultricies quam efficitur. Nulla facilisi. Aliquam at elit eu mi sollicitudin tincidunt in non felis. Vivamus vitae lectus sed massa venenatis tincidunt. Donec euismod luctus tristique. Aliquam non feugiat tortor. Sed vel velit at risus venenatis sollicitudin eu eu justo. Mauris vel ipsum vel purus facilisis condimentum in ac dui. Nulla id erat at odio congue suscipit vel vitae purus. Sed eu nunc sed urna finibus' },
   ]);
   
-  const [agreements, setAgreements] = useRecoilState(agreementState);
-  const handleAgreementChange = (id) => {
-    const updatedAgreements = agreements.map((agreement) =>
-      agreement.id === id ? { ...agreement, checked: !agreement.checked } : agreement
-    );
-    setAgreements(updatedAgreements);
-  };
+  // const [registCheck, setRegistCheck] = useRecoilState(RegistCheckState);
+  // const onSubmitHandler = async (event) => {
+  //   event.preventDefault();
+  //   const check = ([
+  //     {id:1, checked:  }
+  //   ]);
+  //   setLogin(check);
+  // };
 
   // 전체 선택 체크박스 클릭 이벤트 핸들러
   const handleSelectAllChange = () => {

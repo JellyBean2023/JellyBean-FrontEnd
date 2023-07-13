@@ -15,41 +15,41 @@ SwiperCore.use([Navigation, Pagination, Autoplay]);
 const Dummy = [dummy, dummy2,dummy,dummy2,dummy]
 
 const Banner = () => {
-  const [fileNames, setFileNames] = useState([]);
-  const [imageUrls, setImageUrls] = useState([]);
+  // const [fileNames, setFileNames] = useState([]);
+  // const [imageUrls, setImageUrls] = useState([]);
 
-  useEffect(() => {
-    const fetchFileNames = async () => {
-      try {
-        const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/fileSystem/images`);
-        setFileNames(response.data);
-      } catch (error) {
-        console.error('Error fetching file names:', error);
-      }
-    };
+  // useEffect(() => {
+  //   const fetchFileNames = async () => {
+  //     try {
+  //       const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/fileSystem/images`);
+  //       setFileNames(response.data);
+  //     } catch (error) {
+  //       console.error('Error fetching file names:', error);
+  //     }
+  //   };
 
-    fetchFileNames();
-  }, []);
+  //   fetchFileNames();
+  // }, []);
 
-  useEffect(() => {
-    const fetchImageUrl = async (fileName) => {
-      try {
-        const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/fileSystem/${fileName}`, {
-          responseType: 'blob',
-        });
-        const imageUrl = URL.createObjectURL(response.data);
-        setImageUrls((prevImageUrls) => [...prevImageUrls, imageUrl]);
-      } catch (error) {
-        console.error('Error fetching image:', error);
-      }
-    };
+  // useEffect(() => {
+  //   const fetchImageUrl = async (fileName) => {
+  //     try {
+  //       const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/fileSystem/${fileName}`, {
+  //         responseType: 'blob',
+  //       });
+  //       const imageUrl = URL.createObjectURL(response.data);
+  //       setImageUrls((prevImageUrls) => [...prevImageUrls, imageUrl]);
+  //     } catch (error) {
+  //       console.error('Error fetching image:', error);
+  //     }
+  //   };
 
-    fileNames.forEach((fileName) => {
-      fetchImageUrl(fileName);
-    });
-  }, [fileNames]);
+  //   fileNames.forEach((fileName) => {
+  //     fetchImageUrl(fileName);
+  //   });
+  // }, [fileNames]);
 
-  const banner = imageUrls > 0 ? imageUrls : Dummy;
+  // const banner = imageUrls > 0 ? imageUrls : Dummy;
 
   return (
     <section className={banner.swiper}>
@@ -65,7 +65,7 @@ const Banner = () => {
           disableOnInteraction: true
         }}
       >
-        {banner.map((imgUrl, idx) => (
+        {Dummy.map((imgUrl, idx) => (
           <SwiperSlide key={idx}>
             <Image src={imgUrl} alt="" />
           </SwiperSlide>
