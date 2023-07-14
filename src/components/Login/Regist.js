@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import RegistCheck from './RegistCheck';
 import RegistInfoInsert from './RegistInfoInsert';
 
-const Container = styled.main`
+const RegistContainer = styled.main`
   position: relative;
   max-width: 600px;
   width: 100%;
@@ -24,7 +24,7 @@ const Container = styled.main`
   }
 `;
 
-const Forms = styled.form`
+const Pages = styled.div`
   display: flex;
   align-items: center;
   transition: height 0.3s ease;
@@ -54,15 +54,15 @@ const Regist = () => {
   }, []);
 
   return (
-    <Container className={`${active ? 'active' : ''}`}>
-      <Forms action={'#'}>
+    <RegistContainer className={`${active ? 'active' : ''}`}>
+      <Pages>
         {/* 약관동의 페이지 */}
         <RegistCheck name={active}/>
 
         {/* 회원가입 페이지 */}
         <RegistInfoInsert name={active}/>
-      </Forms>
-    </Container>
+      </Pages>
+    </RegistContainer>
   );
 };
 

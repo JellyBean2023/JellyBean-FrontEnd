@@ -1,8 +1,10 @@
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import styled from 'styled-components';
+import { useRecoilValue } from 'recoil';
+import { RegistCheckState } from './RegistCheck';
 
-const RegistInfo = styled.div`
+const Form = styled.form`
   width: 50%;
   transition: margin-left 0.2s ease;
 
@@ -231,8 +233,33 @@ const RegistInfoInsert = (active) => {
       setIsValidPhone(true);
   };
 
+  //약관동의
+  const registCheck = useRecoilValue(RegistCheckState).map((item) => item.id);
+  // Submit 핸들러
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    const has1 = registCheck.includes(1);
+    const has2 = registCheck.includes(2);
+
+    if (!has1 || !has2) {
+      alert('1번과 2번 약관에 모두 동의해야 합니다.');
+      return;
+    }
+    
+    console.log({
+      name,
+      email,
+      password,
+      confirmPassword,
+      birthday,
+      phone,
+      registCheck,
+    });
+  };
+
   return (
-    <RegistInfo className={`signup ${active ? 'active' : ''}`}>
+    <Form onSubmit={handleSubmit} action={`${process.env.NEXT_PUBLIC_API_URL}/regist`} className={`signup ${active ? 'active' : ''}`}>
       <Title className="title">회원 가입</Title>
 
       <InputField><input type="text" value={name} onChange={handleNameChange} placeholder="한글 또는 영문으로 입력 가능" required/>
@@ -264,9 +291,10 @@ const RegistInfoInsert = (active) => {
         <label>휴대전화 번호</label><span/>
       </InputField> {!isValidPhone && phone !== "" && <p>010-0000-0000 형식으로 작성해주세요</p>}
 
-      <Button> <input type="submit" value="회원 등록하기" /></Button>
+      <input type='hidden' value={registCheck} />
+      <Button><input type="submit" value="회원 등록하기" /></Button>
       <Text> <Link href="#" className="login-link">약관동의 다시 돌아가기</Link></Text>
-    </RegistInfo>
+    </Form>
   );
 };
 
