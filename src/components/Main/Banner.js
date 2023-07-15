@@ -12,7 +12,7 @@ import banner from '@/assets/scss/Main/Banner.module.scss';
 
 SwiperCore.use([Navigation, Pagination, Autoplay]);
 
-const Dummy = [dummy, dummy2];
+const SampleImg = [dummy, dummy2];
 
 const Banner = () => {
   const [fileNames, setFileNames] = useState([]);
@@ -25,7 +25,7 @@ const Banner = () => {
         const file = response.data.map((path) => path.substring(path.lastIndexOf('\\') + 1));
         setFileNames(file);
       } catch (error) {
-        console.error('Error fetching file names: ', error);
+        // console.error('Error fetching file names: ', error);
       }
     };
 
@@ -41,7 +41,7 @@ const Banner = () => {
         const imageUrl = URL.createObjectURL(response.data);
         setImageUrls((prevImageUrls) => [...prevImageUrls, imageUrl]);
       } catch (error) {
-        console.error('Error fetching image:', error);
+        // console.error('Error fetching image:', error);
       }
     };
 
@@ -51,7 +51,7 @@ const Banner = () => {
   }, [fileNames]);
 
   const images = useMemo(() => {
-    return imageUrls.length > 0 ? imageUrls : Dummy;
+    return imageUrls.length > 0 ? imageUrls : SampleImg;
   }, [imageUrls]);
 
   return (
