@@ -6,6 +6,8 @@ import Link from 'next/link';
 import Logo from '../../assets/img/CI/img_ci_var01.png';
 import In from '../../assets/img/instagramIcon.svg';
 import Fb from '../../assets/img/facebookIcon.svg';
+import NB from '../../assets/img/naver.svg';
+import YT from '../../assets/img/youtube.svg';
 
 const FooterContainer = styled.footer`
   display: flex;
@@ -77,6 +79,14 @@ const IconContainer = styled.label`
   img {
     margin-right: 15px;
 
+    &#naver{
+      width: 40px;
+    }
+
+    &#youtube{
+      width: 40px;
+    }
+
     @media (prefers-color-scheme: dark) {
         filter: invert(1);
     }
@@ -115,8 +125,8 @@ const Footer = () => {
                 <IconContainer>
                     <Image src={In} alt='Instagram' />
                     <Image src={Fb} alt='Facebook' />
-                    <Image src={In} alt='Instagram' />
-                    <Image src={Fb} alt='Facebook' />
+                    <Image src={NB} alt='Naver Blog' id='naver' />
+                    <Image src={YT} alt='Youtube' id='youtube' />
                 </IconContainer>
             </DivContainer>
 
