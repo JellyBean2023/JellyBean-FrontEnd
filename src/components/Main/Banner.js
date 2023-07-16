@@ -9,10 +9,12 @@ import Image from 'next/image';
 import d1 from '@/assets/img/dummy.jpg';
 import d2 from '@/assets/img/dummy2.png';
 import banner from '@/assets/scss/Main/Banner.module.scss';
+import { Skeleton } from '@mui/material';
 
 SwiperCore.use([Navigation, Pagination, Autoplay]);
 
 const Banner = () => {
+  const [loading, setLoading] = useState(true);
   const [fileNames, setFileNames] = useState([]);
   const [imageUrls, setImageUrls] = useState([]);
 
@@ -38,6 +40,7 @@ const Banner = () => {
         });
         const imageUrl = URL.createObjectURL(response.data);
         setImageUrls((prevImageUrls) => [...prevImageUrls, imageUrl]);
+        setLoading(false);
       } catch (error) {
         // console.error('Error fetching image:', error);
       }
@@ -54,24 +57,28 @@ const Banner = () => {
 
   return (
     <section className={banner.swiper}>
-      <Swiper
-        className={banner.bannerScreen}
-        spaceBetween={50}
-        slidesPerView={1}
-        loop={true}
-        navigation
-        pagination={{ clickable: true }}
-        autoplay={{
-          delay: 2000,
-          disableOnInteraction: true
-        }}
-      >
-        {images.map((imageUrl, idx) => (
-          <SwiperSlide key={idx}>
-            <Image src={imageUrl} width={100} height={80} alt="Banner Image" />
-          </SwiperSlide>
-        ))}
-      </Swiper>
+      {loading ? (
+          <Skeleton variant="rectangular" height={500}/>
+        ) : (
+        <Swiper
+          className={banner.bannerScreen}
+          spaceBetween={50}
+          slidesPerView={1}
+          loop={true}
+          navigation
+          pagination={{ clickable: true }}
+          autoplay={{
+            delay: 2000,
+            disableOnInteraction: true
+          }}
+        >
+          {images.map((imageUrl, idx) => (
+            <SwiperSlide key={idx}>
+              <Image src={imageUrl} width={100} height={80} alt="Banner Image" />
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      )}
     </section>
   );
 };

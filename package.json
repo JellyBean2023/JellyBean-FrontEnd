@@ -9,7 +9,10 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
     "@headlessui/react": "^1.7.15",
+    "@mui/material": "^5.14.0",
     "@types/styled-components": "^5.1.26",
     "aos": "^2.3.4",
     "autoprefixer": "10.4.14",

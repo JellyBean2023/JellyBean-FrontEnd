@@ -11,8 +11,6 @@ import Section3 from '@/components/Main/Section3';
 import Section4 from '@/components/Main/Section4';
 import Section5 from '@/components/Main/Section5';
 import Section6 from '@/components/Main/Section6';
-import { useSession } from "next-auth/react";
-
 const MainContainer = styled.main`
   section {
     padding: 0.5rem 0;
