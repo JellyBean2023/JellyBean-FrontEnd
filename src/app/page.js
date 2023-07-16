@@ -27,11 +27,6 @@ const Main = () => {
     });
   }, []);
 
-  const { data, status } = useSession();
-
-  console.log(data);
-  console.log(status);
-
   const memoizedMain = useMemo(() => (
     <MainContainer>
       <Banner />

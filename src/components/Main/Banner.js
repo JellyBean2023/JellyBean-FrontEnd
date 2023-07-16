@@ -6,13 +6,11 @@ import 'swiper/scss';
 import 'swiper/scss/navigation';
 import 'swiper/scss/pagination';
 import Image from 'next/image';
-import dummy from '@/assets/img/Dummy.jpg';
-import dummy2 from '@/assets/img/Dummy2.png';
+import d1 from '@/assets/img/dummy.jpg';
+import d2 from '@/assets/img/dummy2.png';
 import banner from '@/assets/scss/Main/Banner.module.scss';
 
 SwiperCore.use([Navigation, Pagination, Autoplay]);
-
-const SampleImg = [dummy, dummy2];
 
 const Banner = () => {
   const [fileNames, setFileNames] = useState([]);
@@ -51,7 +49,7 @@ const Banner = () => {
   }, [fileNames]);
 
   const images = useMemo(() => {
-    return imageUrls.length > 0 ? imageUrls : SampleImg;
+    return imageUrls.length > 0 ? imageUrls : [d1, d2];
   }, [imageUrls]);
 
   return (
