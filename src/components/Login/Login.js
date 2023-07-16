@@ -199,7 +199,13 @@ const Login = () => {
       password: passwordRef.current.value,
       redirect: false,
     });
-    router.replace("/");
+
+    // 로그인 후 처리할 로직
+    if (result?.error) {
+      alert("등록되지 않은 회원입니다");
+    } else {
+      router.replace("/");
+    }
   };
 
   return (
