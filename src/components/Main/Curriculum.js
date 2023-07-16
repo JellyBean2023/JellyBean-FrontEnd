@@ -11,6 +11,15 @@ const CurriculumContainer = styled.section`
 const Curriculum = () => {
     //BACKEND_DATA
     // const [data, setData] = useState([]);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+          setLoading(false);
+        }, 1000);
+      
+        return () => clearTimeout(timer);
+    }, []);
 
     // useEffect(() => {
     //   const fetchData = async () => {
@@ -18,6 +27,7 @@ const Curriculum = () => {
     //       const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/lectures`);
     //       const data = response.data;
     //       setData(data);
+    //       setLoading(false);
     //     } catch (error) {
     //       console.error('Error:', error);
     //     }
@@ -36,7 +46,7 @@ const Curriculum = () => {
             <div className="container px-5 py-24 mx-auto flex items-center h-full">
                 <div className="flex flex-wrap -m-4">
                     {data.map((v,i) => (
-                        <CurriculumBox key={i} variable={v}/>
+                        <CurriculumBox key={i} variable={v} loading={loading}/>
                     ))}
                 </div>
             </div>
