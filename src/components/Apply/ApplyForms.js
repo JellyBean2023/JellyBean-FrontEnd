@@ -11,13 +11,6 @@ const ApplyForm = styled.main`
     margin-right: 1rem;
     padding: 1rem;
   }
-  
-  p:nth-last-child(1) {
-    &#import {
-      color: ${props => `var(--${props.id}-sub-color)`};
-      padding-top: 20px;
-    }
-  }
 `;
 
 const InsertForm = styled.div`
@@ -41,10 +34,16 @@ const Intro = styled.div`
 
   p {
     font-size: 15px;
-    color: ${props => `var(--${props.id}-sub-color)`};
 
     &#top{
       padding-bottom: 20px
+    }
+  }
+
+   p:nth-last-child(1) {
+    &#import {
+      color: ${props => `var(--${props.id}-sub-color)`};
+      padding-top: 20px;
     }
   }
 `;
@@ -373,7 +372,7 @@ const ApplyForms = (props) => {
 
     <InsertForm>
       <form action={`/curriculum/${id}`} onSubmit={handleSubmit}>
-        <InsertContainer id={'flex'}>
+        <InsertContainer id={`flex${id}`}>
           <h2 id={`import`}>*기본 입력정보</h2>
           <InputField id={id}><input type="text" defaultValue={information.name} required /><label>Name</label></InputField>
           <InputField id={id}><input type="date" defaultValue={information.date} required /><label>생년월일</label></InputField>
