@@ -99,8 +99,12 @@ const InputField = styled.div`
     }
   }
 
-  div {
-    font-size: 20px;
+  &#type {
+    div {
+      font-size: 20px;
+      margin-bottom: 5px;
+      margin-top: 30px;
+    }
   }
 `;
 
@@ -242,17 +246,21 @@ const RegistInfoInsert = (active) => {
   };
 
   const [isChecked, setIsChecked] = useState(false);
-  const handleChangeOpen = () => {
-    setIsChecked(true);
+  const [employeeNumber, setEmployeeNumber] = useState('');
+
+
+  const handleChange = (event) => {
+    setIsChecked(event.target.value === '1');
   };
-  const handleChangeClose = () => {
-    setIsChecked(false);
+
+  const saveEmployeeNumber = (event) => {
+    setEmployeeNumber(event.target.value);
   };
 
   //약관동의
   const registCheck = useRecoilValue(RegistCheckState).map((item) => item.id);
   // Submit 핸들러
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
     const has1 = registCheck.includes(1);
@@ -262,60 +270,78 @@ const RegistInfoInsert = (active) => {
       alert('1번과 2번 약관에 모두 동의해야 합니다.');
       return;
     }
-    
-    console.log({
-      name,
-      email,
-      password,
-      confirmPassword,
-      birthday,
-      phone,
-      registCheck,
-    });
+
+    try {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/regist`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name,
+          email,
+          password,
+          confirmPassword,
+          birthday,
+          phone,
+          registCheck,
+          type: isChecked ? '직원' : '일반',
+          employeeNumber,
+        }),
+      });
+
+      if (response.ok) {
+        alert('회원 등록이 성공적으로 완료되었습니다.');
+      } else {
+        alert('회원 등록에 실패하였습니다.');
+      }
+    } catch (error) {
+      alert('회원 등록 중 오류가 발생하였습니다.', error);
+    }
   };
 
   return (
     <Form onSubmit={handleSubmit} action={`${process.env.NEXT_PUBLIC_API_URL}/regist`} className={`signup ${active ? 'active' : ''}`}>
       <Title className="title">회원 가입</Title>
 
-      <InputField><input type="text" value={name} onChange={handleNameChange} placeholder="한글 또는 영문으로 입력 가능" required/>
-        <label>이름</label><span/>
+      <InputField><input type="text" value={name} onChange={handleNameChange} placeholder="한글 또는 영문으로 입력 가능" required />
+        <label>이름</label><span />
       </InputField> {!isValidName && name !== "" && <p>한글 또는 영문으로만 입력해주세요</p>}
 
-      <InputField><input type="text" value={email} onChange={handleEmailChange} placeholder="ex)chunjae@chunjae.com" required/>
-        <label>이메일</label><span/>
+      <InputField><input type="text" value={email} onChange={handleEmailChange} placeholder="ex)chunjae@chunjae.com" required />
+        <label>이메일</label><span />
       </InputField> {!isValidEmail && email !== "" && <p>이메일 형식에 맞게 입력해주세요</p>}
       {isValidEmail && email !== "" && <ApplyButton>인증하기</ApplyButton>}
 
       <InputField><input type="text" placeholder="인증코드를 입력해주세요" required />
-        <label>이메일 인증코드 입력</label><span/>
+        <label>이메일 인증코드 입력</label><span />
       </InputField>
 
-      <InputField><input type="password" value={password} onChange={handlePasswordChange} placeholder="영문,숫자,특수문자 포함 8~20자내" required/>
-        <label>비밀번호</label><span/>
+      <InputField><input type="password" value={password} onChange={handlePasswordChange} placeholder="영문,숫자,특수문자 포함 8~20자내" required />
+        <label>비밀번호</label><span />
       </InputField> {!isValidPassword && password !== "" && <p>비밀번호는 영문, 숫자, 특수문자를 모두 포함하여 공백없이 8~20자로 입력해주세요</p>}
 
-      <InputField><input type="password" value={confirmPassword} onChange={handleConfirmPasswordChange} placeholder="비밀번호를 확인해주세요" required/>
-        <label>비밀번호 확인</label><span/>
+      <InputField><input type="password" value={confirmPassword} onChange={handleConfirmPasswordChange} placeholder="비밀번호를 확인해주세요" required />
+        <label>비밀번호 확인</label><span />
       </InputField> {!isValidConfirmPassword && confirmPassword !== "" && <p>비밀번호가 일치하지 않습니다</p>}
 
-      <InputField><input type="text" value={birthday} onChange={handleBirthdayChange} placeholder="생년월일" required/>
-        <label>생년월일</label><span/>
+      <InputField><input type="text" value={birthday} onChange={handleBirthdayChange} placeholder="생년월일" required />
+        <label>생년월일</label><span />
       </InputField> {!isValidBirthday && birthday !== "" && <p>YYYY-MM-DD 형식으로 작성해주세요</p>}
 
-      <InputField><input type="text" value={phone} onChange={handlePhoneChange} placeholder="휴대전화 번호" required/>
-        <label>휴대전화 번호</label><span/>
+      <InputField><input type="text" value={phone} onChange={handlePhoneChange} placeholder="휴대전화 번호" required />
+        <label>휴대전화 번호</label><span />
       </InputField> {!isValidPhone && phone !== "" && <p>010-0000-0000 형식으로 작성해주세요</p>}
 
-      <InputField>
+      <InputField id='type'>
         <div>가입유형</div>
-          일반 <input type="radio" id='type' name="type" onChange={handleChangeClose}/> 
-          직원<input type="radio" id='type' name="type" onChange={handleChangeOpen}/>
+        일반 <input type="radio" value={`0`} onChange={handleChange} checked='checked' />
+        직원 <input type="radio" value={`1`} onChange={handleChange} />
         {isChecked ? (
           <InputField>
-            <input type="text" name='employeeNumber' placeholder="사원번호 없을 시 입력 안해도 됩니다"/>
-            <label>사원번호</label><span/>
-            </InputField>
+            <input type="text" value={employeeNumber} onChange={saveEmployeeNumber} placeholder="사원번호 없을 시 입력 안해도 됩니다" />
+            <label>사원번호</label><span />
+          </InputField>
         ) : null}
       </InputField>
 

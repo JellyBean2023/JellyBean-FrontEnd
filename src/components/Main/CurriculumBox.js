@@ -15,7 +15,7 @@ const CurriculumBox = (props) => {
         });
     });
 
-    return (        
+    return (
         <div data-aos="fade-up" className="p-4 w-full lg:w-1/3">
             <div className="h-full bg-gray-100 bg-opacity-75 px-8 pt-16 pb-24 rounded-lg overflow-hidden text-center relative dark:bg-slate-800 ">
                 <div variant="h1">
