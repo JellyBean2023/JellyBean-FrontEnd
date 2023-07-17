@@ -86,7 +86,7 @@ const InsertContainer = styled.div`
     border: 1px solid gray;
   }
 
-   &#flex{
+   .flex{
     display: flex;
 
     &_column {
@@ -372,7 +372,7 @@ const ApplyForms = (props) => {
 
     <InsertForm>
       <form action={`/curriculum/${id}`} onSubmit={handleSubmit}>
-        <InsertContainer id={`flex${id}`}>
+        <InsertContainer id={id} className="flex">
           <h2 id={`import`}>*기본 입력정보</h2>
           <InputField id={id}><input type="text" defaultValue={information.name} required /><label>Name</label></InputField>
           <InputField id={id}><input type="date" defaultValue={information.date} required /><label>생년월일</label></InputField>

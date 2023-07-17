@@ -63,7 +63,7 @@ const Box = styled.div`
 
     &#review{
         width: 54rem;
-        height: 100px;
+        height: 11rem;
         background-color: #EDE0E0;
         margin-top: 40px;
         margin-left: 50px;
@@ -95,7 +95,7 @@ const Box = styled.div`
 
 const ReviewBox = styled.div`
     width: 60rem;
-    height: 38rem;
+    height: 57rem;
     background-color: #D9D9D9;
     border-radius: 20px;
 
@@ -104,6 +104,15 @@ const ReviewBox = styled.div`
         height: 68.5rem;
     }
 
+`;
+
+const ImageBox = styled.div`
+    margin-left: 1rem;
+    margin-bottom: 10px;
+    width: 8rem;
+    height: 8rem;
+    border-radius: 50%;
+    background-color: blue  ;
 `;
 
 
@@ -120,7 +129,9 @@ const Section2 = () => {
                 <p id='title'>천재교육 디지털 러닝팀에서 만나요</p>
                 <BoxContainer>
                     <ReviewBox data-aos="zoom-in-up">
-                        <Box id='review'></Box>
+                        <Box id='review'>
+                            <ImageBox></ImageBox>
+                        </Box>
                         <Box id='review'></Box>
                         <Box id='review'></Box>
                         <Box id='review'></Box>
