@@ -2,10 +2,8 @@ import { useEffect, useState } from "react";
 import { styled } from "styled-components";
 
 const ApplyForm = styled.main`
-  margin-left: 3rem;
-  margin-right: 3rem;
-  padding: 3rem;
-  background-color: ${props => `var(--${props.id}-color)`};
+  width: 100%;
+  background-color: white;
   color: black;
 
   @media screen and (max-width: 1024px) {
@@ -13,23 +11,40 @@ const ApplyForm = styled.main`
     margin-right: 1rem;
     padding: 1rem;
   }
-  
-  p:nth-last-child(1) {
-    &#import {
-      color: ${props => `var(--${props.id}-sub-color)`};
-    }
-  }
+`;
+
+const InsertForm = styled.div`
+  margin-left: 5rem;
+  margin-right: 5rem;
+  padding: 3rem;
+  background-color: white;
+  color: black;
 `;
 
 const Intro = styled.div`
+  height: 20rem;
   margin-bottom: 50px;
+  padding: 20px 0 0 50px;
+  background-color: ${props => `var(--${props.id}-color)`};
+  color: white;
+
   h1 {
     font-size: 50px;
   }
 
   p {
-    color: gray;
     font-size: 15px;
+
+    &#top{
+      padding-bottom: 20px
+    }
+  }
+
+   p:nth-last-child(1) {
+    &#import {
+      color: ${props => `var(--${props.id}-sub-color)`};
+      padding-top: 20px;
+    }
   }
 `;
 
@@ -38,10 +53,12 @@ const InsertContainer = styled.div`
   align-items: flex-start;
   justify-content: space-between;
   margin: 25px 0;
-  
   background-color: rgba(255,255,255);
   border-radius: 10px;
   padding: 1rem;
+  border: 1px solid;
+  border-color: ${props => `var(--${props.id}-color)`};
+
 
   h2 {
     font-size: 20px;
@@ -69,7 +86,7 @@ const InsertContainer = styled.div`
     border: 1px solid gray;
   }
 
-   &#flex{
+   .flex{
     display: flex;
 
     &_column {
@@ -124,6 +141,11 @@ const InputField = styled.div`
     margin-top: 30px;
     color: transparent;
 
+    &#number{
+      padding-top: 40px;
+      width: 30%;
+    }
+
     &::placeholder {
       float: right;
       color: gray;
@@ -135,7 +157,7 @@ const InputField = styled.div`
     }
     
     &#universe {
-      width: 80%;
+      width: 40%;
     }
 
     &:focus ~ label, &:valid ~ label {
@@ -144,6 +166,7 @@ const InputField = styled.div`
       font-weight: bold;
       color: ${props => `var(--${props.id}-sub-color)`};
     }
+
 
   }
   
@@ -203,6 +226,11 @@ const ApplyForms = (props) => {
     email: 'email@chunjae.com'
   }
 
+  const phoneNumberList = [
+    {value: 1, text: '기존 연락처'},
+    {value: 2, text: '다른 연락처'}
+  ];
+
   const recommendList = [
     { value: 1, text: '비해당' },
     { value: 2, text: '취업지원센터' },
@@ -258,6 +286,11 @@ const ApplyForms = (props) => {
 
   const [isOtherChecked, setIsOtherChecked] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
+
+  const handlePhoneNumberChange = (event) => {
+    setIsOtherChecked(event.target.value === "2");
+  };
+
 
   const handleExperienceChange = (event) => {
     setIsOtherChecked(event.target.value === "5");
@@ -324,35 +357,50 @@ const ApplyForms = (props) => {
   };
 
   return (
-    <ApplyForm id={id}>
-      <Intro>
-        <h1>{components[id]}</h1>
-        <p>천재교육에서 운영하는 geniA.아카데미의 지원서입니다.</p>
+    <ApplyForm>
+
+      <Intro id={id}>
+        <h1>천재 IT 교육센터 - {components[id]}</h1>
+        <p id ="top">천재교육에서 운영하는 geniA.아카데미의 지원서입니다.</p>
         <p>** 본인에게 해당하는 과정명 선택 후 아래 질문에 응답해주시기 바랍니다.</p>
         <p>** 저희는 서류 위주로 선발 절차가 진행되므로 가능한 한 상세한 작성 부탁드립니다.</p>
         <p>- 학력, 경력 등의 정보는 정보 수집용일 뿐 합격 여부와는 무관합니다.</p>
         <p>※ 신청서 기재 내용이 허위로 판명될 경우 합격이 취소될 수 있습니다. 추후 인턴 또는 채용 전환 시 합격 취소가 되실 수 있습니다.</p>
         <p>- 지원서를 통해 취득한 개인정보는 지원과 선발 절차, 교육 과정 입과 단계에서만 이용될 것을 명시합니다.</p>
-        <p id="import">앞으로의 비전과 반드시 함께하겠다는 의지, 그리고 하루하루의 실천을 해 나갈 수 있는 많은 분들을 응원합니다.</p>
+        <p id= "import">앞으로의 비전과 반드시 함께하겠다는 의지, 그리고 하루하루의 실천을 해 나갈 수 있는 많은 분들을 응원합니다.</p>
       </Intro>
 
+    <InsertForm>
       <form action={`/curriculum/${id}`} onSubmit={handleSubmit}>
-        <InsertContainer id={`flex`}>
+        <InsertContainer id={id} className="flex">
           <h2 id={`import`}>*기본 입력정보</h2>
           <InputField id={id}><input type="text" defaultValue={information.name} required /><label>Name</label></InputField>
           <InputField id={id}><input type="date" defaultValue={information.date} required /><label>생년월일</label></InputField>
           <InputField id={id}><input type="email" defaultValue={information.email} required /><label>이메일</label></InputField>
         </InsertContainer>
 
-        <InsertContainer id={`flex_column`}>
+        <InsertContainer className="input_margin" id={id}>
           <h2>연락처</h2>
-          <InputField id={id}>
-            <input type="text" value={phone} onChange={handlePhoneChange} placeholder="ex) 010-0000-0000" required />
-            <label>연락받을 연락처</label>
-          </InputField>{!isValidPhone && phone !== "" && <p>010-0000-0000 형식으로 작성해주세요</p>}
+          {phoneNumberList.map((list, i) => (
+            <label key={i}>
+              {list.value === 2 ? (
+                <>
+                  <input type="radio" name="phoneNumber" value={list.value} onChange={handlePhoneNumberChange} />
+                  {list.text}
+                  {isOtherChecked ? <InputField id={id}><input id="number" type="text" value={phone} onChange={handlePhoneChange} placeholder="ex) 010-0000-0000" required /> <label>연락받을 연락처</label></InputField> : null}
+                </>
+              ) : (
+                <>
+                  <input type="radio" name="phoneNumber" value={list.value} onChange={handlePhoneNumberChange} />
+                  {list.text}
+                </>
+              )}
+            </label>
+          ))}
+         {!isValidPhone && phone !== "" && <p>010-0000-0000 형식으로 작성해주세요</p>}
         </InsertContainer>
 
-        <InsertContainer>
+        <InsertContainer id={id}>
           <h2>추천 전형 여부를 체크해주세요</h2>
           <select onChange={handleRecommend} defaultValue={recommend} required>
             <option value="" disabled hidden>Choose</option>
@@ -364,7 +412,7 @@ const ApplyForms = (props) => {
           </select>
         </InsertContainer>
 
-        <InsertContainer>
+        <InsertContainer id={id}>
           <h2>최종학력을 체크해주세요</h2>
           <select onChange={handleGrade} defaultValue={grade} required>
             <option value="" disabled hidden>Choose</option>
@@ -376,12 +424,12 @@ const ApplyForms = (props) => {
           </select>
         </InsertContainer>
 
-        <InsertContainer id={`flex`}>
+        <InsertContainer id={id}>
           <h2>최종 졸업 (혹은 졸업예정 학교)학교(전공명)를 입력해 주세요. <label id="sm">** 자료 수집용일 뿐 선발절차에 반영되지 않습니다.</label> </h2>
           <InputField id={id}><input id="universe" type="text" placeholder="ex) 천재대학교(전공명)" required /><label>최종 졸업(전공명)</label></InputField>
         </InsertContainer>
 
-        <InsertContainer>
+        <InsertContainer id={id}>
           <h2>국민내일배움카드를 소지하고 계신가요?</h2>
           <p id="sm">내일배움카드 없이도 접수는 가능하지만 최소 교육시작일 전까지 국민내일배움카드 발급이 완료되어 있어야 합니다.</p>
           <select onChange={handleCard} defaultValue={getCard} required>
@@ -394,7 +442,7 @@ const ApplyForms = (props) => {
           </select>
         </InsertContainer>
 
-        <InsertContainer>
+        <InsertContainer id={id}>
           <h2>기존 k-Digital Training 과정을 수강하신 적이 있으신가요.</h2>
           <p id="sm">K-digital Training 과정은 5년간 1번 지원받을 수 있으므로, 교육비 전액의 자부담이 발생할 수 있습니다.</p>
           <select onChange={handleEX} defaultValue={getEx} required>
@@ -407,7 +455,7 @@ const ApplyForms = (props) => {
           </select>
         </InsertContainer>
 
-        <InsertContainer className="input_margin">
+        <InsertContainer className="input_margin" id={id}>
           <h2>코딩 경험 여부를 알려주세요.</h2>
           <p>(코딩 공부 경험시간을 포함한 경험을 입력해주세요.)</p>
           {experienceList.map((list, i) => (
@@ -428,7 +476,7 @@ const ApplyForms = (props) => {
           ))}
         </InsertContainer>
 
-        <InsertContainer>
+        <InsertContainer id={id}>
           <h2>해당 분야로 지원하는 이유를 작성해주세요.</h2>
           <InputField id={id}><textarea id="text_ap" required/></InputField>
         </InsertContainer>
@@ -469,6 +517,7 @@ const ApplyForms = (props) => {
           <input type="submit" value={`신청하기`}/>
         </ButtonContainer>
       </form>
+      </InsertForm>
     </ApplyForm>
   );
 }

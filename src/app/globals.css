@@ -17,12 +17,12 @@
 
 
 
-  --java-color: #ffedd9;
+  --java-color: #082058;
   --java-sub-color: #eaa047;
-  --bigdata-color: #7ea5f8;
-  --bigdata-sub-color: #553bf3;
-  --pm-color: #fffce3;
-  --pm-sub-color: #ffc600;
+  --bigdata-color: #553BF3;
+  --bigdata-sub-color: #eaa047;
+  --pm-color: #FFBD13;
+  --pm-sub-color: #553BF3;
 
   /* 폰트 및 형식*/
   --nav-name-font-size: 1.5rem;
