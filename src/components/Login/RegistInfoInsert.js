@@ -34,7 +34,7 @@ const Title = styled.span`
 `;
 
 const InputField = styled.div`
-
+  color: var(--theme-color);
   position: relative;
   margin-top: 65px;
   
@@ -57,6 +57,10 @@ const InputField = styled.div`
 
     &:focus {
       outline: none;
+    }
+
+    &#type {
+      width: auto;
     }
   }
 
@@ -93,6 +97,10 @@ const InputField = styled.div`
     &:focus ~ span, &:valid ~ span {
       width: 100%;
     }
+  }
+
+  div {
+    font-size: 20px;
   }
 `;
 
@@ -233,6 +241,14 @@ const RegistInfoInsert = (active) => {
       setIsValidPhone(true);
   };
 
+  const [isChecked, setIsChecked] = useState(false);
+  const handleChangeOpen = () => {
+    setIsChecked(true);
+  };
+  const handleChangeClose = () => {
+    setIsChecked(false);
+  };
+
   //약관동의
   const registCheck = useRecoilValue(RegistCheckState).map((item) => item.id);
   // Submit 핸들러
@@ -290,6 +306,18 @@ const RegistInfoInsert = (active) => {
       <InputField><input type="text" value={phone} onChange={handlePhoneChange} placeholder="휴대전화 번호" required/>
         <label>휴대전화 번호</label><span/>
       </InputField> {!isValidPhone && phone !== "" && <p>010-0000-0000 형식으로 작성해주세요</p>}
+
+      <InputField>
+        <div>가입유형</div>
+          일반 <input type="radio" id='type' name="type" onChange={handleChangeClose}/> 
+          직원<input type="radio" id='type' name="type" onChange={handleChangeOpen}/>
+        {isChecked ? (
+          <InputField>
+            <input type="text" name='employeeNumber' placeholder="사원번호 없을 시 입력 안해도 됩니다"/>
+            <label>사원번호</label><span/>
+            </InputField>
+        ) : null}
+      </InputField>
 
       <input type='hidden' value={registCheck} />
       <Button><input type="submit" value="회원 등록하기" /></Button>
