@@ -33,9 +33,6 @@
       --normal-font-size: 1rem;
   };
 
-  /* 헤더 높이 */
-  --header-height: 100px;
-
   /* 헤더의 z-index */
   --z-fixed: 100;
 
@@ -74,7 +71,7 @@ body {
 }
 
 main {
-  margin-top: calc(var(--header-height));
+  margin-top: 100px;
 }
 
 ul {

@@ -17,28 +17,6 @@ import GENIA from '@/assets/img/천재교육 디지털 러닝 GENIA.png';
 import '@/assets/scss/Head/Header.scss';
 import { signOut, useSession } from "next-auth/react";
 
-const HeaderContainer = styled.header`
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: var(--header-height);
-    padding: 0 1rem;
-    background-color: rgb(var(--background-rgb));
-    z-index: var(--z-fixed);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, .3);
-    border-radius: 0 0 20px 20px;
-    color: var(--text-color);
-
-    &_toggle {
-        font-size: 1.7rem;
-        cursor: pointer;
-    }
-`;
-
 const LoginArea = styled.div`
     svg {
         cursor: pointer;
@@ -72,7 +50,6 @@ const LoginArea = styled.div`
                 }
             }
             
-           
         }
 
         @media screen and (max-width: 1024px) {
@@ -84,8 +61,6 @@ const LoginArea = styled.div`
         }
     }
 
-
-    
     @media screen and (max-width: 1024px) {
         li.popup {
             display: none;
@@ -133,7 +108,7 @@ const Header = () => {
     }, [activeScreen]);
 
     return (
-        <HeaderContainer className="header">
+        <header className="header">
             <Link href={`/`} className="header_logo">
                 <Image src={GENIA} alt="Picture" priority />
             </Link>
@@ -219,7 +194,7 @@ const Header = () => {
                     </div>
                 </div>
             </nav>
-        </HeaderContainer>
+        </header>
     );
 }
 

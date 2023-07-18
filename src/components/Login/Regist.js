@@ -29,7 +29,7 @@ const Pages = styled.div`
   align-items: center;
   transition: height 0.3s ease;
   width: 200%;
-  padding-top: calc(var(--header-height) + 2rem);
+  padding-top: calc(100px + 2rem);
 
   @media (max-width: 1024px) {
     align-items: normal;
