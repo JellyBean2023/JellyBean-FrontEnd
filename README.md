@@ -16,21 +16,21 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 ## Page Description
 
-###Main
+### Main
 > Description
 
-###Login
+### Login
 > Description
 
-###Regist
+### Regist
 > Description
 
-###ApplyForm
+### ApplyForm
 > Description
 
-###Header
+### Header
 > Description
 
-###Footer
+### Footer
 > Description
 
