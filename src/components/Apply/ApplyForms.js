@@ -358,25 +358,27 @@ const ApplyForms = (props) => {
       alert('휴대폰 번호를 확인해주세요');
       return;
     }
+
+    const target = event.target.elements;
   
     const formData = {
-      name: event.target.elements.name ? event.target.elements.name.value : '',
-      date: event.target.elements.date ? event.target.elements.date.value : '',
-      email: event.target.elements.email ? event.target.elements.email.value : '',
-      phoneNumber: event.target.elements.phoneNumber ? event.target.elements.phoneNumber.value : '',
-      recommend: event.target.elements.recommend ? event.target.elements.recommend.value : '',
-      grade: event.target.elements.grade ? event.target.elements.grade.value : '',
-      universe: event.target.elements.universe ? event.target.elements.universe.value : '',
-      getCard: event.target.elements.getCard ? event.target.elements.getCard.value : '',
-      getEx: event.target.elements.getEx ? event.target.elements.getEx.value : '',
-      experience: event.target.elements.experience ? event.target.elements.experience.value : '',
-      experienceText: event.target.elements.experienceText ? event.target.elements.experienceText.value : '',
-      reason: event.target.elements.reason ? event.target.elements.reason.value : '',
-      paths: Array.from(event.target.elements.paths || [])
+      name: target.name ? target.name.value : '',
+      date: target.date ? target.date.value : '',
+      email: target.email ? target.email.value : '',
+      phoneNumber: target.phoneNumber ? target.phoneNumber.value : '',
+      recommend: target.recommend ? target.recommend.value : '',
+      grade: target.grade ? target.grade.value : '',
+      universe: target.universe ? target.universe.value : '',
+      getCard: target.getCard ? target.getCard.value : '',
+      getEx: target.getEx ? target.getEx.value : '',
+      experience: target.experience ? target.experience.value : '',
+      experienceText: target.experienceText ? target.experienceText.value : '',
+      reason: target.reason ? target.reason.value : '',
+      paths: Array.from(target.paths || [])
         .filter((checkbox) => checkbox.checked)
         .map((checkbox) => checkbox.value),
-      agreeCollect: event.target.elements.agreeCollect ? event.target.elements.agreeCollect.checked : false,
-      agreeThirdParty: event.target.elements.agreeThirdParty ? event.target.elements.agreeThirdParty.checked : false,
+      agreeCollect: target.agreeCollect ? target.agreeCollect.checked : false,
+      agreeThirdParty: target.agreeThirdParty ? target.agreeThirdParty.checked : false,
     };
 
     console.log(formData);
