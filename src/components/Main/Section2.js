@@ -1,6 +1,7 @@
+import { Skeleton } from "@mui/material";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
 const LayerContainer = styled.section`
@@ -123,6 +124,18 @@ const Section2 = () => {
         });
     });
 
+    //로딩 구현 함수
+    //useState(true) : 로딩 중
+    //useState(false) : 로딩 해제
+    const [loading, setLoading] = useState(true);
+    useEffect(() => {
+        const timer = setTimeout(() => {
+          setLoading(false);
+        }, 100000);
+      
+        return () => clearTimeout(timer);
+    }, []);
+
     return (
         <LayerContainer>
             <span data-aos="zoom-in-up">
@@ -130,7 +143,11 @@ const Section2 = () => {
                 <BoxContainer>
                     <ReviewBox data-aos="zoom-in-up">
                         <Box id='review'>
-                            <ImageBox></ImageBox>
+                            {loading ? (
+                                <Skeleton variant="circular" width={100} height={100}/>
+                            ):(
+                                <ImageBox></ImageBox>
+                            )}
                         </Box>
                         <Box id='review'></Box>
                         <Box id='review'></Box>

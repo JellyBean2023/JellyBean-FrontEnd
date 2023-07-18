@@ -332,8 +332,8 @@ const RegistInfoInsert = (active) => {
 
       <InputField id='type'>
         <div>가입유형</div>
-        일반 <input type="radio" value={`0`} onChange={handleChange} checked='checked' />
-        직원 <input type="radio" value={`1`} onChange={handleChange} />
+        일반 <input type="radio" name='employee' value={`0`} onChange={handleChange}/>
+        직원 <input type="radio" name='employee' value={`1`} onChange={handleChange} />
         {isChecked ? (
           <InputField>
             <input type="text" value={employeeNumber} onChange={saveEmployeeNumber} placeholder="사원번호 없을 시 입력 안해도 됩니다" />
