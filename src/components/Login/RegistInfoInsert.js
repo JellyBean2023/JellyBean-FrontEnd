@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { useRecoilValue } from 'recoil';
 import { RegistCheckState } from './RegistCheck';
 import axios from 'axios';
+import { useRouter } from 'next/navigation';
 
 const Form = styled.form`
   width: 50%;
@@ -260,6 +261,8 @@ const RegistInfoInsert = (active) => {
 
   //약관동의
   const registCheck = useRecoilValue(RegistCheckState).map((item) => item.id);
+
+  const router = useRouter();
   // Submit 핸들러
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -271,28 +274,35 @@ const RegistInfoInsert = (active) => {
       alert('1번과 2번 약관에 모두 동의해야 합니다.');
       return;
     }
-    
+
     const formData = {
-      name,
-      email,
-      password,
-      confirmPassword,
-      birthday,
-      phone,
-      registCheck,
+      name: name,
+      password: password,
+      confirmPassword: confirmPassword,
+      phone: phone,
+      email: email,
+      birthday: birthday,
+      registCheck: registCheck.toString(),
       type: isChecked ? '직원' : '일반',
-      employeeNumber,
+      employeeNumber: employeeNumber,
     };
     
     try {
-      const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/regist`, formData);
+      const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/regist`, formData, {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
     
-      if (response.status === 200)
+      if (response.status === 200) {
         console.log('회원 등록이 성공적으로 완료되었습니다.');
-      else
-        console.error('회원 등록에 실패하였습니다.');
+        router.replace("/");
+      } else {
+        console.log('회원 등록에 실패하였습니다.');
+      }
     } catch (error) {
-      console.error('회원 등록 중 오류가 발생하였습니다.', error);
+      console.log('회원 등록 중 오류가 발생하였습니다.');
+      console.log('오류 응답:', error.response);
     }
     
   };
@@ -332,7 +342,7 @@ const RegistInfoInsert = (active) => {
 
       <InputField id='type'>
         <div>가입유형</div>
-        일반 <input type="radio" name='employee' value={`0`} onChange={handleChange}/>
+        일반 <input type="radio" name='employee' value={`0`} onChange={handleChange} />
         직원 <input type="radio" name='employee' value={`1`} onChange={handleChange} />
         {isChecked ? (
           <InputField>
