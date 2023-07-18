@@ -39,7 +39,26 @@ const InputField = styled.div`
   color: var(--theme-color);
   position: relative;
   margin-top: 65px;
-  
+
+  &#type {
+    div {
+      font-size: 20px;
+      margin-bottom: 24px;
+      margin-top: -5px;
+      margin-left: 5px;
+
+      &#join{
+        padding-top: 0px
+      }
+    }
+
+    &input{
+      &user{
+        width: auto;
+      }
+    }
+  }
+
   input {
     font-size: 15px;
     color: var(--theme-color);
@@ -52,6 +71,10 @@ const InputField = styled.div`
     background: none;
     z-index: 5;
 
+    &#user{
+      width: 20px;
+    }
+
     &::placeholder {
       float: right;
       color: gray;
@@ -62,7 +85,9 @@ const InputField = styled.div`
     }
 
     &#type {
-      width: auto;
+      &input{
+        width: auto;
+      }
     }
   }
 
@@ -100,13 +125,8 @@ const InputField = styled.div`
       width: 100%;
     }
   }
-
-  &#type {
-    div {
-      font-size: 20px;
-      margin-bottom: 5px;
-      margin-top: 30px;
-    }
+  div{
+    padding-bottom: -50px;
   }
 `;
 
@@ -158,6 +178,18 @@ const ApplyButton = styled.button`
   &:hover {
     background-color: var(--theme-color);
   }
+`;
+
+const UserBox = styled.div`
+  padding-left: 370px;
+  
+  &#right{
+    padding-left: 20px;
+  }
+`;
+
+const Box = styled.div`
+  display: flex;
 `;
 
 const RegistInfoInsert = (active) => {
@@ -341,15 +373,22 @@ const RegistInfoInsert = (active) => {
       </InputField> {!isValidPhone && phone !== "" && <p>010-0000-0000 형식으로 작성해주세요</p>}
 
       <InputField id='type'>
+      <Box>
         <div>가입유형</div>
-        일반 <input type="radio" name='employee' value={`0`} onChange={handleChange} />
-        직원 <input type="radio" name='employee' value={`1`} onChange={handleChange} />
+        <UserBox>
+        일반 <input id="user" type="radio" name='employee' value={`0`} onChange={handleChange}/>
+        </UserBox>
+        <UserBox id='right'>
+        직원 <input id="user" type="radio" name='employee' value={`1`} onChange={handleChange} />
+        </UserBox>
+        </Box>
         {isChecked ? (
-          <InputField>
+          <InputField id='employeeNum'>
             <input type="text" value={employeeNumber} onChange={saveEmployeeNumber} placeholder="사원번호 없을 시 입력 안해도 됩니다" />
-            <label>사원번호</label><span />
+            <label>사원번호</label><span/>
           </InputField>
         ) : null}
+        
       </InputField>
 
       <input type='hidden' value={registCheck} />
