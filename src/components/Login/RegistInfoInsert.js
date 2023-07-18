@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { useRecoilValue } from 'recoil';
 import { RegistCheckState } from './RegistCheck';
+import axios from 'axios';
 
 const Form = styled.form`
   width: 50%;
@@ -270,34 +271,30 @@ const RegistInfoInsert = (active) => {
       alert('1번과 2번 약관에 모두 동의해야 합니다.');
       return;
     }
-
+    
+    const formData = {
+      name,
+      email,
+      password,
+      confirmPassword,
+      birthday,
+      phone,
+      registCheck,
+      type: isChecked ? '직원' : '일반',
+      employeeNumber,
+    };
+    
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/regist`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          name,
-          email,
-          password,
-          confirmPassword,
-          birthday,
-          phone,
-          registCheck,
-          type: isChecked ? '직원' : '일반',
-          employeeNumber,
-        }),
-      });
-
-      if (response.ok) {
-        alert('회원 등록이 성공적으로 완료되었습니다.');
-      } else {
-        alert('회원 등록에 실패하였습니다.');
-      }
+      const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/regist`, formData);
+    
+      if (response.status === 200)
+        console.log('회원 등록이 성공적으로 완료되었습니다.');
+      else
+        console.error('회원 등록에 실패하였습니다.');
     } catch (error) {
-      alert('회원 등록 중 오류가 발생하였습니다.', error);
+      console.error('회원 등록 중 오류가 발생하였습니다.', error);
     }
+    
   };
 
   return (

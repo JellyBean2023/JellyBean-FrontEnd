@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { styled } from "styled-components";
 
-const ApplyForm = styled.main`
+const ApplyContainer = styled.main`
   width: 100%;
   background-color: white;
   color: black;
@@ -357,8 +357,8 @@ const ApplyForms = (props) => {
   };
 
   return (
-    <ApplyForm>
-
+    <ApplyContainer>
+      
       <Intro id={id}>
         <h1>천재 IT 교육센터 - {components[id]}</h1>
         <p id ="top">천재교육에서 운영하는 geniA.아카데미의 지원서입니다.</p>
@@ -518,7 +518,7 @@ const ApplyForms = (props) => {
         </ButtonContainer>
       </form>
       </InsertForm>
-    </ApplyForm>
+    </ApplyContainer>
   );
 }
 
