@@ -1,9 +1,11 @@
+import axios from "axios";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { styled } from "styled-components";
 
-const ApplyForm = styled.main`
+const ApplyContainer = styled.main`
   width: 100%;
-  background-color: white;
+  background-color: ${props => `var(--${props.id}--anti-text-color)`};
   color: black;
 
   @media screen and (max-width: 1024px) {
@@ -17,8 +19,8 @@ const InsertForm = styled.div`
   margin-left: 5rem;
   margin-right: 5rem;
   padding: 3rem;
-  background-color: white;
-  color: black;
+  background-color: ${props => `var(--${props.id}--anti-text-color)`};
+  color: ${props => `var(--${props.id}--text-color)`};
 `;
 
 const Intro = styled.div`
@@ -53,17 +55,21 @@ const InsertContainer = styled.div`
   align-items: flex-start;
   justify-content: space-between;
   margin: 25px 0;
-  background-color: rgba(255,255,255);
+  background-color: ${props => `var(--${props.id}--anti-text-color)`};
   border-radius: 10px;
   padding: 1rem;
   border: 1px solid;
-  border-color: ${props => `var(--${props.id}-color)`};
+  color: var(--text-color);
 
+  select{
+    background-color: ${props => `var(--${props.id}--anti-text-color)`};
+  }
 
   h2 {
     font-size: 20px;
     flex-basis: 100%;
     margin-bottom: 10px;
+    color: ${props => `var(--${props.id}--text-color)`};
     
     &#import {
       color: red;
@@ -127,6 +133,7 @@ const InsertContainer = styled.div`
 const InputField = styled.div`
   flex-basis: calc(50% - 10px);
   position: relative;
+  border-color: var(--anti--text-color);
   
   input {
     font-size: 15px;
@@ -143,7 +150,7 @@ const InputField = styled.div`
 
     &#number{
       padding-top: 40px;
-      width: 30%;
+      width: 50%;
     }
 
     &::placeholder {
@@ -157,7 +164,7 @@ const InputField = styled.div`
     }
     
     &#universe {
-      width: 40%;
+      width: 50%;
     }
 
     &:focus ~ label, &:valid ~ label {
@@ -166,8 +173,6 @@ const InputField = styled.div`
       font-weight: bold;
       color: ${props => `var(--${props.id}-sub-color)`};
     }
-
-
   }
   
   label {
@@ -180,7 +185,17 @@ const InputField = styled.div`
   }
 
   textarea {
-    &#text_ap{
+    background-color:  ${props => `var(--${props.id}--anti-text-color)`};
+
+    &#agreement1{
+      border-color: 1px solid var(--taxt-color);
+    }
+
+    &#agreement2{
+      border-color: 1px solid var(--taxt-color);
+    }
+
+    &.text_ap{
       font-size: 16px;
       width: 100%;
       min-height: 10rem;
@@ -349,16 +364,61 @@ const ApplyForms = (props) => {
     }
   };
 
-  const handleSubmit = (event) => {
-    if(!isValidPhone) {
-      event.preventDefault();
-      alert("비밀번호를 확인해주세요");
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+  
+    if (!isValidPhone) {
+      alert('휴대폰 번호를 확인해주세요');
+      return;
+    }
+
+    const target = event.target.elements;
+  
+    const formData = {
+      name: target.name ? target.name.value : '',
+      date: target.date ? target.date.value : '',
+      email: target.email ? target.email.value : '',
+      phoneNumber: target.phoneNumber ? target.phoneNumber.value : '',
+      recommend: target.recommend ? target.recommend.value : '',
+      grade: target.grade ? target.grade.value : '',
+      universe: target.universe ? target.universe.value : '',
+      getCard: target.getCard ? target.getCard.value : '',
+      getEx: target.getEx ? target.getEx.value : '',
+      experience: target.experience ? target.experience.value : '',
+      experienceText: target.experienceText ? target.experienceText.value : '',
+      reason: target.reason ? target.reason.value : '',
+      paths: Array.from(target.paths || [])
+        .filter((checkbox) => checkbox.checked)
+        .map((checkbox) => checkbox.value),
+      agreeCollect: target.agreeCollect ? target.agreeCollect.checked : false,
+      agreeThirdParty: target.agreeThirdParty ? target.agreeThirdParty.checked : false,
+    };
+
+    console.log(formData);
+  
+    try {
+      const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/curriculum/${id}`, formData, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+  
+      if (response.status === 200) {
+        console.log('회원 등록이 성공적으로 완료되었습니다.');
+        const router = useRouter();
+        router.replace('/');
+      } else {
+        console.log('회원 등록에 실패하였습니다.');
+      }
+    } catch (error) {
+      console.log('회원 등록 중 오류가 발생하였습니다.');
+      console.log('오류 응답:', error.response);
     }
   };
-
+  console.log(id);
   return (
-    <ApplyForm>
-
+    <ApplyContainer>
+      
       <Intro id={id}>
         <h1>천재 IT 교육센터 - {components[id]}</h1>
         <p id ="top">천재교육에서 운영하는 geniA.아카데미의 지원서입니다.</p>
@@ -374,13 +434,13 @@ const ApplyForms = (props) => {
       <form action={`/curriculum/${id}`} onSubmit={handleSubmit}>
         <InsertContainer id={id} className="flex">
           <h2 id={`import`}>*기본 입력정보</h2>
-          <InputField id={id}><input type="text" defaultValue={information.name} required /><label>Name</label></InputField>
-          <InputField id={id}><input type="date" defaultValue={information.date} required /><label>생년월일</label></InputField>
-          <InputField id={id}><input type="email" defaultValue={information.email} required /><label>이메일</label></InputField>
+          <InputField id={id}><input type="text" name="name" value={information.name} required /><label>Name</label></InputField>
+          <InputField id={id}><input type="date" name="date" value={information.date} required /><label>생년월일</label></InputField>
+          <InputField id={id}><input type="email" name="email" value={information.email} required /><label>이메일</label></InputField>
         </InsertContainer>
 
         <InsertContainer className="input_margin" id={id}>
-          <h2>연락처</h2>
+          <h2 id={id}>연락처</h2>
           {phoneNumberList.map((list, i) => (
             <label key={i}>
               {list.value === 2 ? (
@@ -402,7 +462,7 @@ const ApplyForms = (props) => {
 
         <InsertContainer id={id}>
           <h2>추천 전형 여부를 체크해주세요</h2>
-          <select onChange={handleRecommend} defaultValue={recommend} required>
+          <select onChange={handleRecommend} name="recommend" value={recommend} required>
             <option value="" disabled hidden>Choose</option>
             {recommendList.map((list, i) => (
               <option value={list.value} key={i}>
@@ -414,7 +474,7 @@ const ApplyForms = (props) => {
 
         <InsertContainer id={id}>
           <h2>최종학력을 체크해주세요</h2>
-          <select onChange={handleGrade} defaultValue={grade} required>
+          <select onChange={handleGrade} name="grade" value={grade} required>
             <option value="" disabled hidden>Choose</option>
             {gradeList.map((list, i) => (
               <option value={list.value} key={i}>
@@ -426,13 +486,13 @@ const ApplyForms = (props) => {
 
         <InsertContainer id={id}>
           <h2>최종 졸업 (혹은 졸업예정 학교)학교(전공명)를 입력해 주세요. <label id="sm">** 자료 수집용일 뿐 선발절차에 반영되지 않습니다.</label> </h2>
-          <InputField id={id}><input id="universe" type="text" placeholder="ex) 천재대학교(전공명)" required /><label>최종 졸업(전공명)</label></InputField>
+          <InputField id={id}><input id="universe" type="text" name="universe" placeholder="ex) 천재대학교(전공명)" required /><label>최종 졸업(전공명)</label></InputField>
         </InsertContainer>
 
         <InsertContainer id={id}>
           <h2>국민내일배움카드를 소지하고 계신가요?</h2>
           <p id="sm">내일배움카드 없이도 접수는 가능하지만 최소 교육시작일 전까지 국민내일배움카드 발급이 완료되어 있어야 합니다.</p>
-          <select onChange={handleCard} defaultValue={getCard} required>
+          <select onChange={handleCard} name="getCard" value={getCard} required>
             <option value="" disabled hidden>Choose</option>
             {getCardList.map((list, i) => (
               <option value={list.value} key={i}>
@@ -445,7 +505,7 @@ const ApplyForms = (props) => {
         <InsertContainer id={id}>
           <h2>기존 k-Digital Training 과정을 수강하신 적이 있으신가요.</h2>
           <p id="sm">K-digital Training 과정은 5년간 1번 지원받을 수 있으므로, 교육비 전액의 자부담이 발생할 수 있습니다.</p>
-          <select onChange={handleEX} defaultValue={getEx} required>
+          <select onChange={handleEX} name="getEx" value={getEx} required>
             <option value="" disabled hidden>Choose</option>
             {getEXList.map((list, i) => (
               <option value={list.value} key={i}>
@@ -464,7 +524,7 @@ const ApplyForms = (props) => {
                 <>
                   <input type="radio" name="experience" value={list.value} onChange={handleExperienceChange} />
                   {list.text}
-                  {isOtherChecked ? <InputField id={id}><input id="universe" type="text" /></InputField> : null}
+                  {isOtherChecked ? <InputField id={id}><input id="universe" name="experienceText" type="text" /></InputField> : null}
                 </>
               ) : (
                 <>
@@ -478,7 +538,7 @@ const ApplyForms = (props) => {
 
         <InsertContainer id={id}>
           <h2>해당 분야로 지원하는 이유를 작성해주세요.</h2>
-          <InputField id={id}><textarea id="text_ap" required/></InputField>
+          <InputField id={id}><textarea id={id} className="text_ap" name="reason" required/></InputField>
         </InsertContainer>
 
         <InsertContainer id={id} className="input_margin">
@@ -503,14 +563,14 @@ const ApplyForms = (props) => {
 
         <InsertContainer className="input_margin" id={id}>
           <h2>* 개인정보 수집 및 이용 동의</h2>
-          <InputField id={id}><textarea value={initialTextareaValue1} readOnly /></InputField>
-          <label><input type="checkbox" required/>개인정보 수집 및 이용에 동의합니다.</label>
+          <InputField id={id}><textarea id="agreement1" value={initialTextareaValue1} readOnly /></InputField>
+          <label><input type="checkbox" name="agreeCollect" required/>개인정보 수집 및 이용에 동의합니다.</label>
         </InsertContainer>
 
         <InsertContainer className="input_margin" id={id}>
           <h2>* 개인정보 제3자 제공 동의</h2>
-          <InputField id={id}><textarea value={initialTextareaValue2} readOnly /></InputField>
-          <label><input type="checkbox" required/>개인정보 제3자 제공에 대해 동의합니다.</label>
+          <InputField id={id}><textarea id="agreement2" value={initialTextareaValue2} readOnly /></InputField>
+          <label><input type="checkbox" name="agreeThirdParty" required/>개인정보 제3자 제공에 대해 동의합니다.</label>
         </InsertContainer>
 
         <ButtonContainer id={id}>
@@ -518,7 +578,7 @@ const ApplyForms = (props) => {
         </ButtonContainer>
       </form>
       </InsertForm>
-    </ApplyForm>
+    </ApplyContainer>
   );
 }
 
