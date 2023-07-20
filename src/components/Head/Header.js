@@ -135,7 +135,7 @@ const Header = () => {
                     <div className="nav_menu">
                         <ul className="nav_list">
                             <BsBell className="alert" />
-                            <li className="nav_item"><Link href={`/`} className="nav_link">고객센터</Link></li>
+                            <li className="nav_item"><Link href={`/Test`} className="nav_link">고객센터</Link></li>
                             <li className="nav_item"><Link href={`/`} className="nav_link">공지사항</Link></li>
                             <LoginArea>
                                 {status === "authenticated" ? (
