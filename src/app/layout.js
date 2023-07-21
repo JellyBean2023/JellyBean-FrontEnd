@@ -23,11 +23,11 @@ export default function RootLayout({ children }) {
       <body className={notoSansKr.className}>
         <Providers>
           <RecoilHOC>
-          <Header />
-          <StyledComponentsRegistry>
-            {children}
-          </StyledComponentsRegistry>
-          <Footer />
+            <StyledComponentsRegistry>
+              <Header />
+                {children}
+              <Footer />
+            </StyledComponentsRegistry>
           </RecoilHOC>
         </Providers>
       </body>

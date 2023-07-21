@@ -163,7 +163,7 @@ const Header = () => {
                     <div className="nav_menu">
                         <ul className="nav_list">
                             <li className="nav_item dropdown">
-                                <Link href="/" className="nav_link dropdown_link" onClick={() => openDropdown(1)}>천재교육 IT센터</Link>
+                                <Link href="/" className="nav_link dropdown_link" onClick={() => toggleDropdown(1)}>천재교육 IT센터</Link>
 
                                 <ul className="dropdown_menu" id={activeDropdown === 1 ? "show-menu" : ""}>
                                     <li className="dropdown_item"><Link href={`/`} className="nav_link">소개</Link></li>
@@ -171,7 +171,7 @@ const Header = () => {
                                 </ul>
                             </li>
                             <li className="nav_item dropdown">
-                                <Link href="/" className="nav_link dropdown_link" onClick={() => openDropdown(2)}>교육과정</Link>
+                                <Link href="/" className="nav_link dropdown_link" onClick={() => toggleDropdown(2)}>교육과정</Link>
                                 <ul className="dropdown_menu" id={activeDropdown === 2 ? "show-menu" : ""}>
                                     <li className="dropdown_item"><Link href={`/curriculum/java`} className="nav_link">Java 풀스택</Link></li>
                                     <li className="dropdown_item"><Link href={`/curriculum/bigdata`} className="nav_link">빅데이터</Link></li>
@@ -179,13 +179,13 @@ const Header = () => {
                                 </ul>
                             </li>
                             <li className="nav_item dropdown">
-                                <Link href="/" className="nav_link dropdown_link" onClick={() => openDropdown(3)}>강의실 예약</Link>
+                                <Link href="/" className="nav_link dropdown_link" onClick={() => toggleDropdown(3)}>강의실 예약</Link>
                                 <ul className="dropdown_menu" id={activeDropdown === 3 ? "show-menu" : ""}>
                                     <li className="dropdown_item"><Link href={`/`} className="nav_link">강의실 예약</Link></li>
                                 </ul>
                             </li>
                             <li className="nav_item dropdown">
-                                <Link href="/" className="nav_link dropdown_link" onClick={() => openDropdown(4)}>블로그 게시판 </Link>
+                                <Link href="/" className="nav_link dropdown_link" onClick={() => toggleDropdown(4)}>블로그 게시판 </Link>
                                 <ul className="dropdown_menu" id={activeDropdown === 4 ? "show-menu" : ""}>
                                     <li className="dropdown_item"><Link href={`/`} className="nav_link">블로그 게시판</Link></li>
                                 </ul>

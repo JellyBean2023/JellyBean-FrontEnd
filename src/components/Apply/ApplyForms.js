@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useRouter } from "next/navigation";
+import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { styled } from "styled-components";
 
@@ -421,9 +421,9 @@ const ApplyForms = (props) => {
       <form action={`/curriculum/${id}`} onSubmit={handleSubmit}>
         <InsertContainer id={id} className="flex">
           <h2 id={`import`}>*기본 입력정보</h2>
-          <InputField id={id}><input type="text" name="name" value={information.name} required /><label>Name</label></InputField>
-          <InputField id={id}><input type="date" name="date" value={information.date} required /><label>생년월일</label></InputField>
-          <InputField id={id}><input type="email" name="email" value={information.email} required /><label>이메일</label></InputField>
+          <InputField id={id}><input type="text" name="name" defaultValue={information.name} required /><label>Name</label></InputField>
+          <InputField id={id}><input type="date" name="date" defaultValue={information.date} required /><label>생년월일</label></InputField>
+          <InputField id={id}><input type="email" name="email" defaultValue={information.email} required /><label>이메일</label></InputField>
         </InsertContainer>
 
         <InsertContainer className="input_margin" id={id}>

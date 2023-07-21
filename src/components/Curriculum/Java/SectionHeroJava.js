@@ -125,8 +125,8 @@ const CurriculumJava = () => {
   return (
     <SectionHeroContainer>
       <Main data-aos="fade-up">
-        <Image id="L" src={obj}/>
-        <Image id="R" src={obj}/>
+        <Image id="L" src={obj} alt="img"/>
+        <Image id="R" src={obj} alt="img"/>
         <Title>
           <p>평범함을 넘어</p>
           <p>대체불가능한</p>
