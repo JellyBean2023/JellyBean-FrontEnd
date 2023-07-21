@@ -25,7 +25,7 @@ const Banner = () => {
         const file = response.data.map((path) => path.substring(path.lastIndexOf('\\') + 1));
         setFileNames(file);
       } catch (error) {
-        // console.error('Error fetching file names: ', error);
+        setFileNames([]);
       }
     };
 
