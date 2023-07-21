@@ -43,6 +43,8 @@ const Banner = () => {
         setLoading(false);
       } catch (error) {
         // console.error('Error fetching image:', error);
+        setImageUrls((prevImageUrls) => [...prevImageUrls, '']);
+        setLoading(false);
       }
     };
 
