@@ -101,7 +101,19 @@ const Box = styled.div`
     }
 
     div {
-        white-space: break-spaces;
+
+        &#star{
+            white-space: break-spaces;
+            display: flex;
+
+        }
+       
+        &#review{
+            white-space: break-spaces;
+            display: flex;
+            width: 48rem;
+            margin-right: -7rem;
+        }
     }
 `;
 
@@ -124,6 +136,7 @@ const Review = styled.div`
     background-color: lightgray;
     margin-left: 30px;
     border-radius: 10px;
+    display: inline-block;
 
     p{
         &#userId{
@@ -159,9 +172,9 @@ const Section2 = () => {
     const [loading, setLoading] = useState(true);
     useEffect(() => {
         const timer = setTimeout(() => {
-          setLoading(false);
-        }, 10000);
-      
+            setLoading(false);
+        }, 100000);
+
         return () => clearTimeout(timer);
     }, []);
 
@@ -173,63 +186,79 @@ const Section2 = () => {
                     <ReviewBox data-aos="zoom-in-up">
                         <Box id='review' data-aos="zoom-in-up">
                             {loading ? (
-                                <Skeleton variant="circular" width={100} height={100}/>
-                            ):(
-                                <ImageBox></ImageBox>
+                                <Skeleton variant="circular" width={100} height={100} />
+                            ) : (
+                                <ImageBox />
                             )}
-                             <Image src={Star1} alt='Star1' id='star'/>
-                             <Image src={Star1} alt='Star1' id='star'/>
-                             <Image src={Star1} alt='Star1' id='star'/>
-                             <Image src={Star1} alt='Star1' id='star'/>
-                             <Image src={Star1} alt='Star2' id='star'/>
-                            <Review>
-                                <p id="userId">아이디</p>
-                                <p id="reviewText">리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용</p>
-                            </Review>
+
+                            {loading ? (
+                                <Skeleton variant="text" />
+                            ) : (
+                                <div id="star">
+                                    <Image src={Star1} alt='Star1' id='star' />
+                                    <Image src={Star1} alt='Star1' id='star' />
+                                    <Image src={Star1} alt='Star1' id='star' />
+                                    <Image src={Star1} alt='Star1' id='star' />
+                                    <Image src={Star1} alt='Star2' id='star' />
+                                </div>
+                            )}
+
+                            {loading ? (
+                                <Skeleton variant="round">
+                                    <div id="review" />
+                                </Skeleton>
+                            ) : (
+                                <div id="review">
+                                    <Review>
+                                        <p id="userId">아이디</p>
+                                        <p id="reviewText">리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용</p>
+                                    </Review>
+                                </div>
+                            )}
                         </Box>
                         <Box id='review' data-aos="zoom-in-up">
-                        {loading ? (
-                                <Skeleton variant="circular" width={100} height={100}/>
-                            ):(
+                            {loading ? (
+                                <Skeleton variant="circular" width={100} height={100} />
+                            ) : (
                                 <ImageBox></ImageBox>
                             )}
-                             <Image src={Star1} alt='Star1' id='star'/>
-                             <Image src={Star1} alt='Star1' id='star'/>
-                             <Image src={Star1} alt='Star1' id='star'/>
-                             <Image src={Star1} alt='Star1' id='star'/>
-                             <Image src={Star2} alt='Star2' id='star'/>
+                            <Image src={Star1} alt='Star1' id='star' />
+                            <Image src={Star1} alt='Star1' id='star' />
+                            <Image src={Star1} alt='Star1' id='star' />
+                            <Image src={Star1} alt='Star1' id='star' />
+                            <Image src={Star2} alt='Star2' id='star' />
                             <Review>
                                 <p id="userId">아이디</p>
                                 <p id="reviewText">리뷰내용</p>
                             </Review>
                         </Box>
                         <Box id='review' data-aos="zoom-in-up">
-                        {loading ? (
-                                <Skeleton variant="circular" width={100} height={100}/>
-                            ):(
+                            {loading ? (
+                                <Skeleton variant="circular" width={100} height={100} />
+                            ) : (
                                 <ImageBox></ImageBox>
                             )}
-                             <Image src={Star1} alt='Star1' id='star'/>
-                             <Image src={Star1} alt='Star1' id='star'/>
-                             <Image src={Star1} alt='Star1' id='star'/>
-                             <Image src={Star2} alt='Star1' id='star'/>
-                             <Image src={Star2} alt='Star2' id='star'/>
+                            <Image src={Star1} alt='Star1' id='star' />
+                            <Image src={Star1} alt='Star1' id='star' />
+                            <Image src={Star1} alt='Star1' id='star' />
+                            <Image src={Star2} alt='Star1' id='star' />
+                            <Image src={Star2} alt='Star2' id='star' />
                             <Review>
                                 <p id="userId">아이디</p>
                                 <p id="reviewText">리뷰내용</p>
                             </Review>
                         </Box>
                         <Box id='review' data-aos="zoom-in-up">
-                        {loading ? (
-                                <Skeleton variant="circular" width={100} height={100}/>
-                            ):(
+                            {loading ? (
+                                <Skeleton variant="circular" width={100} height={100} />
+                            ) : (
                                 <ImageBox></ImageBox>
                             )}
-                             <Image src={Star1} alt='Star1' id='star'/>
-                             <Image src={Star1} alt='Star1' id='star'/>
-                             <Image src={Star2} alt='Star1' id='star'/>
-                             <Image src={Star2} alt='Star1' id='star'/>
-                             <Image src={Star2} alt='Star2' id='star'/>
+                            <Image src={Star1} alt='Star1' id='star' />
+                            <Image src={Star1} alt='Star1' id='star' />
+                            <Image src={Star2} alt='Star1' id='star' />
+                            <Image src={Star2} alt='Star1' id='star' />
+                            <Image src={Star2} alt='Star2' id='star' />
                             <Review>
                                 <p id="userId">아이디</p>
                                 <p id="reviewText">리뷰내용</p>
