@@ -308,7 +308,7 @@ const RegistInfoInsert = (active) => {
         { email: email },
         { headers: {"Content-Type": "application/json"} }
       );
-      
+      response.data
       if (response.ok) {
         alert("인증 이메일이 발송되었습니다. 인증번호를 확인해주세요");
       } else {

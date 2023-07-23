@@ -1,6 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import createRoot from 'react-dom/client';
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
@@ -24,19 +22,19 @@ const CenteredActions = styled(DialogActions)`
   }
 `;
 
-const Alert = ({ open, contents }) => {
+const Alert = ({ open, handleClose, contents }) => {
     
     return (
         <div>
-            <Dialog open={open} aria-labelledby="alert-dialog-title" aria-describedby="alert-dialog-description">
+            <Dialog open={open} onClose={handleClose} aria-labelledby="alert-dialog-title" aria-describedby="alert-dialog-description">
                 <DialogContent>
                     <DialogContentText id="alert-dialog-description">
                        {contents}
                     </DialogContentText>
                 </DialogContent>
                 <CenteredActions>
-                    <Button>취소</Button>
-                    <Button autoFocus>확인</Button>
+                    <Button onClick={handleClose}>취소</Button>
+                    <Button onClick={handleClose} autoFocus>확인</Button>
                 </CenteredActions>
             </Dialog>
         </div>
@@ -44,16 +42,3 @@ const Alert = ({ open, contents }) => {
 }
 
 export default Alert;
-
-export const showAlert = (contents) => {
-    const div = document.createElement('div');
-    document.body.appendChild(div);
-
-    const handleClose = () => {
-        ReactDOM.unmountComponentAtNode(div);
-        div.remove();
-    };
-
-    const root = createRoot(div);
-    root.render(<Alert open={true} contents={contents} />);
-};
