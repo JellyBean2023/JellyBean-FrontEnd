@@ -145,7 +145,7 @@ const Header = () => {
                                         </li>
                                         <ul className={activeDropdown ? `popup_show` : `popup`}>
                                             <li className="nav_item popup_item">
-                                                <Link href={'/'}>마이페이지</Link>
+                                                <Link href={'/mypage'}>마이페이지</Link>
                                             </li>
                                             <li className="nav_item popup_item" onClick={() => signOut()} >로그아웃</li>
                                         </ul>
