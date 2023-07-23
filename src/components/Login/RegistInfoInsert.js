@@ -5,6 +5,7 @@ import { useRecoilValue } from 'recoil';
 import { RegistCheckState } from './RegistCheck';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
+import { AiOutlineCheck } from 'react-icons/ai';
 
 const Form = styled.form`
   width: 50%;
@@ -70,7 +71,7 @@ const InputField = styled.div`
     position: relative;
     background: none;
     z-index: 5;
-
+    
     &#user{
       width: 20px;
     }
@@ -128,9 +129,14 @@ const InputField = styled.div`
   div{
     padding-bottom: -50px;
   }
+
+  & #check_icon {
+    display: inline-block;
+    color: green;
+  }
 `;
 
-const Button = styled.div`
+const SubmitContainer = styled.div`
   margin: 30px 0 10px 0;
 
   input {
@@ -168,12 +174,13 @@ const Text = styled.span`
 
 const ApplyButton = styled.button`
   position: relative;
-  background-color: gray;
+  background-color: rgba(78,84,97);
   border-radius: 10px;
   padding: 5px 10px;
   float: right;
   margin-top: -45px;
   z-index: 5;
+  color: white;
 
   &:hover {
     background-color: var(--theme-color);
@@ -291,6 +298,48 @@ const RegistInfoInsert = (active) => {
     setEmployeeNumber(event.target.value);
   };
 
+
+  //이메일 인증
+  const [checkEmail, setCheckEmail] = useState(false);
+
+  const emailConfirm = async () => {
+    try {
+      const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/regist/emailConfirm`,
+        { email: email },
+        { headers: {"Content-Type": "application/json"} }
+      );
+      
+      if (response.ok) {
+        alert("인증 이메일이 발송되었습니다. 인증번호를 확인해주세요");
+      } else {
+        alert("인증 이메일 발송에 실패했습니다");
+      }
+    } catch (error) {
+      alert("인증 이메일 발송 중 오류가 발생했습니다");
+      console.log("인증 이메일 발송 중 오류가 발생했습니다", error);
+    }
+  };
+
+  const emailCheck = async () => {
+    try {
+      const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/regist/emailCheck`,
+      { email: email },
+      { headers: {"Content-Type": "application/json"} }
+      );
+      
+      if (response.ok) {
+        setCheckEmail(true);
+        alert("인증이 완료되었습니다.");
+      } else {
+        alert("인증에 실패했습니다");
+      }
+    } catch (error) {
+      alert("인증과정 중 오류가 발생했습니다");
+      console.log("인증과정 중 오류가 발생했습니다", error);
+    }
+  };
+
+
   //약관동의
   const registCheck = useRecoilValue(RegistCheckState).map((item) => item.id);
 
@@ -307,18 +356,24 @@ const RegistInfoInsert = (active) => {
       return;
     }
 
+    if(!checkEmail) {
+      alert('이메일 인증을 완료해야 합니다.');
+      return;
+    }
+
     const formData = {
       name: name,
       password: password,
       confirmPassword: confirmPassword,
       phone: phone,
       email: email,
+      validNumber: event.target.elements.validNumber.value,
       birthday: birthday,
       registCheck: registCheck.toString(),
       type: isChecked ? '직원' : '일반',
       employeeNumber: employeeNumber,
     };
-    
+
     try {
       const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/regist`, formData, {
         headers: {
@@ -350,10 +405,11 @@ const RegistInfoInsert = (active) => {
       <InputField><input type="text" value={email} onChange={handleEmailChange} placeholder="ex)chunjae@chunjae.com" required />
         <label>이메일</label><span />
       </InputField> {!isValidEmail && email !== "" && <p>이메일 형식에 맞게 입력해주세요</p>}
-      {isValidEmail && email !== "" && <ApplyButton>인증하기</ApplyButton>}
+      {isValidEmail && email !== "" && <ApplyButton onClick={emailConfirm}>인증하기</ApplyButton>}
 
-      <InputField><input type="text" placeholder="인증코드를 입력해주세요" required />
+      <InputField><input type="text" name='validNumber' placeholder="인증코드" required />
         <label>이메일 인증코드 입력</label><span />
+        {isValidEmail && email !== "" && <ApplyButton onClick={emailCheck}>인증번호 확인 {checkEmail && <AiOutlineCheck id='check_icon'/>}</ApplyButton>}
       </InputField>
 
       <InputField><input type="password" value={password} onChange={handlePasswordChange} placeholder="영문,숫자,특수문자 포함 8~20자내" required />
@@ -392,7 +448,7 @@ const RegistInfoInsert = (active) => {
       </InputField>
 
       <input type='hidden' value={registCheck} />
-      <Button><input type="submit" value="회원 등록하기" /></Button>
+      <SubmitContainer><input type="submit" value="회원 등록하기" /></SubmitContainer>
       <Text> <Link href="#" className="login-link">약관동의 다시 돌아가기</Link></Text>
     </Form>
   );
