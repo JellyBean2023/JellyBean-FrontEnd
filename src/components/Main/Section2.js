@@ -192,7 +192,9 @@ const Section2 = () => {
                             )}
 
                             {loading ? (
-                                <Skeleton variant="text" />
+                                <Skeleton variant="text">
+                                    <Image />
+                                </Skeleton>
                             ) : (
                                 <div id="star">
                                     <Image src={Star1} alt='Star1' id='star' />
