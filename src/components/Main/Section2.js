@@ -18,6 +18,18 @@ const LayerContainer = styled.section`
     height: 100rem;
     background-color: #553BF3;
 
+    .reviewloading{
+        width: 38rem;
+        height: 14rem;
+        margin-top: -3rem;
+    }
+
+    .starloading{
+        width: 8rem;
+        height: 3rem;
+        margin: 3rem 1rem
+    }
+
     span{
         &#line-block{
             display: block;
@@ -173,7 +185,7 @@ const Section2 = () => {
     useEffect(() => {
         const timer = setTimeout(() => {
             setLoading(false);
-        }, 100000);
+        }, 10000);
 
         return () => clearTimeout(timer);
     }, []);
@@ -192,7 +204,7 @@ const Section2 = () => {
                             )}
 
                             {loading ? (
-                                <Skeleton variant="text" />
+                                <Skeleton className="starloading" variant="text" />
                             ) : (
                                 <div id="star">
                                     <Image src={Star1} alt='Star1' id='star' />
@@ -204,9 +216,7 @@ const Section2 = () => {
                             )}
 
                             {loading ? (
-                                <Skeleton variant="round">
-                                    <div id="review" />
-                                </Skeleton>
+                                <Skeleton className="reviewloading" variant="text" />
                             ) : (
                                 <div id="review">
                                     <Review>
@@ -220,50 +230,93 @@ const Section2 = () => {
                             {loading ? (
                                 <Skeleton variant="circular" width={100} height={100} />
                             ) : (
-                                <ImageBox></ImageBox>
+                                <ImageBox />
                             )}
-                            <Image src={Star1} alt='Star1' id='star' />
-                            <Image src={Star1} alt='Star1' id='star' />
-                            <Image src={Star1} alt='Star1' id='star' />
-                            <Image src={Star1} alt='Star1' id='star' />
-                            <Image src={Star2} alt='Star2' id='star' />
-                            <Review>
-                                <p id="userId">아이디</p>
-                                <p id="reviewText">리뷰내용</p>
-                            </Review>
+
+                            {loading ? (
+                                <Skeleton className="starloading" variant="text" />
+                            ) : (
+                                <div id="star">
+                                    <Image src={Star1} alt='Star1' id='star' />
+                                    <Image src={Star1} alt='Star1' id='star' />
+                                    <Image src={Star1} alt='Star1' id='star' />
+                                    <Image src={Star1} alt='Star1' id='star' />
+                                    <Image src={Star1} alt='Star2' id='star' />
+                                </div>
+                            )}
+
+                            {loading ? (
+                                <Skeleton className="reviewloading" variant="text" />
+                            ) : (
+                                <div id="review">
+                                    <Review>
+                                        <p id="userId">아이디</p>
+                                        <p id="reviewText">리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용</p>
+                                    </Review>
+                                </div>
+                            )}
                         </Box>
                         <Box id='review' data-aos="zoom-in-up">
                             {loading ? (
                                 <Skeleton variant="circular" width={100} height={100} />
                             ) : (
-                                <ImageBox></ImageBox>
+                                <ImageBox />
                             )}
-                            <Image src={Star1} alt='Star1' id='star' />
-                            <Image src={Star1} alt='Star1' id='star' />
-                            <Image src={Star1} alt='Star1' id='star' />
-                            <Image src={Star2} alt='Star1' id='star' />
-                            <Image src={Star2} alt='Star2' id='star' />
-                            <Review>
-                                <p id="userId">아이디</p>
-                                <p id="reviewText">리뷰내용</p>
-                            </Review>
+
+                            {loading ? (
+                                <Skeleton className="starloading" variant="text" />
+                            ) : (
+                                <div id="star">
+                                    <Image src={Star1} alt='Star1' id='star' />
+                                    <Image src={Star1} alt='Star1' id='star' />
+                                    <Image src={Star1} alt='Star1' id='star' />
+                                    <Image src={Star1} alt='Star1' id='star' />
+                                    <Image src={Star1} alt='Star2' id='star' />
+                                </div>
+                            )}
+
+                            {loading ? (
+                                <Skeleton className="reviewloading" variant="text" />
+                            ) : (
+                                <div id="review">
+                                    <Review>
+                                        <p id="userId">아이디</p>
+                                        <p id="reviewText">리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용</p>
+                                    </Review>
+                                </div>
+                            )}
                         </Box>
                         <Box id='review' data-aos="zoom-in-up">
                             {loading ? (
                                 <Skeleton variant="circular" width={100} height={100} />
                             ) : (
-                                <ImageBox></ImageBox>
+                                <ImageBox />
                             )}
-                            <Image src={Star1} alt='Star1' id='star' />
-                            <Image src={Star1} alt='Star1' id='star' />
-                            <Image src={Star2} alt='Star1' id='star' />
-                            <Image src={Star2} alt='Star1' id='star' />
-                            <Image src={Star2} alt='Star2' id='star' />
-                            <Review>
-                                <p id="userId">아이디</p>
-                                <p id="reviewText">리뷰내용</p>
-                            </Review>
+
+                            {loading ? (
+                                <Skeleton className="starloading" variant="text" />
+                            ) : (
+                                <div id="star">
+                                    <Image src={Star1} alt='Star1' id='star' />
+                                    <Image src={Star1} alt='Star1' id='star' />
+                                    <Image src={Star1} alt='Star1' id='star' />
+                                    <Image src={Star1} alt='Star1' id='star' />
+                                    <Image src={Star1} alt='Star2' id='star' />
+                                </div>
+                            )}
+
+                            {loading ? (
+                                <Skeleton className="reviewloading" variant="text" />
+                            ) : (
+                                <div id="review">
+                                    <Review>
+                                        <p id="userId">아이디</p>
+                                        <p id="reviewText">리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용</p>
+                                    </Review>
+                                </div>
+                            )}
                         </Box>
+                        
                     </ReviewBox>
                 </BoxContainer>
             </span>

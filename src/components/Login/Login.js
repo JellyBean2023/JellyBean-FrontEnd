@@ -6,6 +6,8 @@ import Logo from '../../assets/img/CI/img_ci_var02.jpg';
 import React, { useEffect, useRef, useState } from 'react'
 import { signIn } from 'next-auth/react'
 import { useRouter } from 'next/navigation';
+import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
+
 
 const Container = styled.main`
   max-width: 600px;
@@ -85,6 +87,7 @@ const InputField = styled.div`
     transition: all 0.2s ease;
     background-color: var(--background-rgb);
     border-radius: 12px;
+    padding-right: 40px;
     
     &:focus,
     &:valid {
@@ -151,6 +154,19 @@ const Button = styled.button`
     background-color: var(--anti-theme-color);
   }
 `;
+
+const InputFieldContainer = styled.div`
+  position: relative;
+`;
+
+const EyeIcon = styled.div`
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  cursor: pointer;
+`;
+
 const Login = () => {
   const emailRef = useRef(null)
   const passwordRef = useRef(null)
@@ -160,6 +176,11 @@ const Login = () => {
 
   const [isValidEmail, setIsValidEmail] = useState(true);
   const [isValidPassword, setIsValidPassword] = useState(true);
+
+
+  //비밀번호 노출
+  const [showPassword, setShowPassword] = useState(false);
+
 
   useEffect(() => { //유효성 검사
     const emailTimer = setTimeout(() => { validateEmail() }, 300);
@@ -208,6 +229,12 @@ const Login = () => {
     }
   };
 
+  // 비밀번호 노출
+  const togglePasswordVisibility = () => {
+    setShowPassword((prevShowPassword) => !prevShowPassword);
+  };
+  
+
   return (
     <Container>
       <LoginContainer>
@@ -219,7 +246,25 @@ const Login = () => {
           <InputField><input type="text" value={email} ref={emailRef} onChange={handleEmailChange} placeholder="ID" required/></InputField> 
           {!isValidEmail && email !== "" && <p>이메일 형식에 맞게 입력해주세요</p>}
 
-          <InputField><input type="password" value={password} ref={passwordRef} onChange={handlePasswordChange} placeholder="PASSWORD" required/></InputField> 
+          <InputFieldContainer>
+            <InputField>
+              <input
+                type={showPassword ? 'text' : 'password'}
+                value={password}
+                ref={passwordRef}
+                onChange={handlePasswordChange}
+                placeholder="비밀번호"
+                required
+              />
+              <EyeIcon>
+                {showPassword ? (
+                  <AiFillEyeInvisible size={20} color="grey" onClick={togglePasswordVisibility} />
+                ) : (
+                  <AiFillEye size={20} color="grey" onClick={togglePasswordVisibility} />
+                )}
+              </EyeIcon>
+            </InputField>
+          </InputFieldContainer>
           {!isValidPassword && password !== "" && <p>비밀번호는 영문, 숫자, 특수문자를 모두 포함하여 공백없이 8~20자로 입력해주세요</p>}
 
           <CheckboxText>

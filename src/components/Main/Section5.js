@@ -4,6 +4,7 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import Image from 'next/image';
 import dummy from '@/assets/img/dummy.jpg';
+import Link from "next/link";
 
 
 const LayerContainer = styled.section`
@@ -61,6 +62,14 @@ const Box = styled.div`
     word-wrap: break-word; 
     padding: 20px;
     border-radius: 20px;
+
+    #FAQLink{
+        font-size: 25px;
+        text-align: right;
+        display: inline-flex;
+        align-items: center;
+        margin-left: 25rem;
+    }
 
     &#info{
         width:600px;
@@ -136,6 +145,13 @@ const Section5 = () => {
                         <p id='date'>2023.07.11</p>
                         <p id='margintop'>내용들어갈 자리</p><hr/>
                         <p id='date'>2023.07.11</p>
+                        <Link href={`#`} id='FAQLink'>
+                                <b>더 알아보기</b>
+                                <svg className="w-4 h-4 ml-2" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round">
+                                <path d="M5 12h14"></path>
+                                <path d="M12 5l7 7-7 7"></path>
+                                </svg>
+                            </Link>    
                     </Box>
                 </BoxContainer>
             </span>
