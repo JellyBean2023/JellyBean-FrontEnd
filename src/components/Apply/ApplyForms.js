@@ -5,12 +5,6 @@ const ApplyContainer = styled.main`
   width: 100%;
   background-color: ${props => `var(--${props.id}--anti-text-color)`};
   color: black;
-
-  @media screen and (max-width: 1024px) {
-    margin-left: 1rem;
-    margin-right: 1rem;
-    padding: 1rem;
-  }
 `;
 
 const InsertForm = styled.div`
@@ -19,12 +13,15 @@ const InsertForm = styled.div`
   padding: 3rem;
   background-color: ${props => `var(--${props.id}--anti-text-color)`};
   color: ${props => `var(--${props.id}--text-color)`};
+
+  @media screen and (max-width: 1024px) {
+    margin: 0;
+    padding: 0;
+  }
 `;
 
 const Intro = styled.div`
-  height: 20rem;
-  margin-bottom: 50px;
-  padding: 20px 0 0 50px;
+  padding: 1rem 3rem;
   background-color: ${props => `var(--${props.id}-color)`};
   color: white;
 
@@ -80,6 +77,7 @@ const InsertContainer = styled.div`
 
   @media screen and (max-width: 1024px) {
     display: block;
+    margin: 1rem;
   }
 
   select {
