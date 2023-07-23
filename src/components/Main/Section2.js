@@ -3,6 +3,9 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import { useState, useEffect } from 'react';
 import styled from 'styled-components';
+import Image from 'next/image';
+import Star1 from '../../assets/img/star1.svg';
+import Star2 from '../../assets/img/star2.svg';
 
 const LayerContainer = styled.section`
     text-align: center;
@@ -61,6 +64,14 @@ const Box = styled.div`
     word-wrap: break-word; 
     padding: 20px;
     border-radius: 20px;
+    display: flex;
+
+    img{
+        &#star{
+            margin: 0px -9px -14px 10px;
+            width: 23px   
+        }
+    }
 
     &#review{
         width: 54rem;
@@ -90,7 +101,19 @@ const Box = styled.div`
     }
 
     div {
-        white-space: break-spaces;
+
+        &#star{
+            white-space: break-spaces;
+            display: flex;
+
+        }
+       
+        &#review{
+            white-space: break-spaces;
+            display: flex;
+            width: 48rem;
+            margin-right: -7rem;
+        }
     }
 `;
 
@@ -107,15 +130,34 @@ const ReviewBox = styled.div`
 
 `;
 
-const ImageBox = styled.div`
-    margin-left: 1rem;
-    margin-bottom: 10px;
-    width: 8rem;
-    height: 8rem;
-    border-radius: 50%;
-    background-color: blue  ;
+const Review = styled.div`
+    width: 80%;
+    height: 100%;
+    background-color: lightgray;
+    margin-left: 30px;
+    border-radius: 10px;
+    display: inline-block;
+
+    p{
+        &#userId{
+            margin: 13px 0px 13px 14px;
+            font-size: 20px;
+        }
+
+        &#reviewText{
+            margin: 8px 10px 9px 15px;
+            font-size: 13px;
+        }
+    }
 `;
 
+const ImageBox = styled.div`
+    margin: 18px 10px 10px 10px;
+    width: 7.5rem;
+    height: 6.5rem;
+    border-radius: 50%;
+    border: 1px solid;
+`;
 
 const Section2 = () => {
     useEffect(() => {
@@ -130,9 +172,9 @@ const Section2 = () => {
     const [loading, setLoading] = useState(true);
     useEffect(() => {
         const timer = setTimeout(() => {
-          setLoading(false);
+            setLoading(false);
         }, 100000);
-      
+
         return () => clearTimeout(timer);
     }, []);
 
@@ -142,16 +184,86 @@ const Section2 = () => {
                 <p id='title'>천재교육 디지털 러닝팀에서 만나요</p>
                 <BoxContainer>
                     <ReviewBox data-aos="zoom-in-up">
-                        <Box id='review'>
+                        <Box id='review' data-aos="zoom-in-up">
                             {loading ? (
-                                <Skeleton variant="circular" width={100} height={100}/>
-                            ):(
-                                <ImageBox></ImageBox>
+                                <Skeleton variant="circular" width={100} height={100} />
+                            ) : (
+                                <ImageBox />
+                            )}
+
+                            {loading ? (
+                                <Skeleton variant="text" />
+                            ) : (
+                                <div id="star">
+                                    <Image src={Star1} alt='Star1' id='star' />
+                                    <Image src={Star1} alt='Star1' id='star' />
+                                    <Image src={Star1} alt='Star1' id='star' />
+                                    <Image src={Star1} alt='Star1' id='star' />
+                                    <Image src={Star1} alt='Star2' id='star' />
+                                </div>
+                            )}
+
+                            {loading ? (
+                                <Skeleton variant="round">
+                                    <div id="review" />
+                                </Skeleton>
+                            ) : (
+                                <div id="review">
+                                    <Review>
+                                        <p id="userId">아이디</p>
+                                        <p id="reviewText">리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용</p>
+                                    </Review>
+                                </div>
                             )}
                         </Box>
-                        <Box id='review'></Box>
-                        <Box id='review'></Box>
-                        <Box id='review'></Box>
+                        <Box id='review' data-aos="zoom-in-up">
+                            {loading ? (
+                                <Skeleton variant="circular" width={100} height={100} />
+                            ) : (
+                                <ImageBox></ImageBox>
+                            )}
+                            <Image src={Star1} alt='Star1' id='star' />
+                            <Image src={Star1} alt='Star1' id='star' />
+                            <Image src={Star1} alt='Star1' id='star' />
+                            <Image src={Star1} alt='Star1' id='star' />
+                            <Image src={Star2} alt='Star2' id='star' />
+                            <Review>
+                                <p id="userId">아이디</p>
+                                <p id="reviewText">리뷰내용</p>
+                            </Review>
+                        </Box>
+                        <Box id='review' data-aos="zoom-in-up">
+                            {loading ? (
+                                <Skeleton variant="circular" width={100} height={100} />
+                            ) : (
+                                <ImageBox></ImageBox>
+                            )}
+                            <Image src={Star1} alt='Star1' id='star' />
+                            <Image src={Star1} alt='Star1' id='star' />
+                            <Image src={Star1} alt='Star1' id='star' />
+                            <Image src={Star2} alt='Star1' id='star' />
+                            <Image src={Star2} alt='Star2' id='star' />
+                            <Review>
+                                <p id="userId">아이디</p>
+                                <p id="reviewText">리뷰내용</p>
+                            </Review>
+                        </Box>
+                        <Box id='review' data-aos="zoom-in-up">
+                            {loading ? (
+                                <Skeleton variant="circular" width={100} height={100} />
+                            ) : (
+                                <ImageBox></ImageBox>
+                            )}
+                            <Image src={Star1} alt='Star1' id='star' />
+                            <Image src={Star1} alt='Star1' id='star' />
+                            <Image src={Star2} alt='Star1' id='star' />
+                            <Image src={Star2} alt='Star1' id='star' />
+                            <Image src={Star2} alt='Star2' id='star' />
+                            <Review>
+                                <p id="userId">아이디</p>
+                                <p id="reviewText">리뷰내용</p>
+                            </Review>
+                        </Box>
                     </ReviewBox>
                 </BoxContainer>
             </span>

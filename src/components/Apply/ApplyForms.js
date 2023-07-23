@@ -1,11 +1,9 @@
-import axios from "axios";
-import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { styled } from "styled-components";
 
 const ApplyContainer = styled.main`
   width: 100%;
-  background-color: white;
+  background-color: ${props => `var(--${props.id}--anti-text-color)`};
   color: black;
 
   @media screen and (max-width: 1024px) {
@@ -19,8 +17,8 @@ const InsertForm = styled.div`
   margin-left: 5rem;
   margin-right: 5rem;
   padding: 3rem;
-  background-color: white;
-  color: black;
+  background-color: ${props => `var(--${props.id}--anti-text-color)`};
+  color: ${props => `var(--${props.id}--text-color)`};
 `;
 
 const Intro = styled.div`
@@ -55,17 +53,21 @@ const InsertContainer = styled.div`
   align-items: flex-start;
   justify-content: space-between;
   margin: 25px 0;
-  background-color: rgba(255,255,255);
+  background-color: ${props => `var(--${props.id}--anti-text-color)`};
   border-radius: 10px;
   padding: 1rem;
   border: 1px solid;
-  border-color: ${props => `var(--${props.id}-color)`};
+  color: var(--text-color);
 
+  select{
+    background-color: ${props => `var(--${props.id}--anti-text-color)`};
+  }
 
   h2 {
     font-size: 20px;
     flex-basis: 100%;
     margin-bottom: 10px;
+    color: ${props => `var(--${props.id}--text-color)`};
     
     &#import {
       color: red;
@@ -129,6 +131,7 @@ const InsertContainer = styled.div`
 const InputField = styled.div`
   flex-basis: calc(50% - 10px);
   position: relative;
+  border-color: var(--anti--text-color);
   
   input {
     font-size: 15px;
@@ -145,7 +148,7 @@ const InputField = styled.div`
 
     &#number{
       padding-top: 40px;
-      width: 30%;
+      width: 50%;
     }
 
     &::placeholder {
@@ -158,8 +161,8 @@ const InputField = styled.div`
       color: gray;
     }
     
-    &#universe {
-      width: 40%;
+    &#finalEducation {
+      width: 50%;
     }
 
     &:focus ~ label, &:valid ~ label {
@@ -168,8 +171,6 @@ const InputField = styled.div`
       font-weight: bold;
       color: ${props => `var(--${props.id}-sub-color)`};
     }
-
-
   }
   
   label {
@@ -182,6 +183,16 @@ const InputField = styled.div`
   }
 
   textarea {
+    background-color:  ${props => `var(--${props.id}--anti-text-color)`};
+
+    &#agreement1{
+      border-color: 1px solid var(--taxt-color);
+    }
+
+    &#agreement2{
+      border-color: 1px solid var(--taxt-color);
+    }
+
     &#text_ap{
       font-size: 16px;
       width: 100%;
@@ -189,6 +200,7 @@ const InputField = styled.div`
       border: 1px solid ${props => `var(--${props.id}-sub-color)`};
       border-radius: 15px;
       padding: 10px 5px;
+      background-color: rgba(255,255,255,0.01);
     };
   }
 `;
@@ -286,20 +298,39 @@ const ApplyForms = (props) => {
   const initialTextareaValue2 = "2번 약관 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur pretium mi sed tristique commodo. Nullam in massa neque. Etiam scelerisque diam sit amet est scelerisque, vitae ultricies quam efficitur. Nulla facilisi. Aliquam at elit eu mi sollicitudin tincidunt in non felis. Vivamus vitae lectus sed massa venenatis tincidunt. Donec euismod luctus tristique. Aliquam non feugiat tortor. Sed vel velit at risus venenatis sollicitudin eu eu justo. Mauris vel ipsum vel purus facilisis condimentum in ac dui. Nulla id erat at odio congue suscipit vel vitae purus. Sed eu nunc sed urna finibus";
   /* BackEnd DATA END */
 
+  const [isPhoneChecked, setIsPhoneChecked] = useState(false);
   const [isOtherChecked, setIsOtherChecked] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
+  const [agreeCollect, setAgreeCollect] = useState(false);
+  const [agreeThirdParty, setAgreeThirdParty] = useState(false);
+  const [selectedPaths, setSelectedPaths] = useState([]);
 
   const handlePhoneNumberChange = (event) => {
-    setIsOtherChecked(event.target.value === "2");
+    setIsPhoneChecked(event.target.value === "2");
   };
-
-
   const handleExperienceChange = (event) => {
     setIsOtherChecked(event.target.value === "5");
   };
-
   const handleChange = (event) => {
     setIsChecked(!isChecked);
+  };
+  // 체크 박스가 변경될 때 상태를 업데이트하는 함수
+  const handleAgreeCollectChange = (event) => {
+    setAgreeCollect(event.target.checked);
+  };
+  const handleAgreeThirdPartyChange = (event) => {
+    setAgreeThirdParty(event.target.checked);
+  };
+  // 체크박스 변경 핸들러
+  const handlePathChange = (event) => {
+    const { value, checked } = event.target;
+    if (checked) {
+      setSelectedPaths((prevSelectedPaths) => [...prevSelectedPaths, value]);
+    } else {
+      setSelectedPaths((prevSelectedPaths) =>
+        prevSelectedPaths.filter((path) => path !== value)
+      );
+    }
   };
 
   const [recommend, setRecommend] = useState("");
@@ -310,15 +341,12 @@ const ApplyForms = (props) => {
   const handleRecommend = (e) => {
     setRecommend(e.target.value);
   };
-
   const handleGrade = (e) => {
     setGrade(e.target.value);
   };
-
   const handleCard = (e) => {
     setCard(e.target.value);
   };
-
   const handleEX = (e) => {
     setEX(e.target.value);
   };
@@ -366,19 +394,19 @@ const ApplyForms = (props) => {
       date: target.date ? target.date.value : '',
       email: target.email ? target.email.value : '',
       phoneNumber: target.phoneNumber ? target.phoneNumber.value : '',
+      phoneNumberText: phone,
       recommend: target.recommend ? target.recommend.value : '',
       grade: target.grade ? target.grade.value : '',
-      universe: target.universe ? target.universe.value : '',
+      finalEducation: target.finalEducation ? target.finalEducation.value : '',
       getCard: target.getCard ? target.getCard.value : '',
       getEx: target.getEx ? target.getEx.value : '',
       experience: target.experience ? target.experience.value : '',
       experienceText: target.experienceText ? target.experienceText.value : '',
       reason: target.reason ? target.reason.value : '',
-      paths: Array.from(target.paths || [])
-        .filter((checkbox) => checkbox.checked)
-        .map((checkbox) => checkbox.value),
-      agreeCollect: target.agreeCollect ? target.agreeCollect.checked : false,
-      agreeThirdParty: target.agreeThirdParty ? target.agreeThirdParty.checked : false,
+      paths: selectedPaths.length > 0 ? selectedPaths.join(",") : "",
+      pathText: selectedPaths.includes("13") ? target.pathText?.value || "" : "",
+      agreeCollect: agreeCollect,
+      agreeThirdParty: agreeThirdParty,
     };
 
     console.log(formData);
@@ -391,18 +419,18 @@ const ApplyForms = (props) => {
       });
   
       if (response.status === 200) {
-        console.log('회원 등록이 성공적으로 완료되었습니다.');
+        console.log('지원서 등록이 성공적으로 완료되었습니다.');
         const router = useRouter();
         router.replace('/');
       } else {
-        console.log('회원 등록에 실패하였습니다.');
+        console.log('지원서 등록에 실패하였습니다.');
       }
     } catch (error) {
-      console.log('회원 등록 중 오류가 발생하였습니다.');
+      console.log('지원서 등록 중 오류가 발생하였습니다.');
       console.log('오류 응답:', error.response);
     }
   };
-
+  
   return (
     <ApplyContainer>
       
@@ -427,14 +455,14 @@ const ApplyForms = (props) => {
         </InsertContainer>
 
         <InsertContainer className="input_margin" id={id}>
-          <h2>연락처</h2>
+          <h2 id={id}>연락처</h2>
           {phoneNumberList.map((list, i) => (
             <label key={i}>
               {list.value === 2 ? (
                 <>
                   <input type="radio" name="phoneNumber" value={list.value} onChange={handlePhoneNumberChange} />
                   {list.text}
-                  {isOtherChecked ? <InputField id={id}><input id="number" type="text" value={phone} onChange={handlePhoneChange} placeholder="ex) 010-0000-0000" required /> <label>연락받을 연락처</label></InputField> : null}
+                  {isPhoneChecked ? <InputField id={id}><input id="number" type="text" name="phoneNumber" value={phone} onChange={handlePhoneChange} placeholder="ex) 010-0000-0000" required /> <label>연락받을 연락처</label></InputField> : null}
                 </>
               ) : (
                 <>
@@ -473,7 +501,7 @@ const ApplyForms = (props) => {
 
         <InsertContainer id={id}>
           <h2>최종 졸업 (혹은 졸업예정 학교)학교(전공명)를 입력해 주세요. <label id="sm">** 자료 수집용일 뿐 선발절차에 반영되지 않습니다.</label> </h2>
-          <InputField id={id}><input id="universe" type="text" name="universe" placeholder="ex) 천재대학교(전공명)" required /><label>최종 졸업(전공명)</label></InputField>
+          <InputField id={id}><input id="finalEducation" type="text" name="finalEducation" placeholder="ex) 천재대학교(전공명)" required /><label>최종 졸업(전공명)</label></InputField>
         </InsertContainer>
 
         <InsertContainer id={id}>
@@ -511,7 +539,7 @@ const ApplyForms = (props) => {
                 <>
                   <input type="radio" name="experience" value={list.value} onChange={handleExperienceChange} />
                   {list.text}
-                  {isOtherChecked ? <InputField id={id}><input id="universe" name="experienceText" type="text" /></InputField> : null}
+                  {isOtherChecked ? <InputField id={id}><input id="experienceText" name="experienceText" type="text" /></InputField> : null}
                 </>
               ) : (
                 <>
@@ -529,35 +557,37 @@ const ApplyForms = (props) => {
         </InsertContainer>
 
         <InsertContainer id={id} className="input_margin">
-          <h2>해당 과정을 알게 된 경로를 선택해주시기 바랍니다. (복수 선택 가능)</h2>
-          {pathList.map((list, i) => (
-            <label key={i}>
-              {list.value === 13 ? (
-                <>
-                  <input type="checkbox" value={13} onChange={handleChange} />
-                  {list.text}
-                  {isChecked ? <InputField id={id}><input type="text" required /></InputField> : null}
-                </>
-              ) : (
-                <>
-                  <input type="checkbox" value={list.value}/>
-                  {list.text}
-                </>
-              )}
-            </label>
-          ))}
-        </InsertContainer>
+            <h2>해당 과정을 알게 된 경로를 선택해주시기 바랍니다. (복수 선택 가능)</h2>
+            {pathList.map((list, i) => (
+              <label key={i}>
+                {list.value === 13 ? (
+                  <>
+                    <input type="checkbox" name="path" value={list.value} onChange={handlePathChange}/>
+                    {list.text}
+                    {selectedPaths.includes("13") ? (
+                      <InputField id={id}><input type="text" name="pathText" required/></InputField>
+                    ) : null}
+                  </>
+                ) : (
+                  <>
+                    <input type="checkbox" name="path" value={list.value} onChange={handlePathChange}/>
+                    {list.text}
+                  </>
+                )}
+              </label>
+            ))}
+          </InsertContainer>
 
         <InsertContainer className="input_margin" id={id}>
           <h2>* 개인정보 수집 및 이용 동의</h2>
           <InputField id={id}><textarea value={initialTextareaValue1} readOnly /></InputField>
-          <label><input type="checkbox" name="agreeCollect" required/>개인정보 수집 및 이용에 동의합니다.</label>
+          <label><input type="checkbox" checked={agreeCollect} onChange={handleAgreeCollectChange} required/>개인정보 수집 및 이용에 동의합니다.</label>
         </InsertContainer>
 
         <InsertContainer className="input_margin" id={id}>
           <h2>* 개인정보 제3자 제공 동의</h2>
           <InputField id={id}><textarea value={initialTextareaValue2} readOnly /></InputField>
-          <label><input type="checkbox" name="agreeThirdParty" required/>개인정보 제3자 제공에 대해 동의합니다.</label>
+          <label><input type="checkbox" checked={agreeThirdParty} onChange={handleAgreeThirdPartyChange} required/>개인정보 제3자 제공에 대해 동의합니다.</label>
         </InsertContainer>
 
         <ButtonContainer id={id}>
