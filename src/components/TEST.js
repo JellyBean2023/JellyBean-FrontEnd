@@ -15,9 +15,8 @@ const TESTContainer = styled.section`
 
 const TEST = () => {
   const {data: session, status } = useSession();
-  // console.log(session?.user.data)
-  // console.log(session?.user.result)
-  // console.log(status)
+  console.log(session?.user.data)
+  console.log(status)
 
   const contents = `Let Google help apps determine location. This means sending anonymous location data to Google, even when no apps are running.`
 
@@ -27,7 +26,9 @@ const TEST = () => {
 
   return (
     <TESTContainer>
-      Data : {session?.user.data.email}
+      <div>
+        Data : {session?.user.data.id}
+      </div>
       <Button onClick={() => showAlert(contents)}>Show Alert</Button>
 
       <Button onClick={handleClickOpen}>Show AlertDialog</Button>

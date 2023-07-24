@@ -23,7 +23,7 @@ const handler = NextAuth({
 
       async authorize(credentials, req) {
         const response = await loginPOST({ json: async () => credentials });
-        const user = await response.json()
+        const user = await response.json();
 
         if (response.ok) {
           // Any object returned will be saved in `user` property of the JWT
