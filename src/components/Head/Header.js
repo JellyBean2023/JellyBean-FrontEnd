@@ -77,6 +77,10 @@ const Header = () => {
     const buttonRef = useRef(null)
     // const { status } = useSession();
     const status = localStorage.getItem("accessToken");
+    const signOut = () => {
+        removeItem("accessToken");
+        //axois '/removeToken'
+    };
 
     const toggleDropdown = (Dropdown) => {
         if (activeDropdown === Dropdown) {
