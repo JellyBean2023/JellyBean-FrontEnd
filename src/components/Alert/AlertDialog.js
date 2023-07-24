@@ -26,14 +26,13 @@ const Alert = ({ open, handleClose, contents }) => {
     
     return (
         <div>
-            <Dialog open={open} onClose={handleClose} aria-labelledby="alert-dialog-title" aria-describedby="alert-dialog-description">
+            <Dialog open={open} aria-labelledby="alert-dialog-title" aria-describedby="alert-dialog-description">
                 <DialogContent>
                     <DialogContentText id="alert-dialog-description">
                        {contents}
                     </DialogContentText>
                 </DialogContent>
                 <CenteredActions>
-                    <Button onClick={handleClose}>취소</Button>
                     <Button onClick={handleClose} autoFocus>확인</Button>
                 </CenteredActions>
             </Dialog>
