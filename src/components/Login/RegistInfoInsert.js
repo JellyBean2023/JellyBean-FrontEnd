@@ -186,6 +186,11 @@ const ApplyButton = styled.button`
   &:hover {
     background-color: var(--theme-color);
   }
+
+  svg {
+    display: inline-block !important;
+    color: green;
+  }
 `;
 
 const UserBox = styled.div`
@@ -304,14 +309,13 @@ const RegistInfoInsert = (active) => {
   const [checkEmail, setCheckEmail] = useState(false);
 
   const emailConfirm = async () => {
-    setCheckEmail(true);
     try {
       const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/regist/emailConfirm`,
         { email: email },
         { headers: {"Content-Type": "application/json"} }
       );
       if (response.data === true) {
-        // setCheckEmail(true);
+        setCheckEmail(true);
         alert("이메일 인증이 완료되었습니다")
         // alert("인증 이메일이 발송되었습니다. 인증번호를 확인해주세요");
       } else {
@@ -415,7 +419,7 @@ const RegistInfoInsert = (active) => {
         {isValidEmail && email !== "" && <ApplyButton onClick={emailCheck}>인증번호 확인 {checkEmail && <AiOutlineCheck id='check_icon'/>}</ApplyButton>}
       </InputField> */}
 
-      <InputField><input type="password" value={password} onChange={handlePasswordChange} placeholder="영문,숫자,특수문자 포함 8~20자내" required />
+      <InputField><input type="password" value={password} onChange={handlePasswordChange} minlength="8" maxlength="20" placeholder="영문,숫자,특수문자 포함 8~20자내" required />
         <label>비밀번호</label><span />
       </InputField> {!isValidPassword && password !== "" && <p>비밀번호는 영문, 숫자, 특수문자를 모두 포함하여 공백없이 8~20자로 입력해주세요</p>}
 
