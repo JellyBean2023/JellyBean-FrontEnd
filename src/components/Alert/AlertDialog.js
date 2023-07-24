@@ -22,21 +22,24 @@ const CenteredActions = styled(DialogActions)`
   }
 `;
 
-const Alert = ({ open, handleClose, contents }) => {
+const Alert = ({ open, process, contents }) => {
     
     return (
-        <div>
-            <Dialog open={open} aria-labelledby="alert-dialog-title" aria-describedby="alert-dialog-description">
-                <DialogContent>
-                    <DialogContentText id="alert-dialog-description">
-                       {contents}
-                    </DialogContentText>
-                </DialogContent>
-                <CenteredActions>
-                    <Button onClick={handleClose} autoFocus>확인</Button>
-                </CenteredActions>
-            </Dialog>
-        </div>
+      <Dialog open={open} aria-labelledby="alert-dialog-title" aria-describedby="alert-dialog-description" 
+        sx={{
+          "& .MuiDialog-paper": {
+            minWidth: "30rem", // 원하는 가로 최대 크기
+          },
+        }}>
+          <DialogContent>
+              <DialogContentText id="alert-dialog-description" className="text-center">
+                  {contents}
+              </DialogContentText>
+          </DialogContent>
+          <CenteredActions>
+              <Button onClick={process} autoFocus>확인</Button>
+          </CenteredActions>
+      </Dialog>
     );
 }
 

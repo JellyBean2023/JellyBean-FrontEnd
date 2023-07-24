@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { styled } from "styled-components";
 import AlertDialog from '@/components/Alert/AlertDialog';
+import { useRouter } from "next/navigation";
 
 const ApplyContainer = styled.main`
   width: 100%;
@@ -431,14 +432,16 @@ const ApplyForms = (props) => {
     }
   };
 
-  const [open, setOpen] = useState(false);
-  const handleClose = () => {setOpen(false)};
+  const router = useRouter();
+  const sendLogin = () => {
+    router.replace("/login");
+  }
 
   return (
     <>
       {!status ? (
         <main>
-          <AlertDialog open={true} handleClose={handleClose} contents={'로그인이 필요합니다'} />
+          <AlertDialog open={true} process={() => sendLogin()} contents={'로그인이 필요한 서비스입니다'} />
         </main>
       )
         : (
