@@ -1,6 +1,12 @@
 
 .swiper {
     --swiper-theme-color:#fff;
+    display: flex;
+    justify-content: center;
+
+    & img {
+        cursor: pointer;
+    }
 }
 
 .swiper-initialized {
@@ -16,6 +22,6 @@
     display: block;
 }
 
-// .swiper-slide {
-//     width: 30% !important;
-// }
+.swiper-slide {
+    width: 30% !important;
+}

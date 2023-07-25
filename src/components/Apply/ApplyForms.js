@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { styled } from "styled-components";
 import AlertDialog from '@/components/Common/Alert/AlertDialog';
 import { useRouter } from "next/navigation";
+import axios from "axios";
 
 const ApplyContainer = styled.main`
   width: 100%;
@@ -409,8 +410,6 @@ const ApplyForms = (props) => {
       agreeCollect: agreeCollect,
       agreeThirdParty: agreeThirdParty,
     };
-
-    console.log(formData);
 
     try {
       const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/curriculum/${id}`, formData, {
