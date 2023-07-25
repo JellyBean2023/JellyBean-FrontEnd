@@ -217,7 +217,7 @@ const Login = () => {
     if (!emailRef.current.value || !passwordRef.current.value) return;
 
     const loginData = {
-      username: emailRef.current.value,
+      email: emailRef.current.value,
       password: passwordRef.current.value,
     }
 
@@ -227,7 +227,7 @@ const Login = () => {
       }
     });
 
-    if (res.ok) {
+    if (response.status === 200 && response.statusText === 'OK') {
       const { accessToken, refreshToken } = await res.json();
 
       localStorage.setItem("accessToken", accessToken);
@@ -238,7 +238,7 @@ const Login = () => {
       alert("등록되지 않은 회원입니다");
     }
 
-    // const result = await signIn("credentials", { Next-Auth
+    // const result = await signIn("credentials", { //Next-Auth credentials Login
     //   username: emailRef.current.value,
     //   password: passwordRef.current.value,
     //   redirect: false,

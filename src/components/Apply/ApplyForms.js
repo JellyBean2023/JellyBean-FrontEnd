@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { styled } from "styled-components";
-import AlertDialog from '@/components/Alert/AlertDialog';
+import AlertDialog from '@/components/Common/Alert/AlertDialog';
 import { useRouter } from "next/navigation";
 
 const ApplyContainer = styled.main`

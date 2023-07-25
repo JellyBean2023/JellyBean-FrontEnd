@@ -2,8 +2,8 @@
 import { useSession } from 'next-auth/react';
 import styled from 'styled-components';
 import Button from '@mui/material/Button';
-import showAlert from '@/components/Alert/Alert';
-import AlertDialog from '@/components/Alert/AlertDialog';
+import showAlert from '@/components/Common/Alert/Alert';
+import AlertDialog from '@/components/Common/Alert/AlertDialog';
 import { useState } from 'react';
 
 const TESTContainer = styled.section`
