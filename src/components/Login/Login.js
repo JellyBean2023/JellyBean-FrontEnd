@@ -7,6 +7,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import { signIn } from 'next-auth/react'
 import { useRouter } from 'next/navigation';
 import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
+import axios from 'axios';
 
 
 const Container = styled.main`
@@ -211,22 +212,37 @@ const Login = () => {
       setIsValidPassword(true);
   };
 
-  const handleSubmit = async (e) => { //Session
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!emailRef.current.value || !passwordRef.current.value) return;
 
-    const result = await signIn("credentials", {
-      username: emailRef.current.value,
+    const loginData = {
+      email: emailRef.current.value,
       password: passwordRef.current.value,
-      redirect: false,
+    }
+
+    const res = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/login`, loginData, {
+      headers: {
+      'Content-Type': 'application/json'
+      }
     });
 
-    // 로그인 후 처리할 로직
-    if (result?.error) {
-      alert("등록되지 않은 회원입니다");
-    } else {
+    if (response.status === 200 && response.statusText === 'OK') {
+      const { accessToken, refreshToken } = await res.json();
+
+      localStorage.setItem("accessToken", accessToken);
+      localStorage.setItem("refreshToken", refreshToken);
+
       router.replace("/");
+    } else {
+      alert("등록되지 않은 회원입니다");
     }
+
+    // const result = await signIn("credentials", { //Next-Auth credentials Login
+    //   username: emailRef.current.value,
+    //   password: passwordRef.current.value,
+    //   redirect: false,
+    // });
   };
 
   // 비밀번호 노출
@@ -234,7 +250,6 @@ const Login = () => {
     setShowPassword((prevShowPassword) => !prevShowPassword);
   };
   
-
   return (
     <Container>
       <LoginContainer>

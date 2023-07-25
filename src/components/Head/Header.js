@@ -15,7 +15,7 @@ import EmployGovernment from '@/assets/img/고용노동부.png';
 import GENIA from '@/assets/img/천재교육 디지털 러닝 GENIA.png';
 
 import '@/assets/scss/Head/Header.scss';
-import { signOut, useSession } from "next-auth/react";
+// import { signOut, useSession } from "next-auth/react";
 
 const LoginArea = styled.div`
     svg {
@@ -75,7 +75,12 @@ const Header = () => {
     const [activeDropdown, setActiveDropdown] = useState(false);
     const navRef = useRef(null);
     const buttonRef = useRef(null)
-    const { status } = useSession();
+    // const { status } = useSession();
+   
+    const signOut = () => {
+        removeItem("accessToken");
+        //axois '/removeToken'
+    };
 
     const toggleDropdown = (Dropdown) => {
         if (activeDropdown === Dropdown) {
@@ -138,7 +143,7 @@ const Header = () => {
                             <li className="nav_item"><Link href={`/Test`} className="nav_link">고객센터</Link></li>
                             <li className="nav_item"><Link href={`/`} className="nav_link">공지사항</Link></li>
                             <LoginArea>
-                                {status === "authenticated" ? (
+                                { localStorage.getItem("accessToken") ? (
                                     <ul>
                                         <li className="nav_item popup">
                                             <FaUserCircle onClick={() => toggleDropdown(true)} />

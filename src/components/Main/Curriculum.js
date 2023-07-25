@@ -3,6 +3,7 @@ import { styled } from "styled-components";
 import { useEffect, useState } from 'react';
 import CurriculumBox from "./CurriculumBox";
 import axios from "axios";
+import UpdateButton from "../Common/UpdateButton/UpdateButton";
 
 const CurriculumContainer = styled.section`
     background-color: #553BF3;

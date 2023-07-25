@@ -181,9 +181,15 @@ const ApplyButton = styled.button`
   margin-top: -45px;
   z-index: 5;
   color: white;
+  width: auto;
 
   &:hover {
     background-color: var(--theme-color);
+  }
+
+  svg {
+    display: inline-block !important;
+    color: green;
   }
 `;
 
@@ -308,9 +314,10 @@ const RegistInfoInsert = (active) => {
         { email: email },
         { headers: {"Content-Type": "application/json"} }
       );
-      response.data
-      if (response.ok) {
-        alert("인증 이메일이 발송되었습니다. 인증번호를 확인해주세요");
+      if (response.data === true) {
+        setCheckEmail(true);
+        alert("이메일 인증이 완료되었습니다")
+        // alert("인증 이메일이 발송되었습니다. 인증번호를 확인해주세요");
       } else {
         alert("인증 이메일 발송에 실패했습니다");
       }
@@ -320,24 +327,24 @@ const RegistInfoInsert = (active) => {
     }
   };
 
-  const emailCheck = async () => {
-    try {
-      const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/regist/emailCheck`,
-      { email: email },
-      { headers: {"Content-Type": "application/json"} }
-      );
+  // const emailCheck = async () => {
+  //   try {
+  //     const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/regist/emailCheck`,
+  //     { email: email },
+  //     { headers: {"Content-Type": "application/json"} }
+  //     );
       
-      if (response.ok) {
-        setCheckEmail(true);
-        alert("인증이 완료되었습니다.");
-      } else {
-        alert("인증에 실패했습니다");
-      }
-    } catch (error) {
-      alert("인증과정 중 오류가 발생했습니다");
-      console.log("인증과정 중 오류가 발생했습니다", error);
-    }
-  };
+  //     if (response.ok) {
+  //       setCheckEmail(true);
+  //       alert("인증이 완료되었습니다.");
+  //     } else {
+  //       alert("인증에 실패했습니다");
+  //     }
+  //   } catch (error) {
+  //     alert("인증과정 중 오류가 발생했습니다");
+  //     console.log("인증과정 중 오류가 발생했습니다", error);
+  //   }
+  // };
 
 
   //약관동의
@@ -364,10 +371,10 @@ const RegistInfoInsert = (active) => {
     const formData = {
       name: name,
       password: password,
-      confirmPassword: confirmPassword,
+      // confirmPassword: confirmPassword,
       phone: phone,
       email: email,
-      validNumber: event.target.elements.validNumber.value,
+      // validNumber: event.target.elements.validNumber.value,
       birthday: birthday,
       registCheck: registCheck.toString(),
       type: isChecked ? '직원' : '일반',
@@ -405,14 +412,14 @@ const RegistInfoInsert = (active) => {
       <InputField><input type="text" value={email} onChange={handleEmailChange} placeholder="ex)chunjae@chunjae.com" required />
         <label>이메일</label><span />
       </InputField> {!isValidEmail && email !== "" && <p>이메일 형식에 맞게 입력해주세요</p>}
-      {isValidEmail && email !== "" && <ApplyButton onClick={emailConfirm}>인증하기</ApplyButton>}
+      {isValidEmail && email !== "" && <ApplyButton onClick={emailConfirm}>인증하기 {checkEmail && <AiOutlineCheck id='check_icon'/>} </ApplyButton>}
 
-      <InputField><input type="text" name='validNumber' placeholder="인증코드" required />
+      {/* <InputField><input type="text" name='validNumber' placeholder="인증코드" required />
         <label>이메일 인증코드 입력</label><span />
         {isValidEmail && email !== "" && <ApplyButton onClick={emailCheck}>인증번호 확인 {checkEmail && <AiOutlineCheck id='check_icon'/>}</ApplyButton>}
-      </InputField>
+      </InputField> */}
 
-      <InputField><input type="password" value={password} onChange={handlePasswordChange} placeholder="영문,숫자,특수문자 포함 8~20자내" required />
+      <InputField><input type="password" value={password} onChange={handlePasswordChange} minlength="8" maxlength="20" placeholder="영문,숫자,특수문자 포함 8~20자내" required />
         <label>비밀번호</label><span />
       </InputField> {!isValidPassword && password !== "" && <p>비밀번호는 영문, 숫자, 특수문자를 모두 포함하여 공백없이 8~20자로 입력해주세요</p>}
 
