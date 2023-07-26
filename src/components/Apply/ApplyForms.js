@@ -2,7 +2,8 @@ import { useEffect, useState } from "react";
 import { styled } from "styled-components";
 import AlertDialog from '@/components/Common/Alert/AlertDialog';
 import { useRouter } from "next/navigation";
-import axios from "axios";
+import axios from 'axios';
+import { headers } from "next/dist/client/components/headers";
 
 const ApplyContainer = styled.main`
   width: 100%;
@@ -235,6 +236,8 @@ const ApplyForms = (props) => {
     pm: '에듀테크 PM 2기 (프로덕트 매니저)',
   }
 
+  
+
   /* BackEnd DATA START */
   const information = { //기본입력정보
     name: '홍길동',
@@ -300,6 +303,7 @@ const ApplyForms = (props) => {
   const initialTextareaValue2 = "2번 약관 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur pretium mi sed tristique commodo. Nullam in massa neque. Etiam scelerisque diam sit amet est scelerisque, vitae ultricies quam efficitur. Nulla facilisi. Aliquam at elit eu mi sollicitudin tincidunt in non felis. Vivamus vitae lectus sed massa venenatis tincidunt. Donec euismod luctus tristique. Aliquam non feugiat tortor. Sed vel velit at risus venenatis sollicitudin eu eu justo. Mauris vel ipsum vel purus facilisis condimentum in ac dui. Nulla id erat at odio congue suscipit vel vitae purus. Sed eu nunc sed urna finibus";
   /* BackEnd DATA END */
 
+
   const [isPhoneChecked, setIsPhoneChecked] = useState(false);
   const [isOtherChecked, setIsOtherChecked] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
@@ -352,6 +356,33 @@ const ApplyForms = (props) => {
   const handleEX = (e) => {
     setEX(e.target.value);
   };
+
+
+  // 회원 기본정보 불러오기
+  const [members, setMembers] = useState([]);
+  useEffect(() => {
+    
+    const fetchMembers = async () => {
+      try {
+        const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/kdt/member`,
+        status, {
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': status
+          },
+        }); 
+        console.log(response)
+        console.log(response.data)
+        setMembers(response.data); 
+      } catch (error) {
+        console.error('Error fetching members:', error);
+      }
+    };
+
+    fetchMembers();
+  }, []);
+
+
 
   //핸드폰 번호 유효성 검사
   const [phone, setPhone] = useState('');
@@ -461,9 +492,9 @@ const ApplyForms = (props) => {
               <form action={`/curriculum/${id}`} onSubmit={handleSubmit}>
                 <InsertContainer id={id} className="flex">
                   <h2 id={`import`}>*기본 입력정보</h2>
-                  <InputField id={id}><input type="text" name="name" defaultValue={information.name} required /><label>Name</label></InputField>
-                  <InputField id={id}><input type="date" name="date" defaultValue={information.date} required /><label>생년월일</label></InputField>
-                  <InputField id={id}><input type="email" name="email" defaultValue={information.email} required /><label>이메일</label></InputField>
+                  <InputField id={id}><input type="text" name="name" defaultValue={members.name} required /><label>Name</label></InputField>
+                  <InputField id={id}><input type="date" name="date" defaultValue={members.birth} required /><label>생년월일</label></InputField>
+                  <InputField id={id}><input type="email" name="email" defaultValue={members.email} required /><label>이메일</label></InputField>
                 </InsertContainer>
 
                 <InsertContainer className="input_margin" id={id}>

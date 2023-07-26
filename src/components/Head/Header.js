@@ -8,6 +8,7 @@ import { HiOutlineViewList } from 'react-icons/hi';
 import { AiOutlineClose } from 'react-icons/ai';
 import { BsBell } from 'react-icons/bs';
 import { FaUserCircle } from "react-icons/fa";
+import { useRouter } from 'next/navigation';
 
 import ChunjaeEdu from '@/assets/img/천재교육.png';
 import ChunjaeTextBook from '@/assets/img/CI/logo.png';
@@ -18,6 +19,7 @@ import '@/assets/scss/Head/Header.scss';
 // import { signOut, useSession } from "next-auth/react";
 
 const LoginArea = styled.div`
+
     svg {
         cursor: pointer;
         font-size: 35px;
@@ -26,6 +28,7 @@ const LoginArea = styled.div`
     
     & ul.popup {
         display: none;
+        
 
         &_show {
             @media screen and (min-width: 1024px) {
@@ -76,10 +79,13 @@ const Header = () => {
     const navRef = useRef(null);
     const buttonRef = useRef(null)
     // const { status } = useSession();
+    const router = useRouter();
+    const status = localStorage.getItem("accessToken"); 
    
     const signOut = () => {
-        removeItem("accessToken");
-        //axois '/removeToken'
+        localStorage.removeItem("accessToken");
+        localStorage.removeItem("refreshToken");
+        location.replace('/')
     };
 
     const toggleDropdown = (Dropdown) => {
@@ -143,7 +149,7 @@ const Header = () => {
                             <li className="nav_item"><Link href={`/Test`} className="nav_link">고객센터</Link></li>
                             <li className="nav_item"><Link href={`/`} className="nav_link">공지사항</Link></li>
                             <LoginArea>
-                                { localStorage.getItem("accessToken") ? (
+                                { status ? (
                                     <ul>
                                         <li className="nav_item popup">
                                             <FaUserCircle onClick={() => toggleDropdown(true)} />
@@ -155,9 +161,9 @@ const Header = () => {
                                             <li className="nav_item popup_item" onClick={() => signOut()} >로그아웃</li>
                                         </ul>
                                     </ul>
-                                ) : (
+                                ) : ( 
                                     <li className="nav_item"><Link href={`/login`} className="nav_link">로그인</Link></li>
-                                )}
+                                )}  
                             </LoginArea>
                         </ul>
                     </div>

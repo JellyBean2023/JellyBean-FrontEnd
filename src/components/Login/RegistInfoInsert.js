@@ -309,22 +309,42 @@ const RegistInfoInsert = (active) => {
   const [checkEmail, setCheckEmail] = useState(false);
 
   const emailConfirm = async () => {
+    console.log({ email: email });
+
     try {
-      const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/regist/emailConfirm`,
-        { email: email },
-        { headers: {"Content-Type": "application/json"} }
-      );
-      if (response.data === true) {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/auth/signup/emailcheck`, {
+        method: "POST",
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ email: email }),
+      });
+
+      if (res.ok && res.data === true) {
         setCheckEmail(true);
-        alert("이메일 인증이 완료되었습니다")
-        // alert("인증 이메일이 발송되었습니다. 인증번호를 확인해주세요");
+        alert("인증이 완료되었습니다.");
       } else {
-        alert("인증 이메일 발송에 실패했습니다");
+        alert("이메일 인증과정 중 오류가 발생했습니다.");
       }
     } catch (error) {
-      alert("인증 이메일 발송 중 오류가 발생했습니다");
-      console.log("인증 이메일 발송 중 오류가 발생했습니다", error);
+      console.error("에러 발생:", error);
     }
+    // try {
+    //   const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/regist/emailConfirm`,
+    //     { email: email },
+    //     { headers: {"Content-Type": "application/json"} }
+    //   );
+    //   if (response.data === true) {
+    //     setCheckEmail(true);
+    //     alert("이메일 인증이 완료되었습니다")
+    //     // alert("인증 이메일이 발송되었습니다. 인증번호를 확인해주세요");
+    //   } else {
+    //     alert("인증 이메일 발송에 실패했습니다");
+    //   }
+    // } catch (error) {
+    //   alert("인증 이메일 발송 중 오류가 발생했습니다");
+    //   console.log("인증 이메일 발송 중 오류가 발생했습니다", error);
+    // }
   };
 
   // const emailCheck = async () => {

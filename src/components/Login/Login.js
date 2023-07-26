@@ -212,6 +212,48 @@ const Login = () => {
       setIsValidPassword(true);
   };
 
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+  //   if (!emailRef.current.value || !passwordRef.current.value) return;
+
+  //   const loginData = {
+  //     email: emailRef.current.value,
+  //     password: passwordRef.current.value,
+  //   }
+
+  //   const res = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/auth/login`, loginData, {
+  //     headers: {
+  //     'Content-Type': 'application/json'
+  //     }
+  //   });
+
+  //   // const res = await axios({
+  //   //   method: "post",
+  //   //   url:`${process.env.NEXT_PUBLIC_API_URL}/api/auth/login`,
+  //   //   data:JSON.stringify(loginData),
+  //   //   headers:{
+  //   //     "Content-Type": "application/json; charset=utf-8"
+  //   //   }
+  //   // });
+
+  //   if (res.status) {
+  //     const { accessToken, refreshToken } = res.JSON
+
+  //     localStorage.setItem("accessToken", accessToken);
+  //     localStorage.setItem("refreshToken", refreshToken);
+
+  //     router.replace("/");
+  //   } else {
+  //     alert("등록되지 않은 회원입니다");
+  //   }
+
+  //   // const result = await signIn("credentials", { //Next-Auth credentials Login
+  //   //   username: emailRef.current.value,
+  //   //   password: passwordRef.current.value,
+  //   //   redirect: false,
+  //   // });
+  // };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!emailRef.current.value || !passwordRef.current.value) return;
@@ -219,30 +261,30 @@ const Login = () => {
     const loginData = {
       email: emailRef.current.value,
       password: passwordRef.current.value,
-    }
+    };
 
-    const res = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/login`, loginData, {
-      headers: {
-      'Content-Type': 'application/json'
-      }
-    });
-
-    if (response.status === 200 && response.statusText === 'OK') {
-      const { accessToken, refreshToken } = await res.json();
-
-      localStorage.setItem("accessToken", accessToken);
-      localStorage.setItem("refreshToken", refreshToken);
+    try {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/auth/login`, {
+        method: "POST",
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(loginData),
+      });
       
-      router.replace("/");
-    } else {
-      alert("등록되지 않은 회원입니다");
-    }
+      if (res.ok) {
+        const { accessToken, refreshToken } = await res.json();
 
-    // const result = await signIn("credentials", { //Next-Auth credentials Login
-    //   username: emailRef.current.value,
-    //   password: passwordRef.current.value,
-    //   redirect: false,
-    // });
+        localStorage.setItem("accessToken", accessToken);
+        localStorage.setItem("refreshToken", refreshToken);
+        // router.replace("/");
+        location.replace('/')
+      } else {
+        alert("등록되지 않은 회원입니다");
+      }
+    } catch (error) {
+      console.error("에러 발생:", error);
+    }
   };
 
   // 비밀번호 노출
