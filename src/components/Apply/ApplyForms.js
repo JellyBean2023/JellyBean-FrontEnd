@@ -3,6 +3,8 @@ import { styled } from "styled-components";
 import AlertDialog from '@/components/Common/Alert/AlertDialog';
 import { useRouter } from "next/navigation";
 import axios from 'axios';
+import { useRecoilValue } from "recoil";
+import { EmailIDState } from "@/components/Login/Login";
 import { headers } from "next/dist/client/components/headers";
 
 const ApplyContainer = styled.main`
@@ -360,25 +362,23 @@ const ApplyForms = (props) => {
 
   // 회원 기본정보 불러오기
   const [members, setMembers] = useState([]);
+  const email = useRecoilValue(EmailIDState);
+
   useEffect(() => {
-    
     const fetchMembers = async () => {
       try {
-        const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/kdt/member`,
-        status, {
+        const response = await axios.get(`http://localhost:8080/api/member/${email}`,
+        {
           headers: {
             'Content-Type': 'application/json',
             'Authorization': status
           },
-        }); 
-        console.log(response)
-        console.log(response.data)
-        setMembers(response.data); 
+        });
+        setMembers(response.data);
       } catch (error) {
         console.error('Error fetching members:', error);
       }
     };
-
     fetchMembers();
   }, []);
 
