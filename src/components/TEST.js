@@ -1,10 +1,7 @@
-'use client';
-import { useSession } from 'next-auth/react';
+"use client";
 import styled from 'styled-components';
-import Button from '@mui/material/Button';
-import showAlert from '@/components/Common/Alert/Alert';
-import AlertDialog from '@/components/Common/Alert/AlertDialog';
-import { useState } from 'react';
+import { useRecoilValue } from 'recoil';
+import { EmailIDState } from "@/components/Login/Login";
 
 const TESTContainer = styled.section`
   background-color: wheat;
@@ -14,24 +11,21 @@ const TESTContainer = styled.section`
 `;
 
 const TEST = () => {
-  const {data: session, status } = useSession();
-  console.log(session?.user.data)
-  console.log(status)
+  const emailID = useRecoilValue(EmailIDState); // Recoil atom 상태를 가져오기 위해 useRecoilValue 훅 사용
 
-  const contents = `Let Google help apps determine location. This means sending anonymous location data to Google, even when no apps are running.`
-
-  const [open, setOpen] = useState(false);
-  const handleClose = () => {setOpen(false)};
-
+  console.log("email: ", emailID);
   return (
     <TESTContainer>
       <div>
-        Data : {session?.user.data.id}
+        email: {emailID}
       </div>
-      <Button onClick={() => showAlert(contents)}>Show Alert</Button>
+      {/* <div>
+        Data : {session?.user.data.id}
+      </div> */}
+      {/* <Button onClick={() => showAlert(contents)}>Show Alert</Button>
 
       <Button onClick={handleClickOpen}>Show AlertDialog</Button>
-      <AlertDialog open={open} handleClose={handleClose} contents={contents} />
+      <AlertDialog open={open} handleClose={handleClose} contents={contents} /> */}
     </TESTContainer>
   );
 };

@@ -4,10 +4,11 @@ import Link from 'next/link';
 import styled from 'styled-components';
 import Logo from '../../assets/img/CI/img_ci_var02.jpg';
 import React, { useEffect, useRef, useState } from 'react'
-import { signIn } from 'next-auth/react'
 import { useRouter } from 'next/navigation';
 import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
+import { atom, useRecoilState } from 'recoil';
 import axios from 'axios';
+import { signIn } from 'next-auth/react'
 
 
 const Container = styled.main`
@@ -168,6 +169,11 @@ const EyeIcon = styled.div`
   cursor: pointer;
 `;
 
+const EmailIDState = atom({
+  key: 'emailID',
+  default: '',
+});
+
 const Login = () => {
   const emailRef = useRef(null)
   const passwordRef = useRef(null)
@@ -177,7 +183,6 @@ const Login = () => {
 
   const [isValidEmail, setIsValidEmail] = useState(true);
   const [isValidPassword, setIsValidPassword] = useState(true);
-
 
   //비밀번호 노출
   const [showPassword, setShowPassword] = useState(false);
@@ -221,38 +226,14 @@ const Login = () => {
   //     password: passwordRef.current.value,
   //   }
 
-  //   const res = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/auth/login`, loginData, {
-  //     headers: {
-  //     'Content-Type': 'application/json'
-  //     }
-  //   });
-
-  //   // const res = await axios({
-  //   //   method: "post",
-  //   //   url:`${process.env.NEXT_PUBLIC_API_URL}/api/auth/login`,
-  //   //   data:JSON.stringify(loginData),
-  //   //   headers:{
-  //   //     "Content-Type": "application/json; charset=utf-8"
-  //   //   }
-  //   // });
-
-  //   if (res.status) {
-  //     const { accessToken, refreshToken } = res.JSON
-
-  //     localStorage.setItem("accessToken", accessToken);
-  //     localStorage.setItem("refreshToken", refreshToken);
-
-  //     router.replace("/");
-  //   } else {
-  //     alert("등록되지 않은 회원입니다");
-  //   }
-
   //   // const result = await signIn("credentials", { //Next-Auth credentials Login
   //   //   username: emailRef.current.value,
   //   //   password: passwordRef.current.value,
   //   //   redirect: false,
   //   // });
   // };
+  
+  const [emailID, setEmailID] = useRecoilState(EmailIDState);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -277,7 +258,8 @@ const Login = () => {
 
         localStorage.setItem("accessToken", accessToken);
         localStorage.setItem("refreshToken", refreshToken);
-        // router.replace("/");
+        setEmailID(loginData.email);
+        
         location.replace('/')
       } else {
         alert("등록되지 않은 회원입니다");
@@ -338,3 +320,5 @@ const Login = () => {
 };
 
 export default Login;
+
+export { EmailIDState };
