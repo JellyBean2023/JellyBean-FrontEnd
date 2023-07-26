@@ -7,6 +7,7 @@ import UpdateButton from "../Common/UpdateButton/UpdateButton";
 
 const CurriculumContainer = styled.section`
     background-color: #553BF3;
+    position: relative;
 `;
 
 const Curriculum = () => {
@@ -44,6 +45,9 @@ const Curriculum = () => {
 
     return (
         <CurriculumContainer className="text-gray-600 body-font">
+            {/* if the role is admin */}
+            <UpdateButton link="CurriculumBox"/>
+            {/* if the role is admin */}
             <div className="container px-5 py-24 mx-auto flex items-center h-full">
                 <div className="flex flex-wrap -m-4">
                     {data.map((v,i) => (
