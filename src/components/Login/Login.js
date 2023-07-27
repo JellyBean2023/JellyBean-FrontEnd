@@ -265,7 +265,7 @@ const Login = () => {
         alert("등록되지 않은 회원입니다");
       }
     } catch (error) {
-      console.error("에러 발생:", error);
+      alert("로그인에 실패했습니다");
     }
   };
 
