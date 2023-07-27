@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { styled } from "styled-components";
 
-const UpdateLink = styled(Link)`
+const EditLink = styled(Link)`
   position: absolute;
   right: 3rem;
   background-color: var(--theme-color);
@@ -13,14 +13,14 @@ const UpdateLink = styled(Link)`
   }
 `;
 
-const UpdateButton = (props) => {
+const EditButton = (props) => {
   const { link } = props;
 
   return(
-    <UpdateLink href={`/update/${link}`}>
+    <EditLink href={`/edit/${link}`}>
         수정하기
-    </UpdateLink>
+    </EditLink>
   )
 }
 
-export default UpdateButton;
+export default EditButton;
