@@ -115,6 +115,12 @@ const Header = () => {
         setNavIcon((prev) => !prev);
     }, [activeScreen]);
 
+    const [state, setState] = useState('');
+
+    useEffect(() => {
+        setState(localStorage?.getItem("accessToken"));
+      }, [state]);
+
     return (
         <header className="header">
             <Link href={`/`} className="header_logo">
@@ -146,17 +152,21 @@ const Header = () => {
                             <li className="nav_item"><Link href={`/Test`} className="nav_link">고객센터</Link></li>
                             <li className="nav_item"><Link href={`/`} className="nav_link">공지사항</Link></li>
                             <LoginArea>
-                                {typeof window !== 'undefined' && localStorage?.getItem("accessToken") ? (
+                                {typeof window !== 'undefined' && state ? (
                                     <ul>
                                         <li className="nav_item popup">
                                             <FaUserCircle onClick={() => toggleDropdown(true)} />
                                         </li>
-                                        <ul className={activeDropdown ? `popup_show` : `popup`}>
-                                            <li className="nav_item popup_item">
-                                                <Link href={'/mypage'}>마이페이지</Link>
-                                            </li>
-                                            <li className="nav_item popup_item" onClick={() => signOut()} >로그아웃</li>
-                                        </ul>
+                                        <li>
+                                            <div>
+                                                <ul className={activeDropdown ? `popup_show` : `popup`}>
+                                                    <li className="nav_item popup_item">
+                                                        <Link href={'/mypage'}>마이페이지</Link>
+                                                    </li>
+                                                    <li className="nav_item popup_item" onClick={() => signOut()} >로그아웃</li>
+                                                </ul>
+                                            </div>
+                                        </li>
                                     </ul>
                                 ) : ( 
                                     <li className="nav_item"><Link href={`/login`} className="nav_link">로그인</Link></li>
