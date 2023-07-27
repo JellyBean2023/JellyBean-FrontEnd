@@ -210,14 +210,14 @@ const RegistInfoInsert = (active) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  const [birthday, setBirthday] = useState('');
+  const [birth, setbirth] = useState('');
   const [phone, setPhone] = useState('');
 
   const [isValidName, setIsValidName] = useState(true);
   const [isValidEmail, setIsValidEmail] = useState(true);
   const [isValidPassword, setIsValidPassword] = useState(true);
   const [isValidConfirmPassword, setIsValidConfirmPassword] = useState(true);
-  const [isValidBirthday, setIsValidBirthday] = useState(true);
+  const [isValidbirth, setIsValidbirth] = useState(true);
   const [isValidPhone, setIsValidPhone] = useState(true);
 
   useEffect(() => { //유효성 검사
@@ -225,7 +225,7 @@ const RegistInfoInsert = (active) => {
     const emailTimer = setTimeout(() => { validateEmail() }, 300);
     const passwordTimer = setTimeout(() => { validatePassword() }, 300);
     const confirmPasswordTimer = setTimeout(() => { validateConfirmPassword() }, 300);
-    const birthdayTimer = setTimeout(() => { validateBirthday() }, 300);
+    const birthTimer = setTimeout(() => { validatebirth() }, 300);
     const phoneTimer = setTimeout(() => { validatePhone() }, 300);
 
     return () => {
@@ -233,16 +233,16 @@ const RegistInfoInsert = (active) => {
       clearTimeout(emailTimer);
       clearTimeout(passwordTimer);
       clearTimeout(confirmPasswordTimer);
-      clearTimeout(birthdayTimer);
+      clearTimeout(birthTimer);
       clearTimeout(phoneTimer);
     };
-  }, [name, email, password, confirmPassword, birthday, phone]);
+  }, [name, email, password, confirmPassword, birth, phone]);
 
   const handleNameChange = (event) => { setName(event.target.value) }; //이름
   const handleEmailChange = (event) => { setEmail(event.target.value) }; //이메일
   const handlePasswordChange = (event) => { setPassword(event.target.value) }; //비밀번호
   const handleConfirmPasswordChange = (event) => { setConfirmPassword(event.target.value) }; //비밀번호 확인
-  const handleBirthdayChange = (event) => { setBirthday(event.target.value) }; //생년월일
+  const handlebirthChange = (event) => { setbirth(event.target.value) }; //생년월일
   const handlePhoneChange = (event) => { setPhone(event.target.value) };   //핸드폰번호
 
   const validateName = () => {  //이름
@@ -276,12 +276,12 @@ const RegistInfoInsert = (active) => {
       setIsValidConfirmPassword(true);
   };
 
-  const validateBirthday = () => {  //생년월일
+  const validatebirth = () => {  //생년월일
     const regex = /^\d{4}-\d{2}-\d{2}$/;
-    if (!regex.test(birthday))
-      setIsValidBirthday(false);
+    if (!regex.test(birth))
+      setIsValidbirth(false);
     else
-      setIsValidBirthday(true);
+      setIsValidbirth(true);
   };
 
   const validatePhone = () => {  //핸드폰번호
@@ -320,12 +320,13 @@ const RegistInfoInsert = (active) => {
         body: JSON.stringify({ email: email }),
       });
 
-      if (res.ok && res.data === true) {
-        setCheckEmail(true);
-        alert("인증이 완료되었습니다.");
-      } else {
-        alert("이메일 인증과정 중 오류가 발생했습니다.");
-      }
+        if(res.ok){
+          setCheckEmail(true);
+          alert("인증이 완료되었습니다.");
+        }
+        else {
+          alert("중복된 이메일 입니다")
+        }
     } catch (error) {
       console.error("에러 발생:", error);
     }
@@ -395,16 +396,16 @@ const RegistInfoInsert = (active) => {
       phone: phone,
       email: email,
       // validNumber: event.target.elements.validNumber.value,
-      birthday: birthday,
+      birth: birth,
       registCheck: registCheck.toString(),
       type: isChecked ? '직원' : '일반',
       employeeNumber: employeeNumber,
     };
 
     try {
-      const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/regist`, formData, {
+      const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/auth/signup`, formData, {
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
         }
       });
     
@@ -439,7 +440,7 @@ const RegistInfoInsert = (active) => {
         {isValidEmail && email !== "" && <ApplyButton onClick={emailCheck}>인증번호 확인 {checkEmail && <AiOutlineCheck id='check_icon'/>}</ApplyButton>}
       </InputField> */}
 
-      <InputField><input type="password" value={password} onChange={handlePasswordChange} minlength="8" maxlength="20" placeholder="영문,숫자,특수문자 포함 8~20자내" required />
+      <InputField><input type="password" value={password} onChange={handlePasswordChange} minLength="8" maxLength="20" placeholder="영문,숫자,특수문자 포함 8~20자내" required />
         <label>비밀번호</label><span />
       </InputField> {!isValidPassword && password !== "" && <p>비밀번호는 영문, 숫자, 특수문자를 모두 포함하여 공백없이 8~20자로 입력해주세요</p>}
 
@@ -447,9 +448,9 @@ const RegistInfoInsert = (active) => {
         <label>비밀번호 확인</label><span />
       </InputField> {!isValidConfirmPassword && confirmPassword !== "" && <p>비밀번호가 일치하지 않습니다</p>}
 
-      <InputField><input type="text" value={birthday} onChange={handleBirthdayChange} placeholder="생년월일" required />
+      <InputField><input type="text" value={birth} onChange={handlebirthChange} placeholder="생년월일" required />
         <label>생년월일</label><span />
-      </InputField> {!isValidBirthday && birthday !== "" && <p>YYYY-MM-DD 형식으로 작성해주세요</p>}
+      </InputField> {!isValidbirth && birth !== "" && <p>YYYY-MM-DD 형식으로 작성해주세요</p>}
 
       <InputField><input type="text" value={phone} onChange={handlePhoneChange} placeholder="휴대전화 번호" required />
         <label>휴대전화 번호</label><span />
