@@ -2,8 +2,7 @@
 const nextConfig = {
     swcMinify: true,
     experimental: { 
-        esmExternals: true,
-        styledComponent: true
+        esmExternals: true
      },
     compiler: { styledComponents: true },
     env: {SESSION_SECRET: 'your-session-secret',},
