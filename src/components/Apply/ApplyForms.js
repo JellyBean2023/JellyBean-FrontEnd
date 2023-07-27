@@ -362,12 +362,12 @@ const ApplyForms = (props) => {
 
   // 회원 기본정보 불러오기
   const [members, setMembers] = useState([]);
-  const email = useRecoilValue(EmailIDState);
+  const emailID = useRecoilValue(EmailIDState);
 
   useEffect(() => {
     const fetchMembers = async () => {
       try {
-        const response = await axios.get(`http://localhost:8080/api/member/${email}`,
+        const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/member/${emailID}`,
         {
           headers: {
             'Content-Type': 'application/json',
