@@ -4,10 +4,10 @@ import '@toast-ui/editor/dist/toastui-editor.css';
 const FormContainer = styled.form`
     display: flex;
     justify-content: center;
-    
-    .editor {
-        color: var(--text-color) !important;
-        background-color: white;
+
+    .ProseMirror, .toastui-editor-contents p{
+        color: var(--text-color);
+        background-color: rgb(var(--background-rgb));
     }
 `
 
@@ -24,7 +24,7 @@ const Update = (props) => {
         <main className="px-24 py-10">
             <h1><b>데이터 수정하기</b> {id}</h1>
             <FormContainer action={``}>
-                <Editor className="editor"
+                <Editor className="editor"  
                     initialValue={JSON.stringify(placeHolder)}
                     previewStyle="vertical"
                     height="600px"
