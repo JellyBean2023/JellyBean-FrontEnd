@@ -259,8 +259,8 @@ const Login = () => {
         localStorage.setItem("accessToken", accessToken);
         localStorage.setItem("refreshToken", refreshToken);
         setEmailID(loginData.email);
-        
-        location.replace('/')
+
+        useRouter().replace('/');
       } else {
         alert("등록되지 않은 회원입니다");
       }
