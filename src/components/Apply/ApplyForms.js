@@ -364,6 +364,8 @@ const ApplyForms = (props) => {
   const [members, setMembers] = useState([]);
   const emailID = useRecoilValue(EmailIDState);
 
+  console.log(members)
+
   useEffect(() => {
     const fetchMembers = async () => {
       try {

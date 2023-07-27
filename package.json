@@ -31,6 +31,7 @@
     "react-dom": "^18.2.0",
     "react-icons": "^4.10.1",
     "recoil": "^0.7.7",
+    "recoil-persist": "^5.1.0",
     "sass": "^1.63.4",
     "styled-components": "^6.0.3",
     "swiper": "^9.4.1",

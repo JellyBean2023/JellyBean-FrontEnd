@@ -8,7 +8,6 @@ import { HiOutlineViewList } from 'react-icons/hi';
 import { AiOutlineClose } from 'react-icons/ai';
 import { BsBell } from 'react-icons/bs';
 import { FaUserCircle } from "react-icons/fa";
-import { useRouter } from 'next/navigation';
 
 import ChunjaeEdu from '@/assets/img/천재교육.png';
 import ChunjaeTextBook from '@/assets/img/CI/logo.png';
@@ -79,7 +78,6 @@ const Header = () => {
     const navRef = useRef(null);
     const buttonRef = useRef(null)
     // const { status } = useSession();
-    const router = useRouter();
    
     const signOut = () => {
         localStorage.removeItem("accessToken");

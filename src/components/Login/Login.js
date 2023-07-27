@@ -7,6 +7,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import { useRouter } from 'next/navigation';
 import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
 import { atom, useRecoilState } from 'recoil';
+import { recoilPersist } from 'recoil-persist';
 import axios from 'axios';
 import { signIn } from 'next-auth/react'
 
@@ -169,9 +170,11 @@ const EyeIcon = styled.div`
   cursor: pointer;
 `;
 
+const { persistAtom } = recoilPersist();
 const EmailIDState = atom({
   key: 'emailID',
   default: '',
+  effects_UNSTABLE: [persistAtom],
 });
 
 const Login = () => {
@@ -252,7 +255,7 @@ const Login = () => {
         },
         body: JSON.stringify(loginData),
       });
-      
+
       if (res.ok) {
         const { accessToken, refreshToken } = await res.json();
 
@@ -260,7 +263,7 @@ const Login = () => {
         localStorage.setItem("refreshToken", refreshToken);
         setEmailID(loginData.email);
 
-        useRouter().replace('/');
+        router.replace("/");
       } else {
         alert("등록되지 않은 회원입니다");
       }
