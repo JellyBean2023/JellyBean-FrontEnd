@@ -4,7 +4,6 @@ import Link from 'next/link';
 import styled from 'styled-components';
 import Logo from '../../assets/img/CI/img_ci_var02.jpg';
 import React, { useEffect, useRef, useState } from 'react'
-import { useRouter } from 'next/navigation';
 import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
 import { atom, useRecoilState } from 'recoil';
 import { recoilPersist } from 'recoil-persist';
@@ -180,7 +179,6 @@ const EmailIDState = atom({
 const Login = () => {
   const emailRef = useRef(null)
   const passwordRef = useRef(null)
-  const router = useRouter();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -263,7 +261,7 @@ const Login = () => {
         localStorage.setItem("refreshToken", refreshToken);
         setEmailID(loginData.email);
 
-        router.replace("/");
+        location.replace('/');
       } else {
         alert("등록되지 않은 회원입니다");
       }
