@@ -80,7 +80,6 @@ const Header = () => {
     const buttonRef = useRef(null)
     // const { status } = useSession();
     const router = useRouter();
-    const status = localStorage.getItem("accessToken"); 
    
     const signOut = () => {
         localStorage.removeItem("accessToken");
@@ -149,7 +148,7 @@ const Header = () => {
                             <li className="nav_item"><Link href={`/Test`} className="nav_link">고객센터</Link></li>
                             <li className="nav_item"><Link href={`/`} className="nav_link">공지사항</Link></li>
                             <LoginArea>
-                                { status ? (
+                                {typeof window !== 'undefined' && localStorage?.getItem("accessToken") ? (
                                     <ul>
                                         <li className="nav_item popup">
                                             <FaUserCircle onClick={() => toggleDropdown(true)} />
