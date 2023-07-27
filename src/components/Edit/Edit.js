@@ -3,6 +3,8 @@ import { Editor } from '@toast-ui/react-editor';
 import '@toast-ui/editor/dist/toastui-editor.css';
 import { Button } from "@mui/material";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
+
 const EditorContainer = styled.main`
     padding: 2rem;
 
@@ -57,6 +59,7 @@ const EditorContainer = styled.main`
 
 const Edit = (props) => {
     const { id } = props;
+    const router = useRouter();
     const [formData, setFormData] = useState({
         lecName: "과정 ID",
         cardinalName: "과정 명",
@@ -127,6 +130,7 @@ const Edit = (props) => {
                     onChange={handleChange}
                 />
                 <Button id="btn" type="submit"> 수정하기 </Button>
+                <Button id="btn" onClick={() => router.back()}> 뒤로가기 </Button>
             </form>
         </EditorContainer>
     );
