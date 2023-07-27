@@ -4,9 +4,11 @@ import '@toast-ui/editor/dist/toastui-editor.css';
 import { Button } from "@mui/material";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import axios from "axios";
+import { headers } from "next/dist/client/components/headers";
 
 const EditorContainer = styled.main`
-    padding: 2rem;
+    padding: 2rem 5rem;
 
     h1 {
         b{
@@ -39,10 +41,8 @@ const EditorContainer = styled.main`
                 background-color: rgb(var(--background-rgb));
             }
 
-            .toastui-editor.ww-mode {
-                .toastui-editor-contents pre {
-                    border: 1px solid var(--text-color);
-                }
+            .toastui-editor-contents pre {
+                border: 1px solid var(--text-color);
             }
 
             .toastui-editor-popup-body {
@@ -86,13 +86,37 @@ const Edit = (props) => {
         e.preventDefault();
 
         const editedData = {
-            ID: { id: id },
             DATA: removeBackticks(formData)
         };
-        console.log(editedData);
+
+        const response = axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/member/${id}`, editedData, {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': localStorage.getItem("accessToken"),
+            },
+        }).then(response => {
+            alert("수정이 완료되었습니다");
+            console.log(response);
+        }).catch(error => {
+            alert("수정에 실패했습니다.");
+            console.log(error.response);
+        });
     };
 
+    //ID값에 따른 필요 데이터
     const ph_Curriculum = `
+    {
+      lecName: "과정 ID",
+      cardinalName: "과정 명",
+      lecStatus: 모집 여부 (true/false),
+      lecInfo: "내용"
+    },
+    {
+      lecName: "과정 ID",
+      cardinalName: "과정 명",
+      lecStatus: 모집 여부 (true/false),
+      lecInfo: "내용"
+    },
     {
       lecName: "과정 ID",
       cardinalName: "과정 명",
@@ -100,12 +124,11 @@ const Edit = (props) => {
       lecInfo: "내용"
     }
     `;
-
     const ph_Section1 = `
-        {
-            name: "이름",
-            contents: "내용"
-        }
+    {
+        name: "이름",
+        contents: "내용"
+    }
     `
 
     //ID에 따른 placeholder 지정
@@ -125,7 +148,7 @@ const Edit = (props) => {
                     className="editorss"
                     initialValue={placeholder}
                     previewStyle="vertical"
-                    height="600px"
+                    height="450px"
                     initialEditType="wysiwyg"
                     onChange={handleChange}
                 />
