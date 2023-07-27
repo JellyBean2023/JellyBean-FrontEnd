@@ -19,7 +19,7 @@ const EditorContainer = styled.main`
     }
 `
 
-const Update = (props) => {
+const Edit = (props) => {
     const { id } = props;
     const placeHolder = {
         lecName: "과정 ID",
@@ -44,4 +44,4 @@ const Update = (props) => {
     )
 }
 
-export default Update;
+export default Edit;

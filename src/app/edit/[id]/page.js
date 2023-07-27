@@ -1,11 +1,11 @@
 'use client';
 import { useParams } from "next/navigation";
-import Update from "@/components/Update/Update";
+import Edit from "@/components/Edit/Edit";
 
 const page = () => {
   const {id} = useParams();
   return(
-    <Update id={id}/>
+    <Edit id={id}/>
   )
 }
 
