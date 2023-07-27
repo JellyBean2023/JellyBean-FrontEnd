@@ -1,13 +1,21 @@
 import { styled } from "styled-components";
 import { Editor } from '@toast-ui/react-editor';
 import '@toast-ui/editor/dist/toastui-editor.css';
-const FormContainer = styled.form`
-    display: flex;
-    justify-content: center;
+import { Button } from "@mui/material";
+const EditorContainer = styled.main`
+    & form {
+        display: flex;
+        justify-content: center;
 
-    .ProseMirror, .toastui-editor-contents p{
-        color: var(--text-color);
-        background-color: rgb(var(--background-rgb));
+        .ProseMirror, .toastui-editor-md-preview p, .ProseMirror.toastui-editor-contents p{
+            color: var(--text-color);
+        }
+
+        .toastui-editor-main.toastui-editor-ww-mode {
+            .ProseMirror {
+                background-color: rgb(var(--background-rgb));
+            }
+        }
     }
 `
 
@@ -21,17 +29,18 @@ const Update = (props) => {
       }
       
     return (
-        <main className="px-24 py-10">
+        <EditorContainer className="px-24 py-10">
             <h1><b>데이터 수정하기</b> {id}</h1>
-            <FormContainer action={``}>
+            <form action={``}>
                 <Editor className="editor"  
                     initialValue={JSON.stringify(placeHolder)}
                     previewStyle="vertical"
                     height="600px"
                     initialEditType="wysiwyg"
                 />
-            </FormContainer>
-        </main>
+            </form>
+            <Button> 수정하기 </Button>
+        </EditorContainer>
     )
 }
 
