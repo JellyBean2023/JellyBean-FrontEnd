@@ -508,12 +508,12 @@ const ApplyForms = (props) => {
                         <>
                           <input type="radio" name="phoneNumber" value={list.value} onChange={handlePhoneNumberChange} />
                           {list.text}
-                          {isPhoneChecked ? <InputField id={id}><input id="number" type="text" name="phoneNumber" value={members.phoneNumber} onChange={handlePhoneChange} placeholder="ex) 010-0000-0000" required /> <label>연락받을 연락처</label></InputField> : null}
+                          {isPhoneChecked ? <InputField id={id}><input id="number" type="text" name="phoneNumber" value={members.phone} onChange={handlePhoneChange} placeholder="ex) 010-0000-0000" required /> <label>연락받을 연락처</label></InputField> : null}
                         </>
                       ) : (
                         <>
                           <input type="radio" name="phoneNumber" value={list.value} onChange={handlePhoneNumberChange} />
-                          {list.text}
+                          {list.text} {members.phone}
                         </>
                       )}
                     </label>
