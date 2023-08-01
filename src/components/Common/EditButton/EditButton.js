@@ -17,7 +17,7 @@ const EditButton = (props) => {
   const { link } = props;
 
   return(
-    <EditLink href={`/edit/${link}`}>
+    <EditLink href={`admin/edit/${link}`}>
         수정하기
     </EditLink>
   )

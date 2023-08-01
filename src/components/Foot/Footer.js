@@ -33,10 +33,10 @@ const Footer = () => {
           <Link href={''}>개인정보처리방침</Link>
         </label>
         <div className={footer.iconContainer}>
-          <Image src={In} alt='Instagram' width={40} height={40} />
-          <Image src={Fb} alt='Facebook' width={40} height={40} />
-          <Image src={NB} alt='Naver Blog' width={40} height={40} />
-          <Image src={YT} alt='Youtube' width={40} height={40} />
+          <Link href={'#instagram'}><Image src={In} alt='Instagram' width={40} height={40} /></Link>
+          <Link href={'#facebook'}><Image src={Fb} alt='Facebook' width={40} height={40} /></Link>
+          <Link href={'#naverblog'}><Image src={NB} alt='Naver Blog' width={40} height={40} /></Link>
+          <Link href={'#youtube'}><Image src={YT} alt='Youtube' width={40} height={40} /></Link>
         </div>
       </div>
     </footer>
