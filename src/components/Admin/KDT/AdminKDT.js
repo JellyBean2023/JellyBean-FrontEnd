@@ -1,6 +1,6 @@
 "use client";
 import { styled } from "styled-components";
-import AdminList from "./KDTApplyList";
+import AdminList from "./KDTApplyTableList";
 import axios from "axios";
 import { useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
@@ -78,7 +78,7 @@ const AdminApplyTable = () => {
                             </thead>
                             <tbody>
                                 {datas.map((v, i) => (
-                                    <AdminList key={i} data={v} />
+                                    <AdminList key={i} data={v}/>
                                 ))}
                             </tbody>
                         </table>
