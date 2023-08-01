@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import axios from 'axios';
 import { useRecoilValue } from "recoil";
 import { EmailIDState } from "@/components/Login/Login";
-import Link from "next/link";
+import { useRouter } from 'next/navigation';
 
 
 
@@ -14,6 +14,16 @@ const Mypage = () => {
   const emailID = useRecoilValue(EmailIDState);
 
   console.log(members)
+
+  const router = useRouter();
+
+  const handleGoToMemberInfo = () => {
+    router.push('/memberInfomation');
+  };
+
+  const handleGoToApplyInfo = () => {
+    router.push('/applyInfomation');
+  };
 
   useEffect(() => {
     const fetchMembers = async () => {
@@ -63,9 +73,9 @@ const Mypage = () => {
                   tel: {members.phone}
                 </div>
                 <div className="mb-2 text-gray-700 mt-10">
-                  <Link href="/memberInfomation" className="font-normal text-pink-500">
+                  <button onClick={handleGoToMemberInfo} className="font-normal text-pink-500">
                     회원정보 상세보기
-                  </Link>
+                  </button>
                 </div>
               </div>
               <div className="mt-10 py-10 border-t border-gray-300 text-center">
@@ -79,9 +89,9 @@ const Mypage = () => {
                         <i className="fas fa-map-marker-alt mr-2 text-lg text-blue-500">신청완료</i>
                       </div>
                     </div>
-                    <Link href="#pablo" className="font-normal text-pink-500">
+                    <button onClick={handleGoToApplyInfo} className="font-normal text-pink-500">
                       상세보기
-                    </Link>
+                    </button>
                   </div>
                 </div>
               </div>

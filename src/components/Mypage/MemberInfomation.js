@@ -214,8 +214,10 @@ const MemberInfomation = () => {
     const router = useRouter();
 
     const handleGoToMypage = () => {
-        router.push('/mypage');
+        router.back(-1);
     };
+
+    
 
     return (
         <MemberInfomationContainer>
