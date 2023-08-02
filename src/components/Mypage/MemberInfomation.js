@@ -1,8 +1,10 @@
 'use client';
+import { useEffect, useState } from "react";
 import styled from 'styled-components';
-import axios from 'axios';
-import { AiOutlineCheck } from 'react-icons/ai';
 import { useRouter } from 'next/navigation';
+import axios from 'axios';
+import { useRecoilValue } from "recoil";
+import { EmailIDState } from "@/components/Login/Login";
 
 
 const MemberInfomationContainer = styled.main`
@@ -217,40 +219,61 @@ const MemberInfomation = () => {
         router.back(-1);
     };
 
+  const [members, setMembers] = useState([]);
+  const emailID = useRecoilValue(EmailIDState);
+
+  console.log(members)
+
+  useEffect(() => {
+    const fetchMembers = async () => {
+      try {
+        const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/mypage/${emailID}`,
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': status
+          },
+        });
+        setMembers(response.data);
+      } catch (error) {
+        console.error('Error fetching members:', error);
+      }
+    };
+    fetchMembers();
+  }, []);
+
     
 
     return (
         <MemberInfomationContainer>
             <Title className="title">회원 상세정보</Title>
 
-            {/* value={member.name} */}
-            <InputField><input type="text" />
+            
+            <InputField><input type="text" value={members.name} />
                 <label>이름</label><span />
             </InputField>
 
-            {/* value={member.email} */}
-            <InputField><input type="text" />
+            
+            <InputField><input type="text" value={members.email} />
                 <label>이메일</label><span />
             </InputField>
 
-            {/* value={member.password} */}
-            <InputField><input type="password" />
-                <label>비밀번호</label><span />
-            </InputField>
-
-            {/* value={member.birth} */}
-            <InputField><input type="text" />
+            
+            <InputField><input type="text" value={members.birth} />
                 <label>생년월일</label><span />
             </InputField>
 
-            {/* value={member.phone} */}
-            <InputField><input type="text" />
+           
+            <InputField><input type="text"  value={members.phone} />
                 <label>휴대전화 번호</label><span />
             </InputField>
 
             <InputField id='type'>
                 <Box>
-                    <div>가입유형</div>
+                    <div>가입유형
+                    <p>{members.authority}</p>
+                    <p>사원번호: {members.employeeNumber}</p>
+                    </div>                  
                 </Box>
 
             </InputField>

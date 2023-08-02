@@ -28,7 +28,7 @@ const Mypage = () => {
   useEffect(() => {
     const fetchMembers = async () => {
       try {
-        const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/member/${emailID}`,
+        const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/mypage/kdt/${emailID}`,
           {
             headers: {
               'Content-Type': 'application/json',
@@ -70,7 +70,7 @@ const Mypage = () => {
                 </div>
                 <div className="text-sm leading-normal mt-0 mb-2 text-gray-500 font-bold uppercase">
                   <i className="fas fa-map-marker-alt mr-2 text-lg text-gray-500"></i>{" "}
-                  tel: {members.phone}
+                  tel: {members.phoneNumberText}
                 </div>
                 <div className="mb-2 text-gray-700 mt-10">
                   <button onClick={handleGoToMemberInfo} className="font-normal text-pink-500">
@@ -86,7 +86,7 @@ const Mypage = () => {
                         강의신청 현황
                       </h3>
                       <div className="text-sm leading-normal mt-0 mb-2 text-gray-500 font-bold uppercase">
-                        <i className="fas fa-map-marker-alt mr-2 text-lg text-blue-500">신청완료</i>
+                        <i className="fas fa-map-marker-alt mr-2 text-lg text-blue-500">{members.date}</i>
                       </div>
                     </div>
                     <button onClick={handleGoToApplyInfo} className="font-normal text-pink-500">

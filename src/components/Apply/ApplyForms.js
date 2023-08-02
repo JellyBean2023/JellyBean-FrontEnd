@@ -5,7 +5,6 @@ import { useRouter } from "next/navigation";
 import axios from 'axios';
 import { useRecoilValue } from "recoil";
 import { EmailIDState } from "@/components/Login/Login";
-import { headers } from "next/dist/client/components/headers";
 
 const ApplyContainer = styled.main`
   width: 100%;
@@ -238,7 +237,7 @@ const ApplyForms = (props) => {
     pm: '에듀테크 PM 2기 (프로덕트 매니저)',
   }
 
-  
+
 
   /* BackEnd DATA START */
   const information = { //기본입력정보
@@ -370,12 +369,12 @@ const ApplyForms = (props) => {
     const fetchMembers = async () => {
       try {
         const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/member/${emailID}`,
-        {
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': status
-          },
-        });
+          {
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': status
+            },
+          });
         setMembers(response.data);
       } catch (error) {
         console.error('Error fetching members:', error);
@@ -428,7 +427,7 @@ const ApplyForms = (props) => {
       name: target.name ? target.name.value : '',
       date: target.date ? target.date.value : '',
       email: target.email ? target.email.value : '',
-      phoneNumber: target.phoneNumber ? target.phoneNumber.value : '',
+      phone: target.phoneNumber ? target.phoneNumber.value : '',
       phoneNumberText: phone,
       recommend: target.recommend ? target.recommend.value : '',
       grade: target.grade ? target.grade.value : '',
@@ -508,7 +507,8 @@ const ApplyForms = (props) => {
                         <>
                           <input type="radio" name="phoneNumber" value={list.value} onChange={handlePhoneNumberChange} />
                           {list.text}
-                          {isPhoneChecked ? <InputField id={id}><input id="number" type="text" name="phoneNumber" value={members.phone} onChange={handlePhoneChange} placeholder="ex) 010-0000-0000" required /> <label>연락받을 연락처</label></InputField> : null}
+                          {isPhoneChecked ? <InputField id={id}><input id="number" type="text" name="phoneNumber"
+                          onChange={handlePhoneChange} placeholder="ex) 010-0000-0000" required /> <label>연락받을 연락처</label></InputField> : null}
                         </>
                       ) : (
                         <>
