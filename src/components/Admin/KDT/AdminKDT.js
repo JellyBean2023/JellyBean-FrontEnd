@@ -12,7 +12,8 @@ const TableContainer = styled.div`
         cursor: pointer;
 
         &:hover {
-            background-color: rgba(255, 255, 255, 0.1);
+            background-color: rgb(var(--anti-background-rgb));
+            color: var(--anti-text-color);
         }
     }
 `;

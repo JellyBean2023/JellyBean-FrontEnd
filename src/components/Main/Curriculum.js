@@ -3,7 +3,6 @@ import { styled } from "styled-components";
 import { useEffect, useMemo, useState } from 'react';
 import CurriculumBox from "./CurriculumBox";
 import axios from "axios";
-import EditButton from "../Common/EditButton/EditButton";
 
 const CurriculumContainer = styled.section`
     background-color: #553BF3;
@@ -48,9 +47,6 @@ const Curriculum = () => {
 
     return (
         <CurriculumContainer className="text-gray-600 body-font">
-            {/* if the role is admin */}
-            <EditButton link="CurriculumBox"/>
-            {/* if the role is admin */}
             <div className="container px-5 py-24 mx-auto flex items-center h-full">
                 <div className="flex flex-wrap -m-4">
                     {datas.map((v,i) => (

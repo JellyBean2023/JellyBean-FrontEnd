@@ -5,17 +5,8 @@ import { Button } from "@mui/material";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import axios from "axios";
-import { headers } from "next/dist/client/components/headers";
 
 const EditorContainer = styled.main`
-    padding: 2rem 5rem;
-
-    h1 {
-        b{
-            font-size: 20px;
-        }
-    }
-
     & form {
         display: flex;
         flex-direction: column;
@@ -53,6 +44,7 @@ const EditorContainer = styled.main`
         #btn {
             border: 1px solid var(--text-color);
             width: 15%;
+            color: var(--text-color);
         }
     }
 `
@@ -141,21 +133,32 @@ const Edit = (props) => {
         placeholder = "";
 
     return (
-        <EditorContainer className="px-24 py-10">
-            <h1><b>데이터 수정하기</b> {id}</h1>
-            <form onSubmit={submitHandler}>
-                <Editor
-                    className="editorss"
-                    initialValue={placeholder}
-                    previewStyle="vertical"
-                    height="450px"
-                    initialEditType="wysiwyg"
-                    onChange={handleChange}
-                />
-                <Button id="btn" type="submit"> 수정하기 </Button>
-                <Button id="btn" onClick={() => router.back()}> 뒤로가기 </Button>
-            </form>
-        </EditorContainer>
+        <EditorContainer className="p-5">
+            <button onClick={() => router.back()} className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center w-1/8">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                </svg>
+                뒤로 가기
+            </button>
+            <div className={"relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded"}>
+                <div className="rounded-t mb-0 px-4 py-3 border-0">
+                    <div className="flex flex-wrap items-center">
+                        <h2 className="font-semibold text-5xl my-4">데이터 수정하기<b>{id}</b></h2>
+                    </div>
+                </div>
+                <form onSubmit={submitHandler}>
+                    <Editor
+                        className="editorss"
+                        initialValue={placeholder}
+                        previewStyle="vertical"
+                        height="450px"
+                        initialEditType="wysiwyg"
+                        onChange={handleChange}
+                    />
+                    <Button id="btn" type="submit"> 수정하기 </Button>
+                </form>
+            </div>
+        </EditorContainer >
     );
 };
 

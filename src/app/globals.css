@@ -7,6 +7,7 @@
   --background-rgb: 255, 255, 255;
   --background-start-rgb: 255, 255, 255;
   --background-end-rgb: 255, 255, 255;
+  --anti-background-rgb: 32, 41, 58;
 
   --theme-color: #FFB400;
   --anti-theme-color: #553BF3;
@@ -45,6 +46,7 @@
     --background-rgb: 32, 41, 58;
     --background-start-rgb: 32, 41, 58;
     --background-end-rgb: 32, 41, 58;
+    --anti-background-rgb: 156 163 175;
     --text-color: #fff;
     --anti-text-color: #000;
   }

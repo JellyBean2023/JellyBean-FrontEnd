@@ -14,10 +14,10 @@ const EditLink = styled(Link)`
 `;
 
 const EditButton = (props) => {
-  const { link } = props;
+  const { id } = props;
 
   return(
-    <EditLink href={`admin/edit/${link}`}>
+    <EditLink href={`admin/edit/${id}`}>
         수정하기
     </EditLink>
   )
