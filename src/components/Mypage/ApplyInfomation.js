@@ -418,13 +418,13 @@ const ApplyForms = (props) => {
                 <form>
                     <InsertContainer id={id} className="flex">
                         <h2 id={`import`}>*기본 입력정보</h2>
-                        <InputField id={id}><input type="text" name="name" defaultValue={members.name} /><label>Name</label></InputField>
-                        <InputField id={id}><input type="date" name="date" defaultValue={members.date} /><label>생년월일</label></InputField>
-                        <InputField id={id}><input type="email" name="email" defaultValue={members.email} /><label>이메일</label></InputField>
+                        <InputField id={id}><input type="text" name="name" defaultValue={members.name} readOnly/><label>Name</label></InputField>
+                        <InputField id={id}><input type="date" name="date" defaultValue={members.date} readOnly/><label>생년월일</label></InputField>
+                        <InputField id={id}><input type="email" name="email" defaultValue={members.email} readOnly/><label>이메일</label></InputField>
                     </InsertContainer>
                     <InsertContainer className="input_margin" id={id}>
                         <h2 id={id}>연락처</h2>
-                        <InputField id={id}><input id="number" type="text" name="phoneNumber" value={members.phoneNumberText} /></InputField>
+                        <InputField id={id}><input id="number" type="text" name="phoneNumber" value={members.phoneNumberText} readOnly/></InputField>
                     </InsertContainer>
                     <InsertContainer id={id}>
                         <h2>추천 전형 여부</h2>
@@ -447,7 +447,7 @@ const ApplyForms = (props) => {
                     </InsertContainer>
                     <InsertContainer id={id}>
                         <h2>해당 분야로 지원하는 이유</h2>
-                        <InputField id={id}><textarea id="text_ap" name="reason" value={members.reason} required /></InputField>
+                        <InputField id={id}><textarea id="text_ap" name="reason" value={members.reason} required readOnly/></InputField>
                     </InsertContainer>
                     <InsertContainer id={id} className="input_margin">
                         <h2>해당 과정을 알게 된 경로</h2>

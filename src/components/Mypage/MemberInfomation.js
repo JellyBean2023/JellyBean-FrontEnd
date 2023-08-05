@@ -249,22 +249,22 @@ const MemberInfomation = () => {
             <Title className="title">회원 상세정보</Title>
 
             
-            <InputField><input type="text" value={members.name} />
+            <InputField><input type="text" value={members.name} readOnly/>
                 <label>이름</label><span />
             </InputField>
 
             
-            <InputField><input type="text" value={members.email} />
+            <InputField><input type="text" value={members.email} readOnly/>
                 <label>이메일</label><span />
             </InputField>
 
             
-            <InputField><input type="text" value={members.birth} />
+            <InputField><input type="text" value={members.birth} readOnly/>
                 <label>생년월일</label><span />
             </InputField>
 
            
-            <InputField><input type="text"  value={members.phone} />
+            <InputField><input type="text"  value={members.phone} readOnly/>
                 <label>휴대전화 번호</label><span />
             </InputField>
 
