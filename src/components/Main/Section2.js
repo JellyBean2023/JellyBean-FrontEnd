@@ -48,7 +48,7 @@ const LayerContainer = styled.section`
         }
 
         @media screen and (max-width: 1024px) {
-           
+           width: 100%;
         }
     }
 
@@ -64,6 +64,10 @@ const BoxContainer = styled.div`
     flex-wrap: wrap;
     justify-content: center;
     margin-top: 50px;
+
+    @media screen and (max-width: 1024px) {
+           width: 90%;
+        }
 `;
 
 const Box = styled.div`
@@ -83,12 +87,15 @@ const Box = styled.div`
             margin: 0px -9px -14px 10px;
             width: 23px   
         }
-
         
-    @media screen and (max-width: 1024px) {
-        width:1rem;
-        height: 1rem;
-    }
+        @media screen and (max-width: 1024px) {
+            &#star{    
+                margin: 0px -9px -14px 10px;
+                width:1rem;
+                height: 1rem;
+                position: absolute;
+            }
+        }
     }
 
     &#review{
@@ -101,7 +108,7 @@ const Box = styled.div`
         color:black;
 
         @media screen and (max-width: 1024px) {
-            width: 20.5rem;
+            width: 32rem;
             height: 15.5rem;
             margin-left:20px;
             margin-top: 20px;
@@ -133,6 +140,7 @@ const Box = styled.div`
             margin-right: -7rem;
         }
     }
+    
 `;
 
 const ReviewBox = styled.div`
@@ -142,8 +150,9 @@ const ReviewBox = styled.div`
     border-radius: 20px;
 
     @media screen and (max-width: 1024px) {
-        width: 23rem;
+        width: 38rem;
         height: 68.5rem;
+        margin-left: 4rem;
     }
 
 `;
@@ -166,8 +175,21 @@ const Review = styled.div`
             margin: 8px 10px 9px 15px;
             font-size: 13px;
         }
+
+        @media screen and (max-width: 1024px) {
+           width: 100%;
+        }
+    }
+
+
+    @media screen and (max-width: 1024px) {
+        width: 30rem;
+        height: 10rem;
+        margin-top: 3rem;
+        margin-left: 0rem;
     }
 `;
+
 
 const ImageBox = styled.div`
     margin: 18px 10px 10px 10px;
@@ -217,7 +239,7 @@ const Section2 = () => {
                             {loading ? (
                                 <Skeleton className="starloading" variant="text" />
                             ) : (
-                                <div id="star">
+                                <div id='star'>
                                     <Image src={Star1} alt='Star1' id='star' />
                                     <Image src={Star1} alt='Star1' id='star' />
                                     <Image src={Star1} alt='Star1' id='star' />

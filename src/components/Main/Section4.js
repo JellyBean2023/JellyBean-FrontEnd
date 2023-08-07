@@ -58,7 +58,7 @@ const Box = styled.div`
     border-radius: 20px;
     
     #FAQLink{
-        margin-left: 10rem;
+        float: right;
         display: inline-flex;
         align-items: center;
     }
@@ -81,7 +81,7 @@ const Box = styled.div`
 
         @media (max-width: 1024px) {
             width: 100%;
-            height: 250px;
+            height: 300px;
             margin-bottom: 30px;
         }
     }
@@ -92,7 +92,7 @@ const Box = styled.div`
 
         @media (max-width: 1024px) {
             width: 100%;
-            height: 250px;
+            height: 300px;
             margin-bottom: 30px;
         }
        
