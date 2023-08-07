@@ -249,33 +249,37 @@ const MemberInfomation = () => {
             <Title className="title">회원 상세정보</Title>
 
             
-            <InputField><input type="text" value={members.name} readOnly/>
-                <label>이름</label><span />
+            <InputField>
+                <p>이름</p>
+                <p><input type="text" value={members.name} /></p>
             </InputField>
 
             
-            <InputField><input type="text" value={members.email} readOnly/>
-                <label>이메일</label><span />
+            <InputField>
+                <p>이메일</p>
+                <p><input type="text" value={members.email} /></p>
             </InputField>
 
             
-            <InputField><input type="text" value={members.birth} readOnly/>
-                <label>생년월일</label><span />
+            <InputField>
+                <p>생년월일</p><span />
+                <p><input type="text" value={members.birth} /></p>
             </InputField>
 
            
-            <InputField><input type="text"  value={members.phone} readOnly/>
-                <label>휴대전화 번호</label><span />
+            <InputField>
+                <p>휴대전화 번호</p>
+                <p><input type="text" value={members.phone} /></p>
             </InputField>
 
             <InputField id='type'>
-                <Box>
-                    <div>가입유형
-                    <p>{members.authority}</p>
-                    <p>사원번호: {members.employeeNumber}</p>
-                    </div>                  
-                </Box>
+                    <p>가입유형</p>
+                    <p><input type="text" value={members.authority} /></p>             
+            </InputField>
 
+            <InputField id='type'>
+                    <p>사원번호</p>
+                    <p><input type="text" value={members.employeeNumber} /></p>             
             </InputField>
             <SubmitContainer><input type="button" onClick={handleGoToMypage} value="마이페이지로 돌아가기" /></SubmitContainer>
         </MemberInfomationContainer>

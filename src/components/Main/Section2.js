@@ -83,6 +83,12 @@ const Box = styled.div`
             margin: 0px -9px -14px 10px;
             width: 23px   
         }
+
+        
+    @media screen and (max-width: 1024px) {
+        width:1rem;
+        height: 1rem;
+    }
     }
 
     &#review{
@@ -169,6 +175,11 @@ const ImageBox = styled.div`
     height: 6.5rem;
     border-radius: 50%;
     border: 1px solid;
+    
+
+    @media screen and (max-width: 1024px) {
+        display: none;
+    }
 `;
 
 const Section2 = () => {
