@@ -242,7 +242,7 @@ const ApplyForms = (props) => {
   /* BackEnd DATA START */
   const information = { //기본입력정보
     name: '홍길동',
-    date: '2023-12-12',
+    birth: '2023-12-12',
     email: 'email@chunjae.com'
   }
 
@@ -425,7 +425,7 @@ const ApplyForms = (props) => {
 
     const formData = {
       name: target.name ? target.name.value : '',
-      date: target.date ? target.date.value : '',
+      birth: target.birth ? target.date.value : '',
       email: target.email ? target.email.value : '',
       phone: target.phoneNumber ? target.phoneNumber.value : '',
       phoneNumberText: phone,
