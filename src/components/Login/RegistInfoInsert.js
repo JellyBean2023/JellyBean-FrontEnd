@@ -398,7 +398,7 @@ const RegistInfoInsert = (active) => {
       // validNumber: event.target.elements.validNumber.value,
       birth: birth,
       registCheck: registCheck.toString(),
-      type: isChecked ? '직원' : '일반',
+      authority: isChecked ? 'ROLE_MEMBER' : 'ROLE_MEMBER',
       employeeNumber: employeeNumber,
     };
 
@@ -460,10 +460,10 @@ const RegistInfoInsert = (active) => {
       <Box>
         <div>가입유형</div>
         <UserBox>
-        일반 <input id="user" type="radio" name='employee' value={`0`} onChange={handleChange}/>
+        일반 <input id="user" type="radio" name='employee' value={`ROLE_MEMBER`} onChange={handleChange}/>
         </UserBox>
         <UserBox id='right'>
-        직원 <input id="user" type="radio" name='employee' value={`1`} onChange={handleChange} />
+        직원 <input id="user" type="radio" name='employee' value={`ROLE_MEMBER`} onChange={handleChange} />
         </UserBox>
         </Box>
         {isChecked ? (
