@@ -93,7 +93,6 @@ const Box = styled.div`
                 margin: 0px -9px -14px 10px;
                 width:1rem;
                 height: 1rem;
-                position: absolute;
             }
         }
     }
@@ -112,6 +111,7 @@ const Box = styled.div`
             height: 15.5rem;
             margin-left:20px;
             margin-top: 20px;
+            display: inline-block;
         }
     }
 
@@ -178,6 +178,10 @@ const Review = styled.div`
 
         @media screen and (max-width: 1024px) {
            width: 100%;
+
+           &#reviewText{
+            width: auto;
+           }
         }
     }
 
@@ -253,8 +257,8 @@ const Section2 = () => {
                             ) : (
                                 <div id="review">
                                     <Review>
-                                        <p id="userId">아이디</p>
-                                        <p id="reviewText">리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용</p>
+                                        <p id="userId">chunjaeFullstack1</p>
+                                        <p id="reviewText">지금까지 들어본 강의중에 최고였습니다. 많은 것들을 배우고갑니다. 최고의 천재교육 풀스택강의 꼭 추천합니다!!</p>
                                     </Review>
                                 </div>
                             )}
@@ -283,8 +287,8 @@ const Section2 = () => {
                             ) : (
                                 <div id="review">
                                     <Review>
-                                        <p id="userId">아이디</p>
-                                        <p id="reviewText">리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용</p>
+                                        <p id="userId">chunjaeFullstack2</p>
+                                        <p id="reviewText">지금까지 들어본 강의중에 최고였습니다. 많은 것들을 배우고갑니다. 최고의 천재교육 풀스택강의 꼭 추천합니다!!</p>
                                     </Review>
                                 </div>
                             )}
@@ -313,8 +317,8 @@ const Section2 = () => {
                             ) : (
                                 <div id="review">
                                     <Review>
-                                        <p id="userId">아이디</p>
-                                        <p id="reviewText">리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용</p>
+                                        <p id="userId">chunjaePM</p>
+                                        <p id="reviewText">지금까지 들어본 강의중에 최고였습니다. 많은 것들을 배우고갑니다. 최고의 천재교육 PM강의 꼭 추천합니다!!</p>
                                     </Review>
                                 </div>
                             )}
@@ -343,8 +347,8 @@ const Section2 = () => {
                             ) : (
                                 <div id="review">
                                     <Review>
-                                        <p id="userId">아이디</p>
-                                        <p id="reviewText">리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용</p>
+                                        <p id="userId">chunjaeBigdata</p>
+                                        <p id="reviewText">지금까지 들어본 강의중에 최고였습니다. 많은 것들을 배우고갑니다. 최고의 천재교육 빅데이터강의 꼭 추천합니다!!</p>
                                     </Review>
                                 </div>
                             )}
