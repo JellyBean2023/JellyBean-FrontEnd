@@ -187,7 +187,7 @@ const Header = () => {
 
                                 <ul className="dropdown_menu" id={activeDropdown === 1 ? "show-menu" : ""}>
                                     <li className="dropdown_item"><Link href={`/`} className="nav_link">소개</Link></li>
-                                    <li className="dropdown_item"><Link href={`/eduCenter`} className="nav_link">교육시설</Link></li>
+                                    <li className="dropdown_item"><Link href={`/educenter`} className="nav_link">교육시설</Link></li>
                                 </ul>
                             </li>
                             <li className="nav_item dropdown">
