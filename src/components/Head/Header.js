@@ -78,6 +78,7 @@ const Header = () => {
     const navRef = useRef(null);
     const buttonRef = useRef(null)
     // const { status } = useSession();
+    const isAdmin = localStorage.getItem("admin");
    
     const signOut = () => {
         localStorage.removeItem("accessToken");

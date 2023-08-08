@@ -255,10 +255,11 @@ const Login = () => {
       });
 
       if (res.ok) {
-        const { accessToken, refreshToken } = await res.json();
+        const { tokenDto, admin } = await res.json();
 
-        localStorage.setItem("accessToken", accessToken);
-        localStorage.setItem("refreshToken", refreshToken);
+        localStorage.setItem("accessToken", tokenDto.accessToken);
+        localStorage.setItem("refreshToken", tokenDto.refreshToken);
+        localStorage.setItem("admin", admin);
         setEmailID(loginData.email);
 
         location.replace('/');
