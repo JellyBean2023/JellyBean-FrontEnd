@@ -86,16 +86,7 @@ const Mypage = () => {
                         강의신청 현황
                       </h3>
                       <div className="text-sm leading-normal mt-0 mb-2 text-gray-500 font-bold uppercase">
-                        <p><i className="fas fa-map-marker-alt mr-2 text-lg text-blue-500">신청 현황: {members.exist ? '신청완료' : '미신청'}</i></p>
-                        {members.exist && ( 
-                          <>
-                            <p>
-                              <i className="fas fa-map-marker-alt mr-2 text-lg text-blue-500">
-                                신청날짜: {members.date}
-                              </i>
-                            </p>
-                          </>
-                        )}
+                        <i className="fas fa-map-marker-alt mr-2 text-lg text-blue-500">신청날짜: {members.date}</i>
                       </div>
                     </div>
                     <button onClick={handleGoToApplyInfo} className="font-normal text-pink-500">

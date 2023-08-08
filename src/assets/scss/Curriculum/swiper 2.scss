@@ -1,0 +1,27 @@
+
+.swiper {
+    --swiper-theme-color:#fff;
+    display: flex;
+    justify-content: center;
+
+    & img {
+        cursor: pointer;
+    }
+}
+
+.swiper-initialized {
+    padding: 0 7rem;
+}
+
+.swiper-pagination-bullet {
+    background-color: white;
+}
+
+.swiper-button-prev,
+.swiper-button-next {
+    display: block;
+}
+
+.swiper-slide {
+    width: 30% !important;
+}
