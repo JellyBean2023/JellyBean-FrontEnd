@@ -514,6 +514,7 @@ const ApplyForms = (props) => {
                         <>
                           <input type="radio" name="phoneNumber" value={list.value} onChange={handlePhoneNumberChange} />
                           {list.text} {members.phone}
+                          <input id="number" type="hidden" name="phoneNumber" defaultValue={members.phone} required />
                         </>
                       )}
                     </label>
