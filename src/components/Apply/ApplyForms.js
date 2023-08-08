@@ -425,7 +425,7 @@ const ApplyForms = (props) => {
 
     const formData = {
       name: target.name ? target.name.value : '',
-      birth: target.birth ? target.date.value : '',
+      birth: target.birth ? target.birth.value : '',
       email: target.email ? target.email.value : '',
       phone: target.phoneNumber ? target.phoneNumber.value : '',
       phoneNumberText: phone,
