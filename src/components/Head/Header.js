@@ -185,8 +185,8 @@ const Header = () => {
                                 <Link href="/" className="nav_link dropdown_link" onClick={() => toggleDropdown(1)}>천재교육 IT센터</Link>
 
                                 <ul className="dropdown_menu" id={activeDropdown === 1 ? "show-menu" : ""}>
-                                    <li className="dropdown_item"><Link href={`/info`} className="nav_link">소개</Link></li>
-                                    <li className="dropdown_item"><Link href={`/`} className="nav_link">교육시설</Link></li>
+                                    <li className="dropdown_item"><Link href={`/`} className="nav_link">소개</Link></li>
+                                    <li className="dropdown_item"><Link href={`/eduCenter`} className="nav_link">교육시설</Link></li>
                                 </ul>
                             </li>
                             <li className="nav_item dropdown">

@@ -495,7 +495,7 @@ const ApplyForms = (props) => {
                 <InsertContainer id={id} className="flex">
                   <h2 id={`import`}>*기본 입력정보</h2>
                   <InputField id={id}><input type="text" name="name" defaultValue={members.name} required /><label>Name</label></InputField>
-                  <InputField id={id}><input type="date" name="date" defaultValue={members.birth} required /><label>생년월일</label></InputField>
+                  <InputField id={id}><input type="date" name="birth" defaultValue={members.birth} required /><label>생년월일</label></InputField>
                   <InputField id={id}><input type="email" name="email" defaultValue={members.email} required /><label>이메일</label></InputField>
                 </InsertContainer>
 

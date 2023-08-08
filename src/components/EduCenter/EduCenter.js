@@ -1,4 +1,4 @@
-const Info = () => {
+const EduCenter = () => {
     return (
         <main class="text-gray-600 body-font relative">
             <div class="absolute inset-0 bg-gray-300">
@@ -22,4 +22,4 @@ const Info = () => {
     )
 }
 
-export default Info;
+export default EduCenter;
