@@ -3,6 +3,8 @@ import Link from "next/link";
 import { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
 import Image from 'next/image';
+import { useRecoilValue, useResetRecoilState } from 'recoil';
+import { isAdminState, EmailIDState } from "@/components/Login/Login";
 
 import { HiOutlineViewList } from 'react-icons/hi';
 import { AiOutlineClose } from 'react-icons/ai';
@@ -78,12 +80,17 @@ const Header = () => {
     const navRef = useRef(null);
     const buttonRef = useRef(null)
     // const { status } = useSession();
-    const isAdmin = localStorage.getItem("admin") ? localStorage.getItem("admin") : false;
+    
+    //회원의 등급불러오기
+    const isAdmin = useRecoilValue(isAdminState);
+    const deleteisAdminState = useResetRecoilState(isAdminState);
+    const deleteEmailState = useResetRecoilState(EmailIDState);
    
     const signOut = () => {
         localStorage.removeItem("accessToken");
         localStorage.removeItem("refreshToken");
-        localStorage.removeItem("admin");
+        deleteisAdminState();
+        deleteEmailState();
         location.replace('/')
     };
 

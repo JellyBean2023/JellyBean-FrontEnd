@@ -175,6 +175,11 @@ const EmailIDState = atom({
   default: '',
   effects_UNSTABLE: [persistAtom],
 });
+const isAdminState = atom({
+  key: 'isAdmin',
+  default: false,
+  effects_UNSTABLE: [persistAtom],
+});
 
 const Login = () => {
   const emailRef = useRef(null)
@@ -235,6 +240,7 @@ const Login = () => {
   // };
   
   const [emailID, setEmailID] = useRecoilState(EmailIDState);
+  const [isAdmin, setIsAdmin] = useRecoilState(isAdminState);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -259,7 +265,7 @@ const Login = () => {
 
         localStorage.setItem("accessToken", tokenDto.accessToken);
         localStorage.setItem("refreshToken", tokenDto.refreshToken);
-        localStorage.setItem("admin", admin);
+        setIsAdmin(admin);
         setEmailID(loginData.email);
 
         location.replace('/');
@@ -323,4 +329,4 @@ const Login = () => {
 
 export default Login;
 
-export { EmailIDState };
+export { EmailIDState, isAdminState };

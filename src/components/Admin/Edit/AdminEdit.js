@@ -19,9 +19,9 @@ const AdminEdit = () => {
                         <h1 className="font-semibold text-5xl my-4">페이지 수정하기</h1>
                     </div>
                 </div>
-                <section class="text-gray-600 body-font">
-                    <div class="container px-5 py-4 mx-auto">
-                        <div class="flex flex-wrap lg:w-4/5 sm:mx-auto sm:mb-2 -mx-2">
+                <section className="text-gray-600 body-font">
+                    <div className="container px-5 py-4 mx-auto">
+                        <div className="flex flex-wrap lg:w-4/5 sm:mx-auto sm:mb-2 -mx-2">
                             <EditSelectBox page={"[메인] 강좌 소개"} id="CurriculumBox" />
                             <EditSelectBox page={"section2"} id="section2"/>
                             <EditSelectBox page={"Lorem ipsum dolor sit amet"} id="Lorem ipsum"/>

@@ -21,55 +21,55 @@ const KDTApplyDeatil = (props) => {
           </div>
         </div>
         <form>
-          <div class="grid gap-6 mb-6 md:grid-cols-2">
+          <div className="grid gap-6 mb-6 md:grid-cols-2">
             <div>
-              <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">이름</label>
-              <input type="text" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required/>
+              <label for="name" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">이름</label>
+              <input type="text" id="name" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required/>
             </div>
             <div>
-              <label for="birthday" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">생년월일</label>
-              <input type="text" id="birthday" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"required/>
+              <label for="birthday" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">생년월일</label>
+              <input type="text" id="birthday" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"required/>
             </div>
             <div>
-              <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">이메일</label>
-              <input type="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required/>
+              <label for="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">이메일</label>
+              <input type="email" id="email" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required/>
             </div>
             <div>
-              <label for="phoneNumber" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">전화번호</label>
-              <input type="tel" id="phoneNumber" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" required/>
+              <label for="phoneNumber" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">전화번호</label>
+              <input type="tel" id="phoneNumber" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" required/>
             </div>
             <div>
-              <label for="recommend" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">추천 전형 여부</label>
-              <input type="text" id="recommend" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required/>
+              <label for="recommend" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">추천 전형 여부</label>
+              <input type="text" id="recommend" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required/>
             </div>
             <div>
-              <label for="grade" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">최종 학력</label>
-              <input type="text" id="grade" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required/>
+              <label for="grade" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">최종 학력</label>
+              <input type="text" id="grade" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required/>
             </div>
             <div>
-              <label for="finalEducation" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">최종 졸업(혹은 졸업예정 학교) 학교(전공명)</label>
-              <input type="text" id="finalEducation" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required/>
+              <label for="finalEducation" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">최종 졸업(혹은 졸업예정 학교) 학교(전공명)</label>
+              <input type="text" id="finalEducation" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required/>
             </div>
             <div>
-              <label for="getCard" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">국민내일배움카드 소지여부</label>
-              <input type="text" id="getCard" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required/>
+              <label for="getCard" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">국민내일배움카드 소지여부</label>
+              <input type="text" id="getCard" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required/>
             </div>
             <div>
-              <label for="getEx" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">k-Digital Training 수강이력</label>
-              <input type="text" id="getEx" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required/>
+              <label for="getEx" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">k-Digital Training 수강이력</label>
+              <input type="text" id="getEx" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required/>
             </div>
             <div>
-              <label for="experience" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">코딩 경험 여부</label>
-              <input type="text" id="experience" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required/>
+              <label for="experience" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">코딩 경험 여부</label>
+              <input type="text" id="experience" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required/>
             </div>
           </div>
-          <div class="mb-6">
-            <label for="reason" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">지원하는 이유</label>
-            <textarea id="reason" class="h-32 resize-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required/>
+          <div className="mb-6">
+            <label for="reason" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">지원하는 이유</label>
+            <textarea id="reason" className="h-32 resize-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required/>
           </div>
-          <div class="mb-6">
-            <label for="paths" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">해당 과정을 알게 된 경로</label>
-            <textarea id="paths" class="h-32 resize-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required/>
+          <div className="mb-6">
+            <label for="paths" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">해당 과정을 알게 된 경로</label>
+            <textarea id="paths" className="h-32 resize-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required/>
           </div>
         </form>
       </div>
