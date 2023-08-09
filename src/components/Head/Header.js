@@ -82,10 +82,16 @@ const Header = () => {
     // const { status } = useSession();
     
     //회원의 등급불러오기
-    const isAdmin = useRecoilValue(isAdminState);
+    const [isAdmin, setIsAdmin] = useState(false);
+    const adminState = useRecoilValue(isAdminState);
+
+    useEffect(() => {
+        setIsAdmin(adminState);
+    },[isAdmin]);
+
+    //로그아웃
     const deleteisAdminState = useResetRecoilState(isAdminState);
     const deleteEmailState = useResetRecoilState(EmailIDState);
-   
     const signOut = () => {
         localStorage.removeItem("accessToken");
         localStorage.removeItem("refreshToken");
@@ -158,12 +164,7 @@ const Header = () => {
                     <div className="nav_menu">
                         <ul className="nav_list">
                             <BsBell className="alert" />
-                            {isAdmin ? (
-                                 <li className="nav_item"><Link href={`/admin`} className="nav_link">관리자</Link></li>
-                            ) : (
-                                null
-                            )}
-                           
+                            {isAdmin && <li className="nav_item"><Link href={`/admin`} className="nav_link">관리자</Link></li>}
                             <li className="nav_item"><Link href={`/`} className="nav_link">고객센터</Link></li>
                             <li className="nav_item"><Link href={`/`} className="nav_link">공지사항</Link></li>
                             <LoginArea>
