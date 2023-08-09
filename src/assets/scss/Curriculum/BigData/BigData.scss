@@ -1,0 +1,45 @@
+.div-bglayers-comp {
+    border: 1px none;
+    height: 689px;
+    width: 1920px;
+  
+    .overlap-group {
+      height: 563px;
+      left: 244px;
+      position: relative;
+      width: 1440px;
+    }
+  
+    .IT-IT {
+      color: transparent;
+      font-family: "Inter-Bold", Helvetica;
+      font-size: 45px;
+      font-weight: 700;
+      height: 126px;
+      left: 305px;
+      letter-spacing: -2.25px;
+      line-height: 63px;
+      position: absolute;
+      text-align: center;
+      top: 64px;
+      width: 822px;
+    }
+  
+    .text-wrapper {
+      color: #e9993d;
+    }
+  
+    .span {
+      color: #2f3c7a;
+    }
+  
+    .div {
+      height: 563px;
+      left: 0;
+      object-fit: cover;
+      position: absolute;
+      top: 0;
+      width: 1440px;
+    }
+  }
+  

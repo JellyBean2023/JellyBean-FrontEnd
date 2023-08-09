@@ -78,11 +78,12 @@ const Header = () => {
     const navRef = useRef(null);
     const buttonRef = useRef(null)
     // const { status } = useSession();
-    const isAdmin = localStorage.getItem("admin");
+    const isAdmin = localStorage.getItem("admin") ? localStorage.getItem("admin") : false;
    
     const signOut = () => {
         localStorage.removeItem("accessToken");
         localStorage.removeItem("refreshToken");
+        localStorage.removeItem("admin");
         location.replace('/')
     };
 
@@ -150,7 +151,12 @@ const Header = () => {
                     <div className="nav_menu">
                         <ul className="nav_list">
                             <BsBell className="alert" />
-                            <li className="nav_item"><Link href={`/admin`} className="nav_link">관리자</Link></li>
+                            {isAdmin ? (
+                                 <li className="nav_item"><Link href={`/admin`} className="nav_link">관리자</Link></li>
+                            ) : (
+                                null
+                            )}
+                           
                             <li className="nav_item"><Link href={`/`} className="nav_link">고객센터</Link></li>
                             <li className="nav_item"><Link href={`/`} className="nav_link">공지사항</Link></li>
                             <LoginArea>
