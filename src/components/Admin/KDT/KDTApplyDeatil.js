@@ -104,7 +104,6 @@ const KDTApplyDeatil = (props) => {
     </main>
   )
 }
-  )
-}
+ 
 
 export default KDTApplyDeatil;
