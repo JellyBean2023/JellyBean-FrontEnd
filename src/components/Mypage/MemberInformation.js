@@ -7,7 +7,7 @@ import { useRecoilValue } from "recoil";
 import { EmailIDState } from "@/components/Login/Login";
 
 
-const MemberInfomationContainer = styled.main`
+const MemberInformationContainer = styled.main`
  padding: 1rem 10rem;
 `;
 
@@ -211,7 +211,7 @@ const Box = styled.div`
 
 
 
-const MemberInfomation = () => {
+const MemberInformation = () => {
 
     const router = useRouter();
 
@@ -245,7 +245,7 @@ const MemberInfomation = () => {
     
 
     return (
-        <MemberInfomationContainer>
+        <MemberInformationContainer>
             <Title className="title">회원 상세정보</Title>
 
             
@@ -282,9 +282,9 @@ const MemberInfomation = () => {
                     <p><input type="text" value={members.employeeNumber} /></p>             
             </InputField>
             <SubmitContainer><input type="button" onClick={handleGoToMypage} value="마이페이지로 돌아가기" /></SubmitContainer>
-        </MemberInfomationContainer>
+        </MemberInformationContainer>
 
     );
 }
 
-export default MemberInfomation;
+export default MemberInformation;
