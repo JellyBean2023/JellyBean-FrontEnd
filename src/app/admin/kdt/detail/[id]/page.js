@@ -6,7 +6,7 @@ const page = () => {
   const {id} = useParams();
 
   return(
-    <KDTApplyDeatil id={id}/>
+    <KDTApplyDeatil id={id}/> //KDT 신청정보 자세히
   )
 }
 

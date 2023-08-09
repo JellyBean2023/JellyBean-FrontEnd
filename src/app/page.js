@@ -18,6 +18,7 @@ const MainContainer = styled.main`
   }
 `;
 
+//메인화면
 const Main = () => {
   useEffect(() => {
     AOS.init({

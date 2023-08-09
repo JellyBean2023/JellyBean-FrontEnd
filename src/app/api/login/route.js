@@ -14,6 +14,10 @@ const sampleUsers = [
   }
 ];
 
+/**
+ * NEXT-AUTH API
+ * Credentials 로그인시 사용
+  */
 export const POST = async (request) => {
   try {
     const { username, password } = await request.json();
@@ -22,7 +26,7 @@ export const POST = async (request) => {
       (user) => user.email === username && user.password === password
     );
 
-    const Token = "AAAAAAAAAAAAAAAAAAAAAA";
+    // const Token = "AAAAAAAAAAAAAAAAAAAAAA";
     // if (authenticatedUser) {
       // localStorage.setItem("ChunJaeEduToken", JSON.stringify(Token));
       return new Response(

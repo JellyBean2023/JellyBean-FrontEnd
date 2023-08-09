@@ -16,8 +16,6 @@
   --accent-link-color: #006876;
   --warning-color: #FE5F52;
 
-
-
   --java-color: #082058;
   --java-sub-color: #eaa047;
   --bigdata-color: #553BF3;
@@ -41,6 +39,7 @@
   --footer-height: 80px;
 }
 
+/* 다크모드 색상 */
 @media (prefers-color-scheme: dark) {
   :root {
     --background-rgb: 32, 41, 58;

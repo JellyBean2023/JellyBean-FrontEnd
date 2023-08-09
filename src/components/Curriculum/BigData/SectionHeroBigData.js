@@ -4,7 +4,7 @@ import { styled } from "styled-components";
 import o1 from '../../../assets/img/0101.webp'
 import Image from "next/image";
 
-const SectionHeroContainer = styled.main`
+const SectionHeroContainer = styled.section`
   width: 100%;
   height: 1014.75px;
   background-color: rgb(85, 59, 243);

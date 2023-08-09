@@ -44,11 +44,11 @@ const Regist = () => {
     const login = document.querySelector(".login-link");
     const signUp = document.querySelector(".signup-link");
 
-    login.addEventListener("click", () => { //로그인화면
+    login.addEventListener("click", () => { //약관동의 화면전환
       setActive(false);
     });
 
-    signUp?.addEventListener("click", () => {  //회원가입화면
+    signUp?.addEventListener("click", () => {  //회원가입 화면전환
       setActive(true);
     });
   }, []);

@@ -2,7 +2,7 @@ import Admin from "@/components/Admin/AdminMain";
 
 const page = () => {
     return(
-        <Admin/>
+        <Admin/> // 관리자 Dashboard페이지
     );
 }
 

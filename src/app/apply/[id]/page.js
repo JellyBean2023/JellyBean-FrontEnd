@@ -6,6 +6,6 @@ export default function Page() {
   const {id} = useParams();
 
   return (
-    <ApplyForms id={id}/>
+    <ApplyForms id={id}/> //KDT 신청 폼 페이지
   )
 }

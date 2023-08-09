@@ -3,7 +3,7 @@ import AdminKDT from "@/components/Admin/KDT/AdminKDT";
 
 const page = () => {
   return(
-    <AdminKDT/>
+    <AdminKDT/> //KDT 신청정보 전체 리스트
   )
 }
 

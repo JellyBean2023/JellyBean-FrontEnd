@@ -2,6 +2,9 @@ import NextAuth from "next-auth/next"
 import CredentialsProvider from "next-auth/providers/credentials"
 import { POST as loginPOST } from "@/app/api/login/route";
 
+/**
+ * NEXT-AUTH API
+  */
 const handler = NextAuth({
   secret: process.env.NEXTAUTH_SECRET,
   providers: [

@@ -260,8 +260,6 @@ const ApplyForms = (props) => {
         pm: '에듀테크 PM 2기 (프로덕트 매니저)',
     }
 
-
-
     /* BackEnd DATA START */
     const information = { //기본입력정보
         name: '홍길동',
