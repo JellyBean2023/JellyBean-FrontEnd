@@ -45,7 +45,7 @@ const KDTApplyDeatil = (props) => {
       <div className={"relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded"}>
         <div className="rounded-t mb-0 px-4 py-3 border-0"> 
           <div className="flex flex-wrap items-center">
-            <h1 className="font-semibold text-5xl my-4">'{applyInfo.name}'님의 신청 현황</h1>
+            <h1 className="font-semibold text-5xl my-4">'{name}'님의 신청 현황</h1>
           </div>
         </div>
         <form>
