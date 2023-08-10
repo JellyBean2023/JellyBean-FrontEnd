@@ -13,22 +13,27 @@ const Mypage = () => {
   const [members, setMembers] = useState([]);
   const emailID = useRecoilValue(EmailIDState);
 
-  console.log(members)
+  const [applyInfo, setApplyInfo] = useState([]);
+
+  console.log(applyInfo);
 
   const router = useRouter();
 
   const handleGoToMemberInfo = () => {
-    router.push('/memberInfomation');
+    router.push('/memberInformation');
   };
 
   const handleGoToApplyInfo = () => {
-    router.push('/applyInfomation');
+    router.push('/applyInformation');
   };
 
+    //회원정보 불러오기
+
   useEffect(() => {
+
     const fetchMembers = async () => {
       try {
-        const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/mypage/kdt/${emailID}`,
+        const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/mypage/${emailID}`,
           {
             headers: {
               'Content-Type': 'application/json',
@@ -41,7 +46,29 @@ const Mypage = () => {
       }
     };
     fetchMembers();
+
+
+      // 신청현황 불러오기
+    const fetchApplyInfo = async () => {
+      try {
+        const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/mypage/kdt/${emailID}`,
+          {
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': status
+            },
+          });
+        setApplyInfo(response.data);
+      } catch (error) {
+        console.error('신청 정보 가져오기 에러:', error);
+      }
+    };
+  
+    fetchApplyInfo(); 
   }, []);
+
+
+
 
 
   return (
@@ -70,7 +97,7 @@ const Mypage = () => {
                 </div>
                 <div className="text-sm leading-normal mt-0 mb-2 text-gray-500 font-bold uppercase">
                   <i className="fas fa-map-marker-alt mr-2 text-lg text-gray-500"></i>{" "}
-                  tel: {members.phoneNumberText}
+                  tel: {members.phone}
                 </div>
                 <div className="mb-2 text-gray-700 mt-10">
                   <button onClick={handleGoToMemberInfo} className="font-normal text-pink-500">
@@ -86,12 +113,12 @@ const Mypage = () => {
                         강의신청 현황
                       </h3>
                       <div className="text-sm leading-normal mt-0 mb-2 text-gray-500 font-bold uppercase">
-                        <p><i className="fas fa-map-marker-alt mr-2 text-lg text-blue-500">신청 현황: {members.exist ? '신청완료' : '미신청'}</i></p>
-                        {members.exist && ( 
+                        <p><i className="fas fa-map-marker-alt mr-2 text-lg text-blue-500">신청 현황: {applyInfo.exist ? '신청완료' : '미신청'}</i></p>
+                        {applyInfo.exist && ( 
                           <>
                             <p>
                               <i className="fas fa-map-marker-alt mr-2 text-lg text-blue-500">
-                                신청날짜: {members.date}
+                                신청날짜: {applyInfo.date}
                               </i>
                             </p>
                           </>
