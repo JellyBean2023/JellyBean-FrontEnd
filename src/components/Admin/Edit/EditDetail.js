@@ -2,7 +2,7 @@ import { styled } from "styled-components";
 import { Editor } from '@toast-ui/react-editor';
 import '@toast-ui/editor/dist/toastui-editor.css';
 import { Button } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import axios from "axios";
 
@@ -96,7 +96,7 @@ const Edit = (props) => {
     };
 
     //ID값에 따른 필요 데이터
-    const ph_Curriculum = `
+    const [ph_Curriculum, setPhCurriculum] = useState(`
     {
       lecName: "과정 ID",
       cardinalName: "과정 명",
@@ -115,7 +115,23 @@ const Edit = (props) => {
       lecStatus: 모집 여부 (true/false),
       lecInfo: "내용"
     }
-    `;
+    `);
+
+    const fetchData = async () => {
+        try {
+            const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/admin?${id}`);
+
+            console.log("response.data "+response.data);
+            console.log(JSON.stringify(jsonData));
+            setPhCurriculum(JSON.stringify(jsonData));
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        }
+    };
+
+    fetchData();
+
+    
     const ph_Section1 = `
     {
         name: "이름",

@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import axios from 'axios';
 import { useRecoilValue } from "recoil";
 import { EmailIDState } from "@/components/Login/Login";
-import { useRouter } from 'next/navigation';
 
 const KDTApplyDeatil = (props) => {
   const router = useRouter();
@@ -102,8 +101,6 @@ const KDTApplyDeatil = (props) => {
         </form>
       </div>
     </main>
-  )
-}
   )
 }
 
