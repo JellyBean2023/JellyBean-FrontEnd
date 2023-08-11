@@ -270,7 +270,7 @@ const Login = () => {
 
         location.replace('/');
       } else {
-        alert("등록되지 않은 회원입니다");
+        alert("회원정보가 일치하지 않습니다.");
       }
     } catch (error) {
       alert("로그인에 실패했습니다");
