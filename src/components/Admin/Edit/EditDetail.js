@@ -2,7 +2,7 @@ import { styled } from "styled-components";
 import { Editor } from '@toast-ui/react-editor';
 import '@toast-ui/editor/dist/toastui-editor.css';
 import { Button } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import axios from "axios";
 
@@ -59,29 +59,77 @@ const Edit = (props) => {
         lecInfo: "내용"
     });
 
-    const handleChange = (value) => {
-        setFormData({
-            ...formData,
-            lecInfo: value
-        });
-    };
+    //ID값에 따른 필요 데이터
+    const [page_Curriculum, setPhCurriculum] = useState(`
+    [
+        {
+          lecName: "과정 ID",
+          cardinalName: "과정 명",
+          lecStatus: true,
+          lecInfo: "내용"
+        },
+        {
+          lecName: "과정 ID",
+          cardinalName: "과정 명",
+          lecStatus: false,
+          lecInfo: "내용"
+        }
+        {
+          lecName: "과정 ID",
+          cardinalName: "과정 명",
+          lecStatus: true,
+          lecInfo: "내용"
+        }
+      ]
+    `);
 
-    const removeBackticks = (data) => { //백틱제거 함수
-        const lecInfoWithoutBackticks = data.lecInfo.replace(/`/g, '');
-        return {
-            ...data,
-            lecInfo: lecInfoWithoutBackticks
-        };
-    };
+    const fetchData = async () => {
+        try {
+            const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/admin?${id}`);
+            console.log(response.data)
+            const cleanedData = JSON.stringify(response.data).replace(/'/g, '"');
+        
+            console.log(cleanedData);
+            setPhCurriculum(formattedData);
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        }
+    };    
 
+    useEffect(() => {
+        fetchData();
+    }, [])
+
+    
+    const page_Section1 = `
+    {
+        name: "이름",
+        contents: "내용"
+    }
+    `
+
+    //ID에 따른 placeholder 지정
+    let placeholder;
+    if (id === 'CurriculumBox')
+        placeholder = page_Curriculum;
+    else if (id === 'Section1')
+        placeholder = page_Section1;
+    else
+        placeholder = "";
+
+    const editorRef = useRef();
+
+    const removeBackticks = (data) => {
+        const lecInfoWithoutBackticks = data.replace(/`/g, ''); // 백틱 제거
+        return lecInfoWithoutBackticks;
+    };
+    
     const submitHandler = (e) => {
         e.preventDefault();
-
-        const editedData = {
-            DATA: removeBackticks(formData)
-        };
-
-        const response = axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/member/${id}`, editedData, {
+    
+        const editedData = editorRef.current.getInstance().getMarkdown();
+        const formData = JSON.parse(removeBackticks(editedData));
+        const response = axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/member/${id}`, formData, {
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': localStorage.getItem("accessToken"),
@@ -94,43 +142,7 @@ const Edit = (props) => {
             console.log(error.response);
         });
     };
-
-    //ID값에 따른 필요 데이터
-    const ph_Curriculum = `
-    {
-      lecName: "과정 ID",
-      cardinalName: "과정 명",
-      lecStatus: 모집 여부 (true/false),
-      lecInfo: "내용"
-    },
-    {
-      lecName: "과정 ID",
-      cardinalName: "과정 명",
-      lecStatus: 모집 여부 (true/false),
-      lecInfo: "내용"
-    },
-    {
-      lecName: "과정 ID",
-      cardinalName: "과정 명",
-      lecStatus: 모집 여부 (true/false),
-      lecInfo: "내용"
-    }
-    `;
-    const ph_Section1 = `
-    {
-        name: "이름",
-        contents: "내용"
-    }
-    `
-
-    //ID에 따른 placeholder 지정
-    let placeholder;
-    if (id === 'CurriculumBox')
-        placeholder = ph_Curriculum;
-    else if (id === 'Section1')
-        placeholder = ph_Section1;
-    else
-        placeholder = "";
+    
 
     return (
         <EditorContainer className="p-5">
@@ -153,7 +165,7 @@ const Edit = (props) => {
                         previewStyle="vertical"
                         height="450px"
                         initialEditType="wysiwyg"
-                        onChange={handleChange}
+                        ref={editorRef}
                     />
                     <Button id="btn" type="submit"> 수정하기 </Button>
                 </form>
