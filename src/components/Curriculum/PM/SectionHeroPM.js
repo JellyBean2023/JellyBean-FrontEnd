@@ -5,6 +5,8 @@ import React, { useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import "aos/dist/aos.css";
+import obj from '../../../assets/img/bg.webp';
+import Image from "next/image";
 
 const SectionHeroContainer = styled.section`
   width: 100%;
@@ -24,6 +26,7 @@ const Main = styled.div`
   img {
     position: absolute;
     z-index: -1;
+    height: 100%;
     
     &#R {
       right: 0;
@@ -112,7 +115,7 @@ const Box = styled.div`
   text-align: left;
   word-wrap: break-word; 
   padding: 20px;
-  color: var(--text-color);
+  color: black;
   border-radius: 20px;
 
   @media (max-width: 1024px) {
@@ -148,7 +151,7 @@ const Box = styled.div`
 `;
 
 const CurriculumPM = () => {
-  
+
   useEffect(() => {
     AOS.init({
       duration: 1500,
@@ -158,14 +161,15 @@ const CurriculumPM = () => {
   return (
     <SectionHeroContainer>
       <Main data-aos="fade-up">
+        <Image id="L" src={obj} alt="img" />
         <Title>
-          <p id ="thin">제너릴리스트인 당신!</p>
+          <p id="thin">제너릴리스트인 당신!</p>
           <p><strong>천재 IT교육센터와 함께라면</strong></p>
           <p><span id="Emphasis">슈퍼-제너릴리스트</span>가 됩니다.</p>
-          <SubTitle id ="yello">
+          <SubTitle id="yello">
             <p>에듀테크 프로덕트 매니저 [PM/서비스 기획자] 2기 모집</p>
           </SubTitle>
-          <SubTitle id = "sub">
+          <SubTitle id="sub">
             <p>대한민국 1위 교육·출판 전문 기업 천재교육 GeniA 아카데미가 운영하는</p>
             <p>에듀테크 PM 과정은 그동안 없었던 <strong>새로운 PM 교육과정</strong>입니다.</p>
           </SubTitle>
@@ -176,7 +180,6 @@ const CurriculumPM = () => {
         <span id="detail">※모집 정원에 따라 예정된 기한보다 조기 마감될 수 있습니다. </span>
         <BoxContainer>
           <Box>
-            <p id="center">1</p>
             <span id="puple">모집기간</span>
             <div>
               <p><b>모집기간 : 2023.05.22~07.04</b></p>
@@ -185,7 +188,6 @@ const CurriculumPM = () => {
             </div>
           </Box>
           <Box>
-          <p id="center">2</p>
             <span id="puple">지원방법</span>
             <div>
               <p><b>서류심사</b> : 신청폼 작성</p>
@@ -194,7 +196,6 @@ const CurriculumPM = () => {
             </div>
           </Box>
           <Box>
-          <p id="center">3</p>
             <span id="puple">참여대상</span>
             <div>
               <p>-국민내일배움카드 보유 혹은 발급 가능한 자</p>
@@ -202,11 +203,10 @@ const CurriculumPM = () => {
             </div>
           </Box>
           <Box>
-          <p id="center">3</p>
-          <span id="puple">훈련기간</span>
-          <div>
-            <p><b>2023.07.03~12.28 (약 6개월)</b></p>
-          </div>
+            <span id="puple">훈련기간</span>
+            <div>
+              <p><b>2023.07.03~12.28 (약 6개월)</b></p>
+            </div>
           </Box>
         </BoxContainer>
       </Main>

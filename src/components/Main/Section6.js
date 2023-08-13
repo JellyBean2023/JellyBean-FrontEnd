@@ -13,7 +13,7 @@ const BannerBox = styled.div`
 
     @media (max-width: 1024px) {
         width: 100%;
-        height: 70px;
+        height: 100px;
     }
 `;
 

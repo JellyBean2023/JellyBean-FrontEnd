@@ -80,7 +80,7 @@ const Box = styled.div`
         height: 300px;
 
         @media (max-width: 1024px) {
-            width: 100%;
+            width: 50%;
             height: 300px;
             margin-bottom: 30px;
         }
@@ -91,7 +91,7 @@ const Box = styled.div`
         height: 300px;
 
         @media (max-width: 1024px) {
-            width: 100%;
+            width: 50%;
             height: 300px;
             margin-bottom: 30px;
         }
