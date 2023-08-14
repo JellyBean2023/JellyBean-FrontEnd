@@ -87,10 +87,7 @@ const Edit = (props) => {
         try {
             const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/admin?${id}`);
             console.log(response.data)
-            const cleanedData = JSON.stringify(response.data).replace(/'/g, '"');
-        
-            console.log(cleanedData);
-            setPhCurriculum(formattedData);
+            // const cleanedData = JSON.stringify(response.data).replace(/'/g, '"');
         } catch (error) {
             console.error('Error fetching data:', error);
         }
@@ -129,7 +126,7 @@ const Edit = (props) => {
     
         const editedData = editorRef.current.getInstance().getMarkdown();
         const formData = JSON.parse(removeBackticks(editedData));
-        const response = axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/member/${id}`, formData, {
+        const response = axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/admin/${id}`, formData, {
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': localStorage.getItem("accessToken"),
@@ -143,7 +140,6 @@ const Edit = (props) => {
         });
     };
     
-
     return (
         <EditorContainer className="p-5">
             <button onClick={() => router.back()} className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center w-1/8">
