@@ -425,6 +425,7 @@ const ApplyForms = (props) => {
 
     const formData = {
       name: target.name ? target.name.value : '',
+      date: target.date ? target.date.date : '',
       birth: target.birth ? target.birth.value : '',
       email: target.email ? target.email.value : '',
       phone: target.phoneNumber ? target.phoneNumber.value : '',
@@ -503,23 +504,39 @@ const ApplyForms = (props) => {
                   <h2 id={id}>연락처</h2>
                   {phoneNumberList.map((list, i) => (
                     <label key={i}>
-                      {list.value === 2 ? (
-                        <>
-                          <input type="radio" name="phoneNumber" value={list.value} onChange={handlePhoneNumberChange} />
-                          {list.text}
-                          {isPhoneChecked ? <InputField id={id}><input id="number" type="text" name="phoneNumber"
-                          onChange={handlePhoneChange} placeholder="ex) 010-0000-0000" required /> <label>연락받을 연락처</label></InputField> : null}
-                        </>
+                      <input
+                        type="radio"
+                        name="phoneNumber"
+                        value={list.value}
+                        onChange={handlePhoneNumberChange}
+                      />
+                      {list.text}
+                      {list.value === 2 && isPhoneChecked ? (
+                        <InputField id={id}>
+                          <input
+                            id="number"
+                            type="text"
+                            name="phoneNumber"
+                            onChange={handlePhoneChange}
+                            placeholder="ex) 010-0000-0000"
+                            required
+                          />
+                          <label>연락받을 연락처</label>
+                        </InputField>
                       ) : (
-                        <>
-                          <input type="radio" name="phoneNumber" value={list.value} onChange={handlePhoneNumberChange} />
-                          {list.text} {members.phone}
-                          <input id="number" type="hidden" name="phoneNumber" defaultValue={members.phone} required />
-                        </>
+                        <input
+                          id="number"
+                          type="hidden"
+                          name="phoneNumber"
+                          value={members && members.phone ? members.phone : ""}
+                          required
+                        />
                       )}
                     </label>
                   ))}
-                  {!isValidPhone && phone !== "" && <p>010-0000-0000 형식으로 작성해주세요</p>}
+                  {!isValidPhone && phone !== "" && (
+                    <p>010-0000-0000 형식으로 작성해주세요</p>
+                  )}
                 </InsertContainer>
 
                 <InsertContainer id={id}>
