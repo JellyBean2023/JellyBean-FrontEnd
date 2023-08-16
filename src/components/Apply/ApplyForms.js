@@ -229,14 +229,13 @@ const ButtonContainer = styled.div`
 `;
 
 const ApplyForms = (props) => {
-  const status = localStorage.getItem("accessToken");
+  const status = localStorage.getItem("accessToken") ? localStorage.getItem("accessToken") : null;
   const { id } = props;
   const components = {
     bigdata: '빅데이터',
     java: '풀스택',
     pm: '에듀테크 PM 2기 (프로덕트 매니저)',
   }
-
 
 
   /* BackEnd DATA START */
@@ -363,8 +362,6 @@ const ApplyForms = (props) => {
   const [members, setMembers] = useState([]);
   const emailID = useRecoilValue(EmailIDState);
 
-  console.log(members)
-
   useEffect(() => {
     const fetchMembers = async () => {
       try {
@@ -413,7 +410,7 @@ const ApplyForms = (props) => {
     }
   };
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = async (event) => { 
     event.preventDefault();
 
     if (!isValidPhone) {
@@ -428,7 +425,7 @@ const ApplyForms = (props) => {
       date: target.date ? target.date.date : '',
       birth: target.birth ? target.birth.value : '',
       email: target.email ? target.email.value : '',
-      phone: target.phoneNumber ? target.phoneNumber.value : '',
+      phone: target.phoneNumber === 1 ? target.existPhoneNumber.value : target.phoneNumber.value,
       phoneNumberText: phone,
       recommend: target.recommend ? target.recommend.value : '',
       grade: target.grade ? target.grade.value : '',
@@ -504,33 +501,19 @@ const ApplyForms = (props) => {
                   <h2 id={id}>연락처</h2>
                   {phoneNumberList.map((list, i) => (
                     <label key={i}>
-                      <input
-                        type="radio"
-                        name="phoneNumber"
-                        value={list.value}
-                        onChange={handlePhoneNumberChange}
-                      />
-                      {list.text}
                       {list.value === 2 && isPhoneChecked ? (
-                        <InputField id={id}>
-                          <input
-                            id="number"
-                            type="text"
-                            name="phoneNumber"
-                            onChange={handlePhoneChange}
-                            placeholder="ex) 010-0000-0000"
-                            required
-                          />
-                          <label>연락받을 연락처</label>
-                        </InputField>
+                        <>
+                          <input type="radio" name="phoneNumber" value={list.value} onChange={handlePhoneNumberChange} />
+                          {list.text}
+                          {isPhoneChecked ? <InputField id={id}><input id="number" type="text" name="phoneNumber"
+                          onChange={handlePhoneChange} placeholder="ex) 010-0000-0000" required /> <label>연락받을 연락처</label></InputField> : null}
+                        </>
                       ) : (
-                        <input
-                          id="number"
-                          type="hidden"
-                          name="phoneNumber"
-                          value={members && members.phone ? members.phone : ""}
-                          required
-                        />
+                        <>
+                        <input type="radio" name="phoneNumber" value={list.value} onChange={handlePhoneNumberChange} />
+                        {list.text}
+                        <input id="number" type="hidden" name="existPhoneNumber" defaultValue={members.phone} required />
+                      </>
                       )}
                     </label>
                   ))}
