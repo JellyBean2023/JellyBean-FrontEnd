@@ -205,7 +205,7 @@ const Box = styled.div`
   display: flex;
 
   &#resgistType{
-    width: auto;
+    width: 8rem;
   }
 `;
 
