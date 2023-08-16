@@ -203,6 +203,10 @@ const UserBox = styled.div`
 
 const Box = styled.div`
   display: flex;
+
+  &#resgistType{
+    width: auto;
+  }
 `;
 
 const RegistInfoInsert = (active) => {
@@ -455,7 +459,7 @@ const RegistInfoInsert = (active) => {
 
       <InputField id='type'>
       <Box>
-        <div>가입유형</div>
+        <div id='registType'>가입유형</div>
         <UserBox>
         일반 <input id="user" type="radio" name='employee' value={`1`} onChange={handleChange}/>
         </UserBox>
