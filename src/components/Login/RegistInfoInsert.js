@@ -297,7 +297,7 @@ const RegistInfoInsert = (active) => {
 
 
   const handleChange = (event) => {
-    setIsChecked(event.target.value === '1');
+    setIsChecked(event.target.value === '2');
   };
 
   const saveEmployeeNumber = (event) => {
@@ -317,14 +317,13 @@ const RegistInfoInsert = (active) => {
         },
         body: JSON.stringify({ email: email }),
       });
-
-        if(res.ok){
-          setCheckEmail(true);
-          alert("인증이 완료되었습니다.");
-        }
-        else {
-          alert("중복된 이메일 입니다")
-        }
+      if(res.ok){
+        setCheckEmail(true);
+        alert("인증이 완료되었습니다.");
+      }
+      else {
+        alert("중복된 이메일 입니다")
+      }
     } catch (error) {
       console.error("에러 발생:", error);
     }
@@ -396,7 +395,7 @@ const RegistInfoInsert = (active) => {
       // validNumber: event.target.elements.validNumber.value,
       birth: birth,
       registCheck: registCheck.toString(),
-      authority: isChecked ? 'ROLE_MEMBER' : 'ROLE_MEMBER',
+      authority: 'ROLE_MEMBER',
       employeeNumber: employeeNumber,
     };
 
@@ -458,10 +457,10 @@ const RegistInfoInsert = (active) => {
       <Box>
         <div>가입유형</div>
         <UserBox>
-        일반 <input id="user" type="radio" name='employee' value={`ROLE_MEMBER`} onChange={handleChange}/>
+        일반 <input id="user" type="radio" name='employee' value={`1`} onChange={handleChange}/>
         </UserBox>
         <UserBox id='right'>
-        직원 <input id="user" type="radio" name='employee' value={`ROLE_MEMBER`} onChange={handleChange} />
+        직원 <input id="user" type="radio" name='employee' value={`2`} onChange={handleChange} />
         </UserBox>
         </Box>
         {isChecked ? (
