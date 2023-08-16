@@ -171,11 +171,11 @@ const Header = () => {
                                 {typeof window !== 'undefined' && state ? (
                                     <ul>
                                         <li className="nav_item popup">
-                                            <FaUserCircle onClick={() => toggleDropdown(true)} />
+                                            <FaUserCircle onClick={() => toggleDropdown(0)} />
                                         </li>
                                         <li>
                                             <div>
-                                                <ul className={activeDropdown ? `popup_show` : `popup`}>
+                                                <ul className={activeDropdown === 0 ? `popup_show` : `popup`}>
                                                     <li className="nav_item popup_item">
                                                         <Link href={'/mypage'}>마이페이지</Link>
                                                     </li>
