@@ -76,7 +76,7 @@ const Box = styled.div`
     }
 
     &#FAQ{
-        width: 300px;
+        width: 370px;
         height: 300px;
 
         @media (max-width: 1024px) {
@@ -87,8 +87,9 @@ const Box = styled.div`
     }
 
     &#kakao{
-        width: 300px;
+        width: 370px;
         height: 300px;
+        background-color: #fee102;
 
         @media (max-width: 1024px) {
             width: 50%;
