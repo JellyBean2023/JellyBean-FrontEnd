@@ -222,8 +222,6 @@ const MemberInformation = () => {
   const [members, setMembers] = useState([]);
   const emailID = useRecoilValue(EmailIDState);
 
-  console.log(members)
-
   useEffect(() => {
     const fetchMembers = async () => {
       try {

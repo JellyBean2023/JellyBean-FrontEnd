@@ -313,6 +313,7 @@ const ApplyForms = (props) => {
 
   const handlePhoneNumberChange = (event) => {
     setIsPhoneChecked(event.target.value === "2");
+
   };
   const handleExperienceChange = (event) => {
     setIsOtherChecked(event.target.value === "5");
@@ -360,6 +361,7 @@ const ApplyForms = (props) => {
 
   // 회원 기본정보 불러오기
   const [members, setMembers] = useState([]);
+  const [phone, setPhone] = useState(`010-0000-0000`);
   const emailID = useRecoilValue(EmailIDState);
 
   useEffect(() => {
@@ -373,6 +375,7 @@ const ApplyForms = (props) => {
             },
           });
         setMembers(response.data);
+        setPhone(response.data.phone);
       } catch (error) {
         console.error('Error fetching members:', error);
       }
@@ -381,9 +384,7 @@ const ApplyForms = (props) => {
   }, []);
 
 
-
   //핸드폰 번호 유효성 검사
-  const [phone, setPhone] = useState('');
   const [isValidPhone, setIsValidPhone] = useState(true);
 
   useEffect(() => {
@@ -402,7 +403,7 @@ const ApplyForms = (props) => {
 
   const validatePhone = () => {
     const regex = /^010-\d{4}-\d{4}$/;
-    if (!regex.test(phone)) {
+    if (!regex.test(phone) ) {
       setIsValidPhone(false);
     }
     else {

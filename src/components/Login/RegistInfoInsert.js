@@ -309,8 +309,6 @@ const RegistInfoInsert = (active) => {
   const [checkEmail, setCheckEmail] = useState(false);
 
   const emailConfirm = async () => {
-    console.log({ email: email });
-
     try {
       const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/auth/signup/emailcheck`, {
         method: "POST",

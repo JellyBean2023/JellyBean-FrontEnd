@@ -15,8 +15,6 @@ const Mypage = () => {
 
   const [applyInfo, setApplyInfo] = useState([]);
 
-  console.log(applyInfo);
-
   const router = useRouter();
 
   const handleGoToMemberInfo = () => {
