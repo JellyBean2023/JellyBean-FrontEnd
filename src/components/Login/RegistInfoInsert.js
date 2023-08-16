@@ -204,8 +204,10 @@ const UserBox = styled.div`
 const Box = styled.div`
   display: flex;
 
-  &#resgistType{
-    width: 10rem;
+  div{
+    &#resgistType{
+      width: 10rem;
+      }
   }
 `;
 
