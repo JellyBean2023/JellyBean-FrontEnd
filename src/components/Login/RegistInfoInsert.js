@@ -36,6 +36,10 @@ const Title = styled.span`
   }
 `;
 
+const RegistType = styled.div`
+  width: 10rem;
+`;
+
 const InputField = styled.div`
   color: var(--theme-color);
   position: relative;
@@ -51,10 +55,6 @@ const InputField = styled.div`
       &#join{
         padding-top: 0px
       }
-
-      &#resgistType{
-      width: 10rem;
-    }
   }
 
     &input{
@@ -322,7 +322,7 @@ const RegistInfoInsert = (active) => {
         },
         body: JSON.stringify({ email: email }),
       });
-      if(res.ok){
+      if (res.ok) {
         setCheckEmail(true);
         alert("인증이 완료되었습니다.");
       }
@@ -356,7 +356,7 @@ const RegistInfoInsert = (active) => {
   //     { email: email },
   //     { headers: {"Content-Type": "application/json"} }
   //     );
-      
+
   //     if (response.ok) {
   //       setCheckEmail(true);
   //       alert("인증이 완료되었습니다.");
@@ -386,7 +386,7 @@ const RegistInfoInsert = (active) => {
       return;
     }
 
-    if(!checkEmail) {
+    if (!checkEmail) {
       alert('이메일 인증을 완료해야 합니다.');
       return;
     }
@@ -410,7 +410,7 @@ const RegistInfoInsert = (active) => {
           'Content-Type': 'application/json',
         }
       });
-    
+
       if (response.status === 200) {
         console.log('회원 등록이 성공적으로 완료되었습니다.');
         router.replace("/");
@@ -421,7 +421,7 @@ const RegistInfoInsert = (active) => {
       console.log('회원 등록 중 오류가 발생하였습니다.');
       console.log('오류 응답:', error.response);
     }
-    
+
   };
 
   return (
@@ -435,7 +435,7 @@ const RegistInfoInsert = (active) => {
       <InputField><input type="text" value={email} onChange={handleEmailChange} placeholder="ex)chunjae@chunjae.com" required />
         <label>이메일</label><span />
       </InputField> {!isValidEmail && email !== "" && <p>이메일 형식에 맞게 입력해주세요</p>}
-      {isValidEmail && email !== "" && <ApplyButton onClick={emailConfirm}>인증하기 {checkEmail && <AiOutlineCheck id='check_icon'/>} </ApplyButton>}
+      {isValidEmail && email !== "" && <ApplyButton onClick={emailConfirm}>인증하기 {checkEmail && <AiOutlineCheck id='check_icon' />} </ApplyButton>}
 
       {/* <InputField><input type="text" name='validNumber' placeholder="인증코드" required />
         <label>이메일 인증코드 입력</label><span />
@@ -459,22 +459,22 @@ const RegistInfoInsert = (active) => {
       </InputField> {!isValidPhone && phone !== "" && <p>010-0000-0000 형식으로 작성해주세요</p>}
 
       <InputField id='type'>
-      <Box>
-        <div id='registType'>가입유형</div>
-        <UserBox>
-        일반 <input id="user" type="radio" name='employee' value={`1`} onChange={handleChange}/>
-        </UserBox>
-        <UserBox id='right'>
-        직원 <input id="user" type="radio" name='employee' value={`2`} onChange={handleChange} />
-        </UserBox>
+        <Box>
+          <RegistType id='registType'>가입유형</RegistType>
+          <UserBox>
+            일반 <input id="user" type="radio" name='employee' value={`1`} onChange={handleChange} />
+          </UserBox>
+          <UserBox id='right'>
+            직원 <input id="user" type="radio" name='employee' value={`2`} onChange={handleChange} />
+          </UserBox>
         </Box>
         {isChecked ? (
           <InputField id='employeeNum'>
             <input type="text" value={employeeNumber} onChange={saveEmployeeNumber} placeholder="사원번호 없을 시 입력 안해도 됩니다" />
-            <label>사원번호</label><span/>
+            <label>사원번호</label><span />
           </InputField>
         ) : null}
-        
+
       </InputField>
 
       <input type='hidden' value={registCheck} />
