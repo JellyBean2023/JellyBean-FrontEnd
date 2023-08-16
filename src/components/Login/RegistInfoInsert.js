@@ -51,7 +51,11 @@ const InputField = styled.div`
       &#join{
         padding-top: 0px
       }
+
+      &#resgistType{
+      width: 10rem;
     }
+  }
 
     &input{
       &user{
@@ -204,11 +208,6 @@ const UserBox = styled.div`
 const Box = styled.div`
   display: flex;
 
-  div{
-    &#resgistType{
-      width: 10rem;
-      }
-  }
 `;
 
 const RegistInfoInsert = (active) => {
